@@ -1,7 +1,7 @@
 Example: * Grilling
 Location: Instead rules
 RecipeLocation: Heat
-Index: Supporter from which the player cannot take things
+Index: supporters+kind+: from which the player cannot take things
 Description: A grill, from which the player is not allowed to take anything lest they're burned.
 For: Z-Machine
 

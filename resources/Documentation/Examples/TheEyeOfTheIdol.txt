@@ -1,7 +1,7 @@
 Example: ** The Eye of the Idol
 Location: Listing nondescript items of something
 RecipeLocation: Room Descriptions
-Index: Supporters that don't list contents in room descriptions
+Index: supporters+kind+: that don't list contents in room descriptions
 Description: A systematic way to allow objects in certain places to be described in the room description body text rather than in paragraphs following the room description, and to control whether supporters list their contents or not.
 For: Z-Machine
 
