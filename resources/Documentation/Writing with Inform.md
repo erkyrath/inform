@@ -4606,7 +4606,7 @@ The `when play begins` rules are checked only at the start of a story, not when 
 
 ## Awarding points {var_score}
 
-^^{use options: catalogue: |scoring} ^^{scoring+useopt+} ^^{scoring <-- points <-- rankings} ^^{scoring: maximum score} ^^{scoring: enabling} ^^{scoring: reporting during story} ^^{score (- number)+glob+} ^^{maximum score (- number)+glob+} ^^{>NOTIFY ON/OFF} ^^{+to+increase (a stored value) by (value)}
+^^{use options: catalogue: |scoring} ^^{scoring+useopt+} ^^{scoring <-- points <-- rankings <-- full score} ^^{scoring: maximum score} ^^{scoring: enabling} ^^{scoring: reporting during story} ^^{score (- number)+glob+} ^^{maximum score (- number)+glob+} ^^{>NOTIFY ON/OFF} ^^{+to+increase (a stored value) by (value)}
 
 Traditionally-written stories award points throughout play, as an indication of progress. If we want to be traditional, we must first write:
 

@@ -1,7 +1,7 @@
 Example: *** Rubies
 Location: Writing and reading tables to external files
 RecipeLocation: Scoring
-Index: Scoreboard preserved between games
+Index: scoring: scoreboard preserved between games
 Description: A scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next, adding the player's name if they have done well enough.
 For: Glulx
 

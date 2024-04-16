@@ -1,7 +1,7 @@
 Example: *** No Place Like Home
 Location: Awarding points
 RecipeLocation: Scoring
-Index: Scored items listed in a table
+Index: scoring: items listed in a table
 Description: Recording a whole table of scores for specific treasures.
 For: Z-Machine
 
