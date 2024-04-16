@@ -1,7 +1,7 @@
 Example: *** Whence?
 Location: Text with variations
 RecipeLocation: Doors, Staircases, and Bridges
-Index: Door kind that describes the destination
+Index: doors+kind+: that describes the destination
 Description: A kind of door that always automatically describes the direction it opens and what lies on the far side (if that other room has been visited).
 For: Z-Machine
 

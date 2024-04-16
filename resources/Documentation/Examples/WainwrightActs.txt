@@ -1,7 +1,7 @@
 Example: * Wainwright Acts
 Location: Relations which express conditions
 RecipeLocation: Doors, Staircases, and Bridges
-Index: Doors as seen by NPCs
+Index: doors+kind+: as seen by NPCs
 Description: A technical note about checking the location of door objects when characters other than the player are interacting with them.
 For: Z-Machine
 

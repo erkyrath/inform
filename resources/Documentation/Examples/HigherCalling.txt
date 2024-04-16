@@ -1,7 +1,7 @@
 Example: * Higher Calling
 Location: Calling names
 RecipeLocation: Doors, Staircases, and Bridges
-Index: Doors that open automatically
+Index: doors+kind+: that open automatically
 Description: All doors in the game automatically attempt to open if the player approaches them when they are closed.
 For: Z-Machine
 

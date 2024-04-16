@@ -1,7 +1,7 @@
 Example: * When?
 Location: Text with variations
 RecipeLocation: Doors, Staircases, and Bridges
-Index: Door described differently depending on where it is
+Index: doors+kind+: described differently depending on where it is
 Description: A door whose description says "...leads east" in one place and "...leads west" in the other.
 For: Z-Machine
 
