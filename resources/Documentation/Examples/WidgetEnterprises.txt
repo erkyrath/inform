@@ -1,7 +1,7 @@
 Example: * Widget Enterprises
 Location: Equations
 RecipeLocation: Money
-Index: Equation used for price curves
+Index: equations, for values with units
 Description: Allowing the player to set a price for a widget on sale, then determining the resulting sales based on consumer demand, and the resulting profit and loss.
 For: Z-Machine
 

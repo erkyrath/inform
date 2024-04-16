@@ -1,7 +1,7 @@
 Example: * Tamed
 Location: Either/or properties
 RecipeLocation: Furniture
-Index: Enterable objects
+Index: enterable (container)+prop+
 Description: Examples of a container and a supporter that can be entered, as well as nested rooms.
 For: Z-Machine
 
