@@ -12353,7 +12353,7 @@ The `` (providing light)`` (note initial space) was added by this activity.
 
 ## Printing the description of a dark room {act_darkdesc}
 
-^^{printing the description of a dark room+descactivity+} ^^{darkness: printing the description of a dark room+activity+} ^^{description of a dark room: printing the description of a dark room+activity+}
+^^{printing the description of a dark room+descactivity+} ^^{darkness: printing the description of a dark room+activity+} ^^{descriptions (displayed): dark room}
 
 **1. When it happens.** When looking in darkness.
 

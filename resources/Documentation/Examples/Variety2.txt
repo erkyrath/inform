@@ -1,7 +1,7 @@
 Example: ** Variety 2
 Location: More on adapting verbs
 RecipeLocation: Varying What Is Written
-Index: Describing action outcomes using a random choice of verb or describing the world state that results
+Index: descriptions (displayed): action outcomes using a random choice of verb
 Description: This builds on the Variety example to add responses such as "You are now carrying the fedora" that describe relations that result from a given verb, as alternate responses.
 For: Z-Machine
 

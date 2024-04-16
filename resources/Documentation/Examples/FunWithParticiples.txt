@@ -1,7 +1,7 @@
 Example: ** Fun with Participles
 Location: More on adapting verbs
 RecipeLocation: Varying What Is Written
-Index: Describing ongoing character behaviour with participles
+Index: descriptions (displayed): ongoing character behaviour with participles
 Description: Creating dynamic room descriptions that contain sentences such as "Clark is here, wasting time" or "Clark is here, looking around" depending on Clark's idle activity.
 For: Z-Machine
 

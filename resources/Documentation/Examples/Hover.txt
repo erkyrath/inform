@@ -1,7 +1,7 @@
 Example: *** Hover
 Location: Vehicles and pushable things
 RecipeLocation: Bicycles, Cars and Boats
-Index: Description from inside a vehicle
+Index: descriptions (displayed): modified when inside a vehicle
 Description: Letting the player see a modified room description when they're viewing the place from inside a vehicle.
 For: Z-Machine
 

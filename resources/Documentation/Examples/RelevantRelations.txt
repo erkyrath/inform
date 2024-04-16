@@ -1,7 +1,7 @@
 Example: ** Relevant Relations
 Location: Verbs as values
 RecipeLocation: Varying What Is Written
-Index: Describing relations using a random choice of verb
+Index: descriptions (displayed): relations using a random choice of verb
 Description: An example of how to create room descriptions that acknowledge particular relations using their assigned verbs, rather than by the heavily special-cased code used by the standard library.
 For: Z-Machine
 

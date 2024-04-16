@@ -1,7 +1,7 @@
 Example: *** Narrative Register
 Location: More on adapting verbs
 RecipeLocation: Varying What Is Written
-Index: Describing action outcomes using an adaptive random choice of verb
+Index: descriptions (displayed): action outcomes using a random choice of verb
 Description: Suppose we want all of our action responses to vary depending on some alterable quality of the narrator, so that sometimes they're slangy, sometimes pompous or archaic.
 For: Z-Machine
 

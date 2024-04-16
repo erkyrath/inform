@@ -1,7 +1,7 @@
 Example: ** Variety
 Location: More on adapting verbs
 RecipeLocation: Varying What Is Written
-Index: Describing action outcomes using a random choice of verb
+Index: descriptions (displayed): action outcomes using a random choice of verb
 Description: Suppose we want all of our action responses to display some randomised variety. We could do this by laboriously rewriting all of the response texts, but this example demonstrates an alternative.
 For: Z-Machine
 
