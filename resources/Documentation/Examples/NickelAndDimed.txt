@@ -1,7 +1,7 @@
 Example: *** Nickel and Dimed
 Location: Totals
 RecipeLocation: Money
-Index: BUY command and money, complete with denominations
+Index: buying+action+: money, complete with denominations
 Description: A more intricate system of money, this time keeping track of the individual denominations of coins and bills, specifying what gets spent at each transaction, and calculating appropriate change.
 For: Z-Machine
 

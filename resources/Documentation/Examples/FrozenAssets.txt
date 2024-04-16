@@ -1,7 +1,7 @@
 Example: * Frozen Assets
 Location: Arithmetic with units
 RecipeLocation: Money
-Index: BUY command and a system of money
+Index: buying+action+: a system of money
 Description: A treatment of money which keeps track of how much the player has on them, and a ``BUY`` command which lets them go shopping.
 For: Z-Machine
 
