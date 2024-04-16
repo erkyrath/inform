@@ -1,7 +1,7 @@
 Example: *** Fallout Enclosure
 Location: Parts of things
 RecipeLocation: Bags, Bottles, Boxes and Safes
-Index: Containers and supporters given a common kind
+Index: containers+kind+: and supporters given a common kind
 Description: Adding an enclosure kind that includes both containers and supporters in order to simplify text that would apply to both.
 For: Z-Machine
 

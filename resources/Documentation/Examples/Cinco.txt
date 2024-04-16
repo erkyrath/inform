@@ -1,7 +1,7 @@
 Example: * Cinco
 Location: Understanding things by their relations
 RecipeLocation: Bags, Bottles, Boxes and Safes
-Index: Containers referred to by contents
+Index: containers+kind+: referred to by contents
 Description: A taco shell that can be referred to (when it contains things) in terms of its contents.
 For: Z-Machine
 
