@@ -1,7 +1,7 @@
 Example: *** The Left Hand of Autumn
 Location: Standard tokens of grammar
 RecipeLocation: Examining
-Index: EXAMINE produces special results for a group of objects
+Index: examining+action+: special results for a group of objects
 Description: The possibility of using a [things] token opens up some interesting complications, because we may want actions on multiple items to be reported differently from actions on just one. Here we look at how to make a multiple examination command that describes groups in special ways.
 For: Z-Machine
 

@@ -1,7 +1,7 @@
 Example: **** Text Foosball
 Location: Every turn
 RecipeLocation: Liveliness
-Index: Every turn an opponent plays
+Index: every turn+rb+
 Description: A game of foosball which relies heavily on every-turn rules.
 For: Z-Machine
 

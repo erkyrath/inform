@@ -1,7 +1,7 @@
 Example: * Shawn's Bad Day
 Location: Standard tokens of grammar
 RecipeLocation: Actions on Multiple Objects
-Index: EXAMINE multiple things at once
+Index: examining+action+: multiple things at once
 Description: Allowing the player to ``EXAMINE ALL``.
 For: Z-Machine
 
