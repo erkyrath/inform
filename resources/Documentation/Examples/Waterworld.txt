@@ -1,7 +1,7 @@
 Example: * Waterworld
 Location: Changing reachability
 RecipeLocation: Continuous Spaces and The Outdoors
-Index: Backdrops which can only be examined
+Index: backdrops+kind+: which can only be examined
 Description: A backdrop which the player can examine, but cannot interact with in any other way.
 For: Z-Machine
 

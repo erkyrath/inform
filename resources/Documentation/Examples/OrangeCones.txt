@@ -1,7 +1,7 @@
 Example: *** Orange Cones
 Location: Moving backdrops
 RecipeLocation: Passers-By, Weather and Astronomical Events
-Index: Backdrops that move conditionally
+Index: backdrops+kind+: that move conditionally
 Description: Creating a traffic backdrop that appears in all road rooms except the one in which the player has laid down orange cones.
 For: Z-Machine
 
