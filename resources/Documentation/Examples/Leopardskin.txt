@@ -1,7 +1,7 @@
 Example: * Leopard-skin
 Location: Lengthening or shortening a list
 RecipeLocation: Remembering, Converting and Combining Actions
-Index: Maze escaped by performing an exact sequence of actions
+Index: mazes (implementing): escaped by performing an exact sequence of actions
 Description: A maze that the player can escape if they perform an exact sequence of actions.
 For: Z-Machine
 

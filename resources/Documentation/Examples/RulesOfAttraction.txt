@@ -1,7 +1,7 @@
 Example: * Rules of Attraction
 Location: Printing room description details of something
 RecipeLocation: Electricity and Magnetism
-Index: Magnet which picks up nearby metal objects
+Index: magnets (implementing)
 Description: A magnet which picks up nearby metal objects, and describes itself appropriately in room descriptions and inventory listings, but otherwise goes by its ordinary name.
 For: Z-Machine
 

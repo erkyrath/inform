@@ -1,7 +1,7 @@
 Example: * Bee Chambers
 Location: Now...
 RecipeLocation: Map
-Index: Maze with randomised room links
+Index: mazes (implementing): with randomised room links
 Description: A maze with directions between rooms randomised at the start of play.
 For: Z-Machine
 
