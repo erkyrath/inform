@@ -1,7 +1,7 @@
 Example: ** Northstar
 Location: Replacements
 RecipeLocation: Obedient Characters
-Index: ASK person TO do something, understood
+Index: asking (actor) to try+action+: understanding ASK ACTOR TO
 Description: Making Inform understand ``ASK JOSH TO TAKE INVENTORY`` as ``JOSH, TAKE INVENTORY``. This requires us to use a regular expression on the player's command, replacing some of the content.
 For: Z-Machine
 

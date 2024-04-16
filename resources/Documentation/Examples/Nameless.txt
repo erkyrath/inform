@@ -1,7 +1,7 @@
 Example: ** Nameless
 Location: The text token
 RecipeLocation: Saying Simple Things
-Index: ASK someone ABOUT an object the same as SHOW
+Index: asking (actor) about+action+: an object the same as SHOW
 Description: ASKing someone about an object rather than about a topic.
 For: Z-Machine
 
