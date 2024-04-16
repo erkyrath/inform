@@ -1,7 +1,7 @@
 Example: * Bikini Atoll
 Location: Printing the banner text
 RecipeLocation: Start-Up Features
-Index: Banner printing at appropriate times
+Index: banner text
 Description: Delaying the banner for later.
 For: Z-Machine
 
