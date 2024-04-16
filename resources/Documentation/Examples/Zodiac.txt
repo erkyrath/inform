@@ -1,7 +1,7 @@
 Example: * Zodiac
 Location: All actions and exceptional actions
 RecipeLocation: Reactive Characters
-Index: Actions prohibited in the presence of a dangerous character
+Index: actions: prohibited in the presence of a dangerous character
 Description: Several variations on "doing something other than...", demonstrating different degrees of restriction.
 For: Z-Machine
 

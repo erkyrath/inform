@@ -1,7 +1,7 @@
 Example: *** The Über-complète clavier
 Location: Unicode characters
 RecipeLocation: Typography
-Index: Accented and exotic letters and symbols
+Index: characters (letters): accented and exotic letters and symbols
 Description: This example provides a fairly stringent test of exotic lettering.
 For: Z-Machine
 
