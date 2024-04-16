@@ -1,7 +1,7 @@
 Example: ** Proposal
 Location: Conditions and questions
 RecipeLocation: Saying Simple Things
-Index: Asking the player a Yes/No question
+Index: asking the player yes/no
 Description: Asking the player a yes/no question which they must answer, and another which they may answer or not as they choose.
 For: Z-Machine
 

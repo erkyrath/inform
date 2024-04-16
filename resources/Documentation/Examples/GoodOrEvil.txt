@@ -1,7 +1,7 @@
 Example: *** Good or Evil
 Location: Defining phrases in Inform 6
 RecipeLocation: Traits Determined By the Player
-Index: Asking the player to choose to be good or evil
+Index: asking the player to choose to be good or evil
 Description: Asking the player to select whether to be a good or evil character to begin play.
 For: Z-Machine
 
