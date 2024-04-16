@@ -1,7 +1,7 @@
 Example: ** Modern Conveniences
 Location: A simple example extension
 RecipeLocation: Kitchen and Bathroom
-Index: Extension design advice
+Index: extensions: writing: design advice
 Description: Exemplifying the kind of source we might use in writing extensions for kitchen and bathroom appliances.
 For: Z-Machine
 
