@@ -1,7 +1,7 @@
 Example: ** Hohmann Transfer
 Location: Printing the description of a dark room
 RecipeLocation: Lighting
-Index: Dark rooms given non-standard description
+Index: darkness: printing the description of a dark room+activity+
 Description: Changing the way dark rooms are described to avoid the standard Inform phrasing.
 For: Z-Machine
 
