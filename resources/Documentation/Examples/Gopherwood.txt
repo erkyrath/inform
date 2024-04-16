@@ -1,7 +1,7 @@
 Example: ** Gopher-wood
 Location: Articles and proper names
 RecipeLocation: Getting Acquainted
-Index: Characters renamed in play
+Index: characters (people): renamed in play
 Description: Changing the name of a character in the middle of play, removing the article.
 For: Z-Machine
 

@@ -1,7 +1,7 @@
 Example: *** For Demonstration Purposes
 Location: Relations involving values
 RecipeLocation: Obedient Characters
-Index: Character who learns new actions by watching the player
+Index: characters (people): who learn new actions by watching the player
 Description: A character who learns new actions by watching the player performing them.
 For: Z-Machine
 

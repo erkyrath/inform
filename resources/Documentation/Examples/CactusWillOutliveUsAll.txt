@@ -1,7 +1,7 @@
 Example: * Cactus Will Outlive Us All
 Location: Stored actions
 RecipeLocation: Remembering, Converting and Combining Actions
-Index: Characters killed off by trigger actions
+Index: characters (people): killed off by trigger actions
 Description: For every character besides the player, there is an action that will cause that character to wither right up and die.
 For: Z-Machine
 
