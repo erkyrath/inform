@@ -1,7 +1,7 @@
 Example: * Get Axe
 Location: Check rules for actions by other people
 RecipeLocation: Entering and Exiting, Sitting and Standing
-Index: Check rules modified for taking something we're inside
+Index: check (action)+rb+: modified for taking something we're inside
 Description: Changing the check rules to try automatically leaving a container before attempting to take it. (And arranging things so that other people will do likewise.)
 For: Z-Machine
 

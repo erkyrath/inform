@@ -1,7 +1,7 @@
 Example: ** Bibliophilia
 Location: Context: understanding when
 RecipeLocation: Reading Matter
-Index: Bookshelf with numerous books
+Index: books (implementing): bookshelf with numerous books
 Description: A bookshelf with a number of books, where the player's command to examine something will be interpreted as an attempt to look up titles if the bookshelf is present, but otherwise given the usual response.
 For: Z-Machine
 

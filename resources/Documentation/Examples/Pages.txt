@@ -1,7 +1,7 @@
 Example: * Pages
 Location: Understanding kinds of value
 RecipeLocation: Reading Matter
-Index: Book with numbered pages
+Index: books (implementing): with numbered pages
 Description: A book with pages that can be read by number (as in "READ PAGE 3 IN...") and which accepts relative page references as well (such as "read the last page of...", "read the next page", and so on).
 For: Z-Machine
 

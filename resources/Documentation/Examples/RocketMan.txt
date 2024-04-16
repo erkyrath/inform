@@ -1,7 +1,7 @@
 Example: * Rocket Man
 Location: Upper and lower case letters
 RecipeLocation: Varying What Is Written
-Index: Case change for text produced by to say phrases
+Index: case changing: for text produced by to say phrases
 Description: Using case changes on any text produced by a "to say..." phrase.
 For: Z-Machine
 
