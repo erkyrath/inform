@@ -1,7 +1,7 @@
 Example: * One of Those Mornings
 Location: Scope
 RecipeLocation: Background
-Index: FIND command
+Index: >FIND
 Description: A ``FIND`` command that allows the player to find a lost object anywhere
 For: Z-Machine
 
