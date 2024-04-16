@@ -1,7 +1,7 @@
 Example: * Control Center
 Location: Text with lists
 RecipeLocation: Simple Machines
-Index: Describing objects with parts
+Index: descriptions (displayed): objects with parts
 Description: Objects which automatically include a description of their component parts whenever they are examined.
 For: Z-Machine
 
