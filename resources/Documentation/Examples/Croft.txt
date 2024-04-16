@@ -1,7 +1,7 @@
 Example: *** Croft
 Location: Action variables
 RecipeLocation: Taking, Dropping, Inserting and Putting
-Index: DROPPING into and onto things
+Index: dropping+action+: into and onto things
 Description: Adding special reporting and handling for objects dropped when the player is on a supporter, and special entering rules for moving from one supporter to another.
 For: Z-Machine
 

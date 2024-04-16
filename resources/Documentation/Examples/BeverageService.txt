@@ -1,7 +1,7 @@
 Example: * Beverage Service
 Location: Removing things from play
 RecipeLocation: Liquids
-Index: DRINKing a potion which then goes away
+Index: drinking+action+: a potion which then goes away
 Description: A potion that the player can drink.
 For: Z-Machine
 

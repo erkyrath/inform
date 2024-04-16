@@ -1,7 +1,7 @@
 Example: * Celadon
 Location: To carry, to wear, to have
 RecipeLocation: Taking, Dropping, Inserting and Putting
-Index: DROP applies even to objects the player carries indirectly
+Index: dropping+action+: even objects the player carries indirectly
 Description: Using the enclosure relation to let the player drop things which they only indirectly carry.
 For: Z-Machine
 

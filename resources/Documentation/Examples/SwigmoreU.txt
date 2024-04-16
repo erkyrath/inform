@@ -1,7 +1,7 @@
 Example: ** Swigmore U.
 Location: Listing rules explicitly
 RecipeLocation: Furniture
-Index: DROP modified to distinguish between large and small enterable supporters
+Index: dropping+action+: distinguishing between large and small enterable supporters
 Description: Adding a new kind of supporter called a perch, where everything dropped lands on the floor.
 For: Z-Machine
 
