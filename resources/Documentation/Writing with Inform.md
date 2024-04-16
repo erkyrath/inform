@@ -705,7 +705,7 @@ Inform makes guesses about the first sentence, and makes a two-way connection; b
 
 ## Regions and the index map {kind_region} {REGIONS} {PM_ExistingRegion} {PM_RegionInTwoRegions} {PM_RegionRelation}
 
-^^{kinds: catalogue: region} ^^{regions+kind+ <-- kinds: catalogue: region} ^^{rooms+kind+: grouping into regions} ^^{index map} ^^{Map page of Index panel+ui+} ^^{user interface: Index panel: Map page} ^^{Index panel+ui+: Map page}
+^^{kinds: catalogue: region} ^^{regions+kind+ <-- kinds: catalogue: region} ^^{rooms+kind+: grouping into regions} ^^{index map} ^^{Map page of Index panel+ui+} ^^{user interface: Index panel: Map page} ^^{Index panel+ui+: Map page} ^^{map region of (room)+prop+} ^^{map region of (room)+propcat+}
 
 Rooms represent individual places to which one can go, but we tend to think of the world around us in larger pieces: we think of a house and a garden, rather than each of the single rooms of the house and all corners of its garden. To Inform a collection of rooms is called a _region_, and we can create one like so:
 
@@ -3184,7 +3184,7 @@ And we can also test non-existence:
 
 ## A word about in
 
-^^{containment+rel+} ^^{containment+relcat+} ^^{regional-containment+rel+} ^^{regional-containment+relcat+} ^^{indirect containment} ^^{containment+rel+: indirect} ^^{regions+kind+: things in regions} ^^{regions+kind+: regional containment} ^^{rooms+kind+: grouping into regions}
+^^{containment+rel+} ^^{containment+relcat+} ^^{regional-containment+rel+} ^^{regional-containment+relcat+} ^^{indirect containment} ^^{containment+rel+: indirect} ^^{regions+kind+: things in regions} ^^{regions+kind+: regional containment} ^^{rooms+kind+: grouping into regions} ^^{map region of (room)+prop+}
 
 What does "in" mean? The literal answer is that it means containment, that is, `X is in Y` means that Y contains X. Containment is an idea which is itself a little complicated to unravel, though.
 

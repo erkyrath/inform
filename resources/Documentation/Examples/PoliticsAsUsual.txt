@@ -1,7 +1,7 @@
 Example: * Politics as Usual
 Location: Changing the status line
 RecipeLocation: The Status Line
-Index: Map region listed in status line
+Index: map region of (room)+prop+: listed in status line
 Description: Have the status line indicate the current region of the map.
 For: Z-Machine
 
