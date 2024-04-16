@@ -1,7 +1,7 @@
 Example: *** The Problem of Edith
 Location: Indirect relations
 RecipeLocation: Character Knowledge and Reasoning
-Index: Conversation where characters seek logical connection to foregoing topics
+Index: dialogue: where characters seek logical connection to foregoing topics
 Description: A conversation in which the main character tries to build logical connections between what the player is saying now and what went immediately before.
 For: Z-Machine
 

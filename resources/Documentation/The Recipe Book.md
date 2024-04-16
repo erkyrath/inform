@@ -1431,7 +1431,7 @@ Finally, if we want to be able to ``ASK`` and ``TELL`` an inanimate object – s
 
 ## Saying Complicated Things
 
-^^{dialogue: >ASK / TELL}^^{dialogue: menu-based dialogue}^^{dialogue: keyword-based dialogue}
+^^{dialogue: >ASK / TELL}^^{dialogue: based on menus}^^{dialogue: based on keyword recognition}
 As we saw in the overview, there are challenges in choosing the commands with which the player will communicate to the story. Two common approaches are ``ASK``/``TELL`` conversation, where the player can ask or tell characters about keywords, as in ``ASK JILL ABOUT JACK`` or ``TELL FARMER ABOUT CHICKEN COOP``, and menu-based conversation, where the player is offered a list of things to say and must pick one (often by number), as in
 
 ``` transcript

@@ -1,7 +1,7 @@
 Example: *** Complimentary Peanuts
 Location: Reading a command
 RecipeLocation: Saying Complicated Things
-Index: Conversation based on keyword recognition
+Index: dialogue: based on keyword recognition
 Description: A character who responds to keywords in the player's instructions and remarks, even if there are other words included.
 For: Z-Machine
 

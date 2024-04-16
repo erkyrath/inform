@@ -1,7 +1,7 @@
 Example: ** Farewell
 Location: Varying which table to look at
 RecipeLocation: Saying Complicated Things
-Index: Conversation system with recap of past exchanges
+Index: dialogue: with recap of past exchanges
 Description: People who respond to conversational gambits, summarise what they said before if asked again, and provide recap of conversation that is past.
 For: Z-Machine
 

@@ -1,7 +1,7 @@
 Example: ** Sweeney
 Location: Defining things with tables
 RecipeLocation: Saying Complicated Things
-Index: Conversation with multiple options for each conversation topic
+Index: dialogue: with multiple options for each conversation topic
 Description: A conversation where each topic may have multiple questions and answers associated with it, and where a given exchange can lead to new additions to the list.
 For: Z-Machine
 
