@@ -1,7 +1,7 @@
 Example: ** What Not To Wear
 Location: What are relations for?
 RecipeLocation: Clothing
-Index: Clothing with layering and regions of the body
+Index: clothing: layering and regions of the body
 Description: A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.
 For: Z-Machine
 

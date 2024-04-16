@@ -1,7 +1,7 @@
 Example: *** Get Me to the Church on Time
 Location: Plural assertions
 RecipeLocation: Clothing
-Index: Clothing kinds
+Index: clothing: kinds
 Description: Using kinds of clothing to prevent the player from wearing several pairs of trousers at the same time.
 For: Z-Machine
 

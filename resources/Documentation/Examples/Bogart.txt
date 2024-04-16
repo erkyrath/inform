@@ -1,7 +1,7 @@
 Example: *** Bogart
 Location: Defining new prepositions
 RecipeLocation: Clothing
-Index: Clothing that layers
+Index: clothing: layering and regions of the body
 Description: Clothing for the player that layers, so that items cannot be taken off in the wrong order, and the player's inventory lists only the clothing that is currently visible.
 For: Z-Machine
 
