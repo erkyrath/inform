@@ -1,7 +1,7 @@
 Example: * Hays Code
 Location: Deciding the concealed possessions of something
 RecipeLocation: Clothing
-Index: Concealing clothing for other characters
+Index: concealed possessions: clothing for other characters
 Description: Clark Gable in a pin-striped suit and a pink thong.
 For: Z-Machine
 

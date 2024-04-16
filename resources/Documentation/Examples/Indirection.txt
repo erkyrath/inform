@@ -1,7 +1,7 @@
 Example: * Indirection
 Location: Understand
 RecipeLocation: Map
-Index: Compass directions renamed
+Index: directions+kind+: renaming compass directions
 Description: Renaming the directions of the compass so that "white" corresponds to north, "red" to east, "yellow" to south, and "black" to west.
 For: Z-Machine
 

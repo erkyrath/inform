@@ -1,7 +1,7 @@
 Example: ** Today Tomorrow
 Location: In the presence of, and when
 RecipeLocation: Animals
-Index: Concealed pet who would yip at you if it could see you
+Index: concealed possessions: pet who would yip at you if it could see you
 Description: A few notes on "In the presence of" and how it interacts with concealed objects.
 For: Z-Machine
 
