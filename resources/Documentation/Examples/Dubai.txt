@@ -1,7 +1,7 @@
 Example: *** Dubai
 Location: Corresponding entries
 RecipeLocation: Ships, Trains and Elevators
-Index: An elevator which takes the player to alternate floors
+Index: elevators (implementing): which takes the player to alternate floors
 Description: An elevator which connects any of 27 floors in a luxury hotel.
 For: Z-Machine
 

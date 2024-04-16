@@ -1,7 +1,7 @@
 Example: * The Unbuttoned Elevator Affair
 Location: One-way connections
 RecipeLocation: Ships, Trains and Elevators
-Index: An elevator operated simply by walking in and out
+Index: elevators (implementing): operated simply by walking in and out
 Description: A simple elevator connecting two floors which is operated simply by walking in and out, and has no buttons or fancy doors.
 For: Z-Machine
 
