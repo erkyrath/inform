@@ -1,7 +1,7 @@
 Example: *** Stately Gardens
 Location: Deciding the scope of something
 RecipeLocation: Continuous Spaces and The Outdoors
-Index: Continuous space with distant objects visible and automatic room description
+Index: continuous space: with distant objects visible and automatic room description
 Description: An open landscape where the player can see landmarks in nearby areas, with somewhat more complex room descriptions than the previous example, and in which we also account for size differences between things seen at a distance.
 For: Z-Machine
 

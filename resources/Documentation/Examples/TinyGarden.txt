@@ -1,7 +1,7 @@
 Example: ** Tiny Garden
 Location: Text with lists
 RecipeLocation: Continuous Spaces and The Outdoors
-Index: Continuous space, simple
+Index: continuous space: simple
 Description: A lawn made up of several rooms, with part of the description written automatically.
 For: Z-Machine
 
