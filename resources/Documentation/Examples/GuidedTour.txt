@@ -1,7 +1,7 @@
 Example: ** Guided Tour
 Location: Constructing the status line
 RecipeLocation: The Status Line
-Index: Exits and rooms listed in the status line
+Index: connections between rooms: listed in status line
 Description: A status line that lists the available exits from the current location, changing the names of these exits depending on whether the room has been visited or not.
 For: Z-Machine
 

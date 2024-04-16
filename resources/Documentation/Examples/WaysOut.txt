@@ -1,7 +1,7 @@
 Example: * Ways Out
 Location: Constructing the status line
 RecipeLocation: The Status Line
-Index: Exits only listed in the status line
+Index: connections between rooms: listed in status line
 Description: A status line that lists the available exits from the current location.
 For: Z-Machine
 

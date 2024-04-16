@@ -1,7 +1,7 @@
 Example: ** Prisoner's Dilemma
 Location: Directions
 RecipeLocation: Map
-Index: Exits added to a room
+Index: connections between rooms: adding new connections
 Description: A button that causes a previously non-existent exit to come into being.
 For: Z-Machine
 
