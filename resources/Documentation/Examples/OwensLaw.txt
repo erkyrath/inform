@@ -1,7 +1,7 @@
 Example: *** Owen's Law
 Location: New conditions, new adjectives
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO OUT and GO IN determine most appropriate direction if none is defined
+Index: >GO: GO OUT and GO IN determine most appropriate direction if none is defined
 Description: ``OUT`` always means "move to an outdoors room, or else to a room with more exits than this one has"; ``IN`` always means the opposite.
 For: Z-Machine
 

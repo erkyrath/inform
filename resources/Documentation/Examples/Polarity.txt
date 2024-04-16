@@ -1,7 +1,7 @@
 Example: *** Polarity
 Location: Going from, going to
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO BACK command
+Index: >GO: GO BACK command
 Description: A "go back" command that keeps track of the direction from which the player came, and sends them back.
 For: Z-Machine
 

@@ -1,7 +1,7 @@
 Example: * Minimal Movement
 Location: Supplying a missing noun/second noun
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO equivalent to GO OUT
+Index: >GO: equivalent to GO OUT
 Description: Supplying a default direction for ``GO``, so that ``LEAVE``, ``GO``, etc., are always interpreted as ``OUT``.
 For: Z-Machine
 

@@ -1,7 +1,7 @@
 Example: * Misadventure
 Location: Commands consisting only of nouns
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO TO ROOM command
+Index: >GO: GO TO ROOM command
 Description: A going by name command which does respect movement rules, and accepts names of rooms as commands.
 For: Z-Machine
 

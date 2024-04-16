@@ -1,7 +1,7 @@
 Example: ** Safari Guide
 Location: Commands consisting only of nouns
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO TO ROOM with automatic door-handling en route
+Index: >GO: GO TO ROOM command: with automatic door-handling en route
 Description: The same functionality, but making the player continue to move until they reach their destination or a barrier, handling all openable doors on the way.
 For: Z-Machine
 

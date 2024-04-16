@@ -1,7 +1,7 @@
 Example: ** Wonderland
 Location: Units
 RecipeLocation: Going, Pushing Things in Directions
-Index: GO UP and GO DOWN determined by room altitude
+Index: >GO: GO UP and GO DOWN determined by room altitude
 Description: Hiking Mount Rainier, with attention to which locations are higher and which lower than the present location.
 For: Z-Machine
 
