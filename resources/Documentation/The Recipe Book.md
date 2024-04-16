@@ -1270,7 +1270,7 @@ and merely parse the remainder of the command. (That last command may be unlikel
 
 ## Alternatives To Standard Parsing
 
-^^{understanding: alternatives to standard parsing}^^{adverbs}^^{keyword-style parsing}
+^^{understanding: alternatives to standard parsing}^^{adverbs used in commands}^^{keyword-style parsing}
 Very occasionally, for out-of-the-ordinary games, we want to make major changes to the way that Inform ordinarily understands commands.
 
 [Cloves] shows how we might read adverbs in the player's command: adverbs are challenging because they can legitimately appear anywhere in a command structure, so must be found and accounted for before the rest of the command is understood.

@@ -1,7 +1,7 @@
 Example: ** Cloves
 Location: Reading a command
 RecipeLocation: Alternatives To Standard Parsing
-Index: Adverbs used in commands
+Index: adverbs used in commands
 Description: Accepting adverbs anywhere in a command, registering what the player typed but then cutting them out before interpreting the command.
 For: Z-Machine
 
