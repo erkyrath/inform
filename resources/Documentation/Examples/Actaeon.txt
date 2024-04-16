@@ -1,7 +1,7 @@
 Example: ** Actaeon
 Location: Scope
 RecipeLocation: Travelling Characters
-Index: FOLLOW command
+Index: >FOLLOW
 Description: A ``FOLLOW`` command allowing the player to pursue a person who has just left the room.
 For: Z-Machine
 

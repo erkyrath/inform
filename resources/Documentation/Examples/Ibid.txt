@@ -1,7 +1,7 @@
 Example: ** Ibid.
 Location: Actions applying to kinds of value
 RecipeLocation: Footnotes
-Index: Footnote system
+Index: footnotes (implementing)
 Description: A system which allows the author to assign footnotes to descriptions, and permits the player to retrieve them again by number, using `the number understood`. Footnotes will automatically number themselves, according to the order in which the player discovers them.
 For: Z-Machine
 
