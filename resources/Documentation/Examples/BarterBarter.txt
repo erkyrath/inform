@@ -1,7 +1,7 @@
 Example: *** Barter Barter
 Location: Check rules for actions by other people
 RecipeLocation: Barter and Exchange
-Index: GIVE action for other characters
+Index: giving it to+action+: for other characters
 Description: Allowing characters other than the player to give objects to one another, accounting for the possibility that some items may not be desired by the intended recipients.
 For: Z-Machine
 
