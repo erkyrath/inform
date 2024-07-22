@@ -196,28 +196,27 @@ fun occurs.
 
 @ But enough abstraction: time for some arithmetic. Inform performs
 checking whenever values from two different kinds are combined by any of
-eight arithmetic operations, numbered as follows. The numbers must not
+the arithmetic operations, numbered as follows. The numbers must not
 be changed without amending the definitions of "plus" and so on
 in the Basic Inform extension.
 
-@d NO_OPERATIONS 9
-@d PLUS_OPERATION 0 /* addition */
-@d MINUS_OPERATION 1 /* subtraction */
-@d TIMES_OPERATION 2 /* multiplication */
-@d DIVIDE_OPERATION 3 /* division */
-@d REMAINDER_OPERATION 4 /* remainder after division */
-@d APPROXIMATION_OPERATION 5 /* "X to the nearest Y" */
-@d ROOT_OPERATION 6 /* square root -- a unary operation */
-@d REALROOT_OPERATION 7 /* real-valued square root -- a unary operation */
-@d CUBEROOT_OPERATION 8 /* cube root -- similarly unary */
-@d EQUALS_OPERATION 9 /* set equal -- used only in equations */
-@d POWER_OPERATION 10 /* raise to integer power -- used only in equations */
-@d UNARY_MINUS_OPERATION 11 /* unary minus -- used only in equations */
+@e PLUS_OPERATION from 0 /* addition */
+@e MINUS_OPERATION /* subtraction */
+@e TIMES_OPERATION /* multiplication */
+@e DIVIDE_OPERATION /* division */
+@e REMAINDER_OPERATION /* remainder after division */
+@e APPROXIMATE_OPERATION /* "X to the nearest Y" */
+@e ROOT_OPERATION /* square root -- a unary operation */
+@e REALROOT_OPERATION /* real-valued square root -- a unary operation */
+@e CUBEROOT_OPERATION /* cube root -- similarly unary */
+@e EQUALS_OPERATION /* set equal -- used only in equations */
+@e POWER_OPERATION /* raise to integer power -- used only in equations */
+@e NEGATE_OPERATION /* unary minus -- used only in equations */
 
 @ The following is associated with "total...", as in "the total weight
 of things on the table", but for dimensional purposes we ignore it.
 
-@d TOTAL_OPERATION 12 /* not really one of the above */
+@e TOTAL_OPERATION /* not really one of the above */
 
 @h Prior kinds.
 It turns out to be convenient to have a definition ordering of fundamental kinds,
@@ -313,6 +312,27 @@ void Kinds::Dimensions::dim_set_multiplication(kind *left, kind *right,
 	Kinds::Dimensions::make_unit_derivation(left, right, outcome);
 }
 
+void Kinds::Dimensions::dim_set_subtraction(kind *left, kind *right,
+	kind *outcome) {
+	if ((Kinds::is_proper_constructor(left)) ||
+		(Kinds::is_proper_constructor(right)) ||
+		(Kinds::is_proper_constructor(outcome))) {
+		KindsModule::problem_handler(DimensionNotBaseKOV_KINDERROR, NULL, NULL, NULL, NULL);
+		return;
+	}
+	if ((Kinds::Behaviour::is_quasinumerical(left) == FALSE) ||
+		(Kinds::Behaviour::is_quasinumerical(right) == FALSE) ||
+		(Kinds::Behaviour::is_quasinumerical(outcome) == FALSE)) {
+		KindsModule::problem_handler(NonDimensional_KINDERROR, NULL, NULL, NULL, NULL);
+		return;
+	}
+	if (Kinds::ne(left, right))
+		KindsModule::problem_handler(ImproperSubtraction_KINDERROR, NULL, NULL, NULL, NULL);
+	if (Kinds::Dimensions::dimensionless(left) == FALSE)
+		left->construct->dimensionless = TRUE;
+	left->construct->relative_kind = outcome->construct;
+}
+
 @h Unary operations.
 All we need to know is which ones are unary, in fact, and:
 
@@ -322,7 +342,7 @@ int Kinds::Dimensions::arithmetic_op_is_unary(int op) {
 		case CUBEROOT_OPERATION:
 		case ROOT_OPERATION:
 		case REALROOT_OPERATION:
-		case UNARY_MINUS_OPERATION:
+		case NEGATE_OPERATION:
 			return TRUE;
 	}
 	return FALSE;
@@ -737,8 +757,7 @@ empty unit sequence must be dimensionless.
 =
 int Kinds::Dimensions::dimensionless(kind *K) {
 	if (K == NULL) return FALSE;
-	if (Kinds::eq(K, K_number)) return TRUE;
-	if (Kinds::eq(K, K_real_number)) return TRUE;
+	if (KindConstructors::is_dimensionless(K->construct)) return TRUE;
 	if (Kinds::Behaviour::is_quasinumerical(K) == FALSE) return FALSE;
 	return Kinds::Dimensions::us_dimensionless(Kinds::Behaviour::get_dimensional_form(K));
 }
@@ -792,6 +811,8 @@ kind *Kinds::Dimensions::arithmetic_on_kinds(kind *K1, kind *K2, int op) {
 	if (K1 == NULL) return NULL;
 	if ((Kinds::Dimensions::arithmetic_op_is_unary(op) == FALSE) && (K2 == NULL)) return NULL;
 
+	@<Handle calculations entirely between dimensionless units more delicately@>;
+
 	unit_sequence *operand1 = Kinds::Behaviour::get_dimensional_form(K1);
 	if (operand1 == NULL) return NULL;
 	unit_sequence *operand2 = Kinds::Behaviour::get_dimensional_form(K2);
@@ -799,7 +820,6 @@ kind *Kinds::Dimensions::arithmetic_on_kinds(kind *K1, kind *K2, int op) {
 
 	unit_sequence result;
 	@<Calculate the result unit sequence, or return null if this is impossible@>;
-	@<Handle calculations entirely between dimensionless units more delicately@>;
 	@<Promote dimensionless numbers to real if necessary@>;
 	@<Identify the result as a known kind, if possible@>;
 	@<And otherwise create a kind as the intermediate result of a calculation@>;
@@ -822,14 +842,14 @@ so it has to be a weight, not a dimensionless number.
 		case PLUS_OPERATION:
 		case MINUS_OPERATION:
 		case EQUALS_OPERATION:
-		case APPROXIMATION_OPERATION:
+		case APPROXIMATE_OPERATION:
 			if (Kinds::Dimensions::compare_unit_sequences(operand1, operand2)) {
 				result = *operand1;
 				break;
 			}
 			return NULL;
 		case REMAINDER_OPERATION:
-		case UNARY_MINUS_OPERATION:
+		case NEGATE_OPERATION:
 			result = *operand1;
 			break;
 		case ROOT_OPERATION:
@@ -865,6 +885,16 @@ want Inform to say the result is number -- we want $2\theta$ to be
 another angle. So we make an exception.
 
 @<Handle calculations entirely between dimensionless units more delicately@> =
+	if ((K1->construct->relative_kind) &&
+		(K2) && (K2->construct == K1->construct->relative_kind) &&
+		((op == PLUS_OPERATION) || (op == MINUS_OPERATION) || (op == APPROXIMATE_OPERATION)))
+		return K1;
+	if ((K1->construct->relative_kind) &&
+		(Kinds::eq(K1, K2)) &&
+		(op == MINUS_OPERATION))
+		return Kinds::base_construction(K1->construct->relative_kind);
+	if (K1->construct->relative_kind) return NULL;
+	if ((K2) && (K2->construct->relative_kind)) return NULL;
 	if (Kinds::Dimensions::arithmetic_op_is_unary(op)) {
 		if ((op == REALROOT_OPERATION) && (Kinds::eq(K1, K_number)))
 			return K_real_number;
@@ -872,6 +902,13 @@ another angle. So we make an exception.
 	} else {
 		if ((Kinds::Dimensions::dimensionless(K1)) &&
 			(Kinds::Dimensions::dimensionless(K2))) {
+			if (op == TIMES_OPERATION) {
+				dimensional_rules *dimrs = Kinds::Behaviour::get_dim_rules(K1);			
+				for (dimensional_rule *dimr = (dimrs)?(dimrs->multiplications):NULL;
+					dimr; dimr = dimr->next)
+					if (Kinds::eq(K2, dimr->right))
+						return dimr->outcome;
+			}
 			if (Kinds::eq(K2, K_number)) return K1;
 			if (Kinds::eq(K1, K_number)) return K2;
 			if (Kinds::eq(K1, K2)) return K1;
@@ -934,3 +971,12 @@ the physics but on the arithmetic method being used.
 @<And otherwise create a kind as the intermediate result of a calculation@> =
 	result.scaling_factor = Kinds::Dimensions::lcm(Kinds::Behaviour::scale_factor(K1), Kinds::Behaviour::scale_factor(K2));
 	return Kinds::intermediate_construction(&result);
+
+@ And this is needed for typechecking:
+
+=
+kind *Kinds::Dimensions::relative_kind(kind *K1) {
+	if (K1->construct->relative_kind)
+		return Kinds::base_construction(K1->construct->relative_kind);
+	return K1;
+}

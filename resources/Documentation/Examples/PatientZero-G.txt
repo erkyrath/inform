@@ -5,6 +5,8 @@ Index: People perform errands and randomly spread disease
 Description: People who wander around the map performing various errands, and in the process spread a disease which only the player can eradicate.
 For: Glulx
 
+^^{characters (people): moving around}
+
 	{*}"Patient Zero"
 	
 	Use the serial comma and no scoring.
@@ -169,8 +171,9 @@ For: Glulx
 	
 	Before grouping together DVDs: say "DVDs of ".
 	
-	Approaching is an action applying to one thing.
-	
+	Approaching is an action applying to one room.
+	The basic tangibility rule does nothing when an actor approaching.
+
 	Carry out someone approaching:
 		let the way be the best route from the location of the person asked to the noun, using doors;
 		if the way is a direction, try the person asked going the way;
@@ -300,6 +303,8 @@ For: Glulx
 	A person has a room called the destination.
 	
 	Going toward is an action applying to one thing.
+
+	The basic tangibility rule does nothing when an actor going toward a room.
 	
 	Check going toward:
 		if the noun is the location, say "You're already in [the location]." instead.

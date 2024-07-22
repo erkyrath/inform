@@ -78,6 +78,7 @@ which use this module:
 <span class="definition-keyword">enum</span> <span class="constant-syntax">kind_constructor_casting_rule_CLASS</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">kind_constructor_instance_CLASS</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">kind_constructor_instance_rule_CLASS</span>
+<span class="definition-keyword">enum</span> <span class="constant-syntax">arithmetic_schema_CLASS</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">unit_sequence_CLASS</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">star_invention_CLASS</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">additional_property_CLASS</span>
@@ -94,6 +95,7 @@ which use this module:
 <span class="identifier-syntax">DECLARE_CLASS_ALLOCATED_IN_ARRAYS</span><span class="plain-syntax">(</span><span class="reserved-syntax">kind_constructor_comparison_schema</span><span class="plain-syntax">, </span><span class="constant-syntax">100</span><span class="plain-syntax">)</span>
 <span class="identifier-syntax">DECLARE_CLASS_ALLOCATED_IN_ARRAYS</span><span class="plain-syntax">(</span><span class="reserved-syntax">kind_constructor_instance</span><span class="plain-syntax">, </span><span class="constant-syntax">100</span><span class="plain-syntax">)</span>
 <span class="identifier-syntax">DECLARE_CLASS_ALLOCATED_IN_ARRAYS</span><span class="plain-syntax">(</span><span class="reserved-syntax">kind_constructor_instance_rule</span><span class="plain-syntax">, </span><span class="constant-syntax">100</span><span class="plain-syntax">)</span>
+<span class="identifier-syntax">DECLARE_CLASS_ALLOCATED_IN_ARRAYS</span><span class="plain-syntax">(</span><span class="reserved-syntax">arithmetic_schema</span><span class="plain-syntax">, </span><span class="constant-syntax">50</span><span class="plain-syntax">)</span>
 <span class="identifier-syntax">DECLARE_CLASS_ALLOCATED_IN_ARRAYS</span><span class="plain-syntax">(</span><span class="reserved-syntax">unit_sequence</span><span class="plain-syntax">, </span><span class="constant-syntax">50</span><span class="plain-syntax">)</span>
 <span class="identifier-syntax">DECLARE_CLASS</span><span class="plain-syntax">(</span><span class="reserved-syntax">star_invention</span><span class="plain-syntax">)</span>
 <span class="identifier-syntax">DECLARE_CLASS</span><span class="plain-syntax">(</span><span class="reserved-syntax">additional_property</span><span class="plain-syntax">)</span>
@@ -149,6 +151,7 @@ to some routine of her own, gazumping this one.
 <pre class="definitions code-font"><span class="definition-keyword">enum</span> <span class="constant-syntax">DimensionRedundant_KINDERROR</span><span class="plain-syntax"> </span><span class="identifier-syntax">from</span><span class="plain-syntax"> </span><span class="constant-syntax">1</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">DimensionNotBaseKOV_KINDERROR</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">NonDimensional_KINDERROR</span>
+<span class="definition-keyword">enum</span> <span class="constant-syntax">ImproperSubtraction_KINDERROR</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">UnitSequenceOverflow_KINDERROR</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">DimensionsInconsistent_KINDERROR</span>
 <span class="definition-keyword">enum</span> <span class="constant-syntax">KindUnalterable_KINDERROR</span>
@@ -177,6 +180,9 @@ to some routine of her own, gazumping this one.
 <span class="plain-syntax">            </span><span class="reserved-syntax">break</span><span class="plain-syntax">;</span>
 <span class="plain-syntax">        </span><span class="reserved-syntax">case</span><span class="plain-syntax"> </span><span class="identifier-syntax">NonDimensional_KINDERROR:</span>
 <span class="plain-syntax">            </span><span class="identifier-syntax">Errors::with_text</span><span class="plain-syntax">(</span><span class="string-syntax">"multiplication rule quotes non-numerical kinds: %S"</span><span class="plain-syntax">, </span><span class="identifier-syntax">text</span><span class="plain-syntax">);</span>
+<span class="plain-syntax">            </span><span class="reserved-syntax">break</span><span class="plain-syntax">;</span>
+<span class="plain-syntax">        </span><span class="reserved-syntax">case</span><span class="plain-syntax"> </span><span class="identifier-syntax">ImproperSubtraction_KINDERROR:</span>
+<span class="plain-syntax">            </span><span class="identifier-syntax">Errors::with_text</span><span class="plain-syntax">(</span><span class="string-syntax">"subtraction rules can only subtract a dimensionless kind from itself"</span><span class="plain-syntax">, </span><span class="identifier-syntax">text</span><span class="plain-syntax">);</span>
 <span class="plain-syntax">            </span><span class="reserved-syntax">break</span><span class="plain-syntax">;</span>
 <span class="plain-syntax">        </span><span class="reserved-syntax">case</span><span class="plain-syntax"> </span><span class="identifier-syntax">UnitSequenceOverflow_KINDERROR:</span>
 <span class="plain-syntax">            </span><span class="identifier-syntax">Errors::with_text</span><span class="plain-syntax">(</span><span class="string-syntax">"multiplication rule far too complex: %S"</span><span class="plain-syntax">, </span><span class="identifier-syntax">text</span><span class="plain-syntax">);</span>

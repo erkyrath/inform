@@ -372,7 +372,7 @@ To say one of -- beginning say_one_of (documented at phs_oneof): (-
 {-open-brace}
 		0: -).
 To say or -- continuing say_one_of (documented at phs_or):
-	(- @nop; {-segment-count}: -).
+	(- {-segment-count}: -).
 To say at random -- ending say_one_of with marker I7_SOO_RAN (documented at phs_random):
 	(- {-close-brace} -).
 To say purely at random -- ending say_one_of with marker I7_SOO_PAR (documented at phs_purelyrandom):
@@ -680,7 +680,7 @@ To decide which real number is the floor of (R - a real number)
 	(documented at ph_floor)
 	(this is the floor function):
 	(- REAL_NUMBER_TY_Floor({R}) -).
-To decide which number is (R - a real number) to the nearest whole number
+To decide which number is (R - a real number) to the/-- nearest whole number
 	(documented at ph_nearestwholenumber)
 	(this is the int function):
 	(- REAL_NUMBER_TY_to_NUMBER_TY({R}) -).
@@ -981,8 +981,11 @@ Section 1 - Enumerations
 To decide which number is number of (S - description of values)
 	(documented at ph_numberof):
 	(- {-primitive-definition:number-of} -).
-To decide what number is the numerical value of (X - enumerated value): (- {X} -).
-To decide what number is the sequence number of (X - enumerated value of kind K):
+To decide what number is the numerical value of (X - enumerated value)
+	(documented at ph_numericalvalue):
+	(- {X} -).
+To decide what number is the sequence number of (X - enumerated value of kind K)
+	(documented at ph_sequencenumber):
 	(- {-indexing-routine:K}({X}) -).
 To decide which K is (name of kind of enumerated value K) after (X - K)
 	(documented at ph_enumafter):
@@ -1110,15 +1113,15 @@ See test case |BIP-TextReplacement|.
 =
 Section 2 - Matching and Replacing
 
-To decide if (T - text) exactly matches the text (find - text),
+To decide if (T - text) exactly matches the/-- text (find - text),
 	case insensitively
 	(documented at ph_exactlymatches):
 	(- TEXT_TY_Replace_RE(CHR_BLOB,{-by-reference:T},{-by-reference:find},0,{phrase options},1) -).
-To decide if (T - text) matches the text (find - text),
+To decide if (T - text) matches the/-- text (find - text),
 	case insensitively
 	(documented at ph_matches):
 	(- TEXT_TY_Replace_RE(CHR_BLOB,{-by-reference:T},{-by-reference:find},0,{phrase options}) -).
-To decide what number is number of times (T - text) matches the text
+To decide what number is number of times (T - text) matches the/-- text
 	(find - text), case insensitively
 	(documented at ph_nummatches):
 	(- TEXT_TY_Replace_RE(CHR_BLOB,{-by-reference:T},{-by-reference:find},1,{phrase options}) -).
@@ -1179,11 +1182,11 @@ See test case |BIP-RegExp|.
 =
 Section 3 - Regular Expressions
 
-To decide if (T - text) exactly matches the regular expression (find - text),
+To decide if (T - text) exactly matches the/-- regular expression (find - text),
 	case insensitively
 	(documented at ph_exactlymatchesre):
 	(- TEXT_TY_Replace_RE(REGEXP_BLOB,{-by-reference:T},{-by-reference:find},0,{phrase options},1) -).
-To decide if (T - text) matches the regular expression (find - text),
+To decide if (T - text) matches the/-- regular expression (find - text),
 	case insensitively
 	(documented at ph_matchesre):
 	(- TEXT_TY_Replace_RE(REGEXP_BLOB,{-by-reference:T},{-by-reference:find},0,{phrase options}) -).
@@ -1202,7 +1205,7 @@ To decide what number is the last index of subexpression (n - a number)
 To decide what number is the length of subexpression (n - a number)
 	(documented at ph_relength):
 	(- (RE_Subexpressions-->{n}-->RE_DATA2 - RE_Subexpressions-->{n}-->RE_DATA1) -).
-To decide what number is number of times (T - text) matches the regular expression
+To decide what number is number of times (T - text) matches the/-- regular expression
 	(find - text),case insensitively
 	(documented at ph_nummatchesre):
 	(- TEXT_TY_Replace_RE(REGEXP_BLOB,{-by-reference:T},{-by-reference:find},1,{phrase options}) -).
@@ -1329,13 +1332,13 @@ To decide if there is no (TR - table-reference)
 To blank out (tr - table-reference)
 	(documented at ph_blankout):
 	(- {-by-reference-blank-out:tr}; -).
-To blank out the whole row
+To blank out the/-- whole row
 	(documented at ph_blankoutrow):
 	(- TableBlankOutRow({-my:ct_0}, {-my:ct_1}); -).
-To blank out the whole (TC - table column) in/from/of (T - table name)
+To blank out the/-- whole (TC - table column) in/from/of (T - table name)
 	(documented at ph_blankoutcol):
 	(- TableBlankOutColumn({T}, {TC}); -).
-To blank out the whole of (T - table name)
+To blank out the/-- whole of (T - table name)
 	(documented at ph_blankouttable):
 	(- TableBlankOutAll({T}); -).
 
@@ -1454,10 +1457,10 @@ To decide what number is the number of entries in/of/from (L - a list of values)
 To truncate (L - a list of values) to (N - a number) entries/entry
 	(documented at ph_truncate):
 	(- LIST_OF_TY_SetLength({-lvalue-by-reference:L}, {N}, -1, 1); -).
-To truncate (L - a list of values) to the first (N - a number) entries/entry
+To truncate (L - a list of values) to the/-- first (N - a number) entries/entry
 	(documented at ph_truncatefirst):
 	(- LIST_OF_TY_SetLength({-lvalue-by-reference:L}, {N}, -1, 1); -).
-To truncate (L - a list of values) to the last (N - a number) entries/entry
+To truncate (L - a list of values) to the/-- last (N - a number) entries/entry
 	(documented at ph_truncatelast):
 	(- LIST_OF_TY_SetLength({-lvalue-by-reference:L}, {N}, -1, -1); -).
 To extend (L - a list of values) to (N - a number) entries/entry

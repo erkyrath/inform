@@ -1194,7 +1194,7 @@ L and R are more definite.
 				case TIMES_OPERATION: Problems::quote_text(6, "multiplying"); Problems::quote_text(7, "by"); break;
 				case DIVIDE_OPERATION:
 				case REMAINDER_OPERATION: Problems::quote_text(6, "dividing"); Problems::quote_text(7, "by"); break;
-				case APPROXIMATION_OPERATION: Problems::quote_text(6, "rounding"); Problems::quote_text(7, "to"); break;
+				case APPROXIMATE_OPERATION: Problems::quote_text(6, "rounding"); Problems::quote_text(7, "to"); break;
 			}
 			StandardProblems::handmade_problem(Task::syntax_tree(), _p_(PM_BadArithmetic));
 			Problems::issue_problem_segment(
@@ -1645,6 +1645,8 @@ literal can mean are too generous.)
 		default: Problems::quote_text(6, "a stored value holding"); break;
 	}
 	kind_wanted = Specifications::to_kind(target);
+	if (IDTypeData::is_assignment_phrase(idb))
+		kind_wanted = Kinds::Dimensions::relative_kind(kind_wanted);
 	kind_found = Specifications::to_kind(new_value);
 
 	parse_node *new_invl = new_value->down;

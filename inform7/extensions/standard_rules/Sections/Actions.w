@@ -118,15 +118,6 @@ Check an actor taking (this is the can't take people's possessions rule):
 			stop the action;
 		let the owner be the not-counting-parts holder of the owner;
 
-Check an actor taking (this is the can't take items out of play rule):
-	let H be the noun;
-	while H is not nothing and H is not a room:
-		let H be the not-counting-parts holder of H;
-	if H is nothing:
-		if the actor is the player:
-			say "[regarding the noun][Those] [aren't] available." (A);
-		stop the action.
-
 Check an actor taking (this is the can't take what you're inside rule):
 	let the local ceiling be the common ancestor of the actor with the noun;
 	if the local ceiling is the noun:
@@ -145,12 +136,6 @@ Check an actor taking (this is the can't take scenery rule):
 	if the noun is scenery:
 		if the actor is the player:
 			say "[regarding the noun][They're] hardly portable." (A);
-		stop the action.
-
-Check an actor taking (this is the can only take things rule):
-	if the noun is not a thing:
-		if the actor is the player:
-			say "[We] [cannot] carry [the noun]." (A);
 		stop the action.
 
 Check an actor taking (this is the can't take what's fixed in place rule):
@@ -337,7 +322,7 @@ Putting it on is an action applying to two things.
 The putting it on action is accessible to Inter as "PutOn".
 
 The specification of the putting it on action is "By this action, an actor puts
-something he is holding on top of a supporter: for instance, putting an apple
+something they are holding on top of a supporter: for instance, putting an apple
 on a table."
 
 @ Check.
@@ -412,12 +397,13 @@ Inserting it into is an action applying to two things.
 The inserting it into action is accessible to Inter as "Insert".
 
 The specification of the inserting it into action is "By this action, an actor puts
-something he is holding into a container: for instance, putting a coin into a
+something they are holding into a container: for instance, putting a coin into a
 collection box."
 
 @ Check.
 
 =
+
 Check an actor inserting something into (this is the convert insert to drop where
 	possible rule):
 	if the second noun is down or the actor is in the second noun,
@@ -1075,26 +1061,27 @@ Carry out looking (this is the declare everything unmentioned rule):
 		now the item is not mentioned.
 
 Carry out looking (this is the room description heading rule):
-	say bold type;
-	if the visibility level count is 0:
-		begin the printing the name of a dark room activity;
-		if handling the printing the name of a dark room activity:
-			say "Darkness" (A);
-		end the printing the name of a dark room activity;
-	otherwise if the visibility ceiling is the location:
-		say "[visibility ceiling]";
-	otherwise:
-		say "[The visibility ceiling]";
-	say roman type;
-	let intermediate level be the visibility-holder of the actor;
-	repeat with intermediate level count running from 2 to the visibility level count:
-		if the intermediate level is a supporter or the intermediate level is an animal:
-			say " (on [the intermediate level])" (B);
+	if nameless room descriptions option is not active:
+		say bold type;
+		if the visibility level count is 0:
+			begin the printing the name of a dark room activity;
+			if handling the printing the name of a dark room activity:
+				say "Darkness" (A);
+			end the printing the name of a dark room activity;
+		otherwise if the visibility ceiling is the location:
+			say "[visibility ceiling]";
 		otherwise:
-			say " (in [the intermediate level])" (C);
-		let the intermediate level be the visibility-holder of the intermediate level;
-	say line break;
-	say run paragraph on with special look spacing.
+			say "[The visibility ceiling]";
+		say roman type;
+		let intermediate level be the visibility-holder of the actor;
+		repeat with intermediate level count running from 2 to the visibility level count:
+			if the intermediate level is a supporter or the intermediate level is an animal:
+				say " (on [the intermediate level])" (B);
+			otherwise:
+				say " (in [the intermediate level])" (C);
+			let the intermediate level be the visibility-holder of the intermediate level;
+		say line break;
+		say run paragraph on with special look spacing.
 
 Carry out looking (this is the room description body text rule):
 	if the visibility level count is 0:
@@ -1237,8 +1224,8 @@ model does not have a concept of things being under other things, so this
 action is only minimally provided by the Standard Rules, but it exists here
 for traditional reasons (and because, after all, LOOK UNDER TABLE is the
 sort of command which ought to be recognised even if it does nothing useful).
-The action ordinarily either tells the player he finds nothing of interest,
-or reports that somebody else has looked under something.
+The action ordinarily either tells the player that they find nothing of
+interest, or reports that somebody else has looked under something.
 
 The usual way to make this action do something useful is to write a rule
 like 'Instead of looking under the cabinet for the first time: now the
@@ -1353,7 +1340,7 @@ Report an actor consulting something about (this is the block consulting rule):
 =
 Section 5 - Standard actions which change the state of things
 
-Locking it with is an action applying to one thing and one carried thing.
+Locking it with is an action applying to two things.
 The locking it with action is accessible to Inter as "Lock".
 
 The specification of the locking it with action is "Locking is the act of
@@ -1387,6 +1374,11 @@ Short, which is included with all distributions of Inform."
 @ Check.
 
 =
+First check an actor locking something with (this is the can't lock without holding the key rule):
+	if the holder of the second noun is not the actor:
+		carry out the implicitly taking activity with the second noun;
+		if the actor is not the holder of the second noun, stop the action.
+
 Check an actor locking something with (this is the can't lock without a lock rule):
 	if the noun provides the property lockable and the noun is lockable:
 		continue the action;
@@ -1436,7 +1428,7 @@ Report an actor locking something with (this is the standard report locking rule
 @h Unlocking it with.
 
 =
-Unlocking it with is an action applying to one thing and one carried thing.
+Unlocking it with is an action applying to two things.
 The unlocking it with action is accessible to Inter as "Unlock".
 
 The specification of the unlocking it with action is "Unlocking undoes the
@@ -1469,6 +1461,11 @@ Short, which is included with all distributions of Inform."
 @ Check.
 
 =
+First check an actor unlocking something with (this is the can't unlock without holding the key rule):
+	if the holder of the second noun is not the actor:
+		carry out the implicitly taking activity with the second noun;
+		if the actor is not the holder of the second noun, stop the action.
+
 Check an actor unlocking something with (this is the can't unlock without a lock rule):
 	if the noun provides the property lockable and the noun is lockable:
 		continue the action;
@@ -1739,7 +1736,7 @@ Report an actor closing (this is the standard report closing rule):
 @h Wearing.
 
 =
-Wearing is an action applying to one carried thing.
+Wearing is an action applying to one thing.
 The wearing action is accessible to Inter as "Wear".
 
 The specification of the wearing action is "The Standard Rules give Inform
@@ -1757,16 +1754,15 @@ as enforced by the 'can't wear what's not held rule'."
 @ Check.
 
 =
+First check an actor wearing (this is the can't wear what's not held rule):
+	if the holder of the noun is not the actor:
+		carry out the implicitly taking activity with the noun;
+		if the actor is not the holder of the noun, stop the action.
+
 Check an actor wearing (this is the can't wear what's not clothing rule):
 	if the noun is not a thing or the noun is not wearable:
 		if the actor is the player:
 			say "[We] [can't wear] [regarding the noun][those]!" (A);
-		stop the action.
-
-Check an actor wearing (this is the can't wear what's not held rule):
-	if the holder of the noun is not the actor:
-		if the actor is the player:
-			say "[We] [aren't] holding [regarding the noun][those]!" (A);
 		stop the action.
 
 Check an actor wearing (this is the can't wear what's already worn rule):
@@ -1847,7 +1843,7 @@ Report an actor taking off (this is the standard report taking off rule):
 =
 Section 6 - Standard actions concerning other people
 
-Giving it to is an action applying to one carried thing and one thing.
+Giving it to is an action applying to two things.
 The giving it to action is accessible to Inter as "Give".
 
 The specification of the giving it to action is "This action is indexed by
@@ -1870,11 +1866,10 @@ letting others run on into the carry out and report rules."
 @ Check.
 
 =
-Check an actor giving something to (this is the can't give what you haven't got rule):
+First check an actor giving something to (this is the can't give what you haven't got rule):
 	if the actor is not the holder of the noun:
-		if the actor is the player:
-			say "[We] [aren't] holding [the noun]." (A);
-		stop the action.
+		carry out the implicitly taking activity with the noun;
+		if the actor does not hold the noun, stop the action.
 
 Check an actor giving something to (this is the can't give to yourself rule):
 	if the actor is the second noun:
@@ -1927,7 +1922,7 @@ Report an actor giving something to (this is the standard report giving rule):
 @h Showing it to.
 
 =
-Showing it to is an action applying to one carried thing and one visible thing.
+Showing it to is an action applying to one thing and one visible thing.
 The showing it to action is accessible to Inter as "Show".
 
 The specification of the showing it to action is "Anyone can show anyone
@@ -1947,13 +1942,15 @@ write Instead rules to handle them."
 
 @ Check.
 
+
+
+
 =
 Check an actor showing something to (this is the can't show what you haven't
 	got rule):
 	if the actor is not the holder of the noun:
-		if the actor is the player:
-			say "[We] [aren't] holding [the noun]." (A);
-		stop the action.
+		carry out the implicitly taking activity with the noun;
+		if the actor is not the holder of the noun, stop the action.
 
 Check an actor showing something to (this is the convert show to yourself to
 	examine rule):
@@ -1972,11 +1969,11 @@ Waking is an action applying to one thing.
 The waking action is accessible to Inter as "WakeOther".
 
 The specification of the waking action is "This is the act of jostling
-a sleeping person to wake him or her up, and it finds its way into the
-Standard Rules only for historical reasons. Inform does not by default
-provide any model for people being asleep or awake, so this action does
-not do anything in the standard implementation: instead, it is always
-stopped by the block waking rule."
+a sleeping person to wake them up, and it finds its way into the Standard
+Rules only for historical reasons. Inform does not by default provide
+any model for people being asleep or awake, so this action doesnot do
+anything in the standard implementation: instead, it is always stopped by
+the block waking rule."
 
 @ Check.
 
@@ -1990,7 +1987,7 @@ Check an actor waking (this is the block waking rule):
 @h Throwing it at.
 
 =
-Throwing it at is an action applying to one carried thing and one visible thing.
+Throwing it at is an action applying to one thing and one visible thing.
 The throwing it at action is accessible to Inter as "ThrowAt".
 
 The specification of the throwing it at action is "Throwing something at
@@ -2024,6 +2021,11 @@ Check an actor throwing something at (this is the implicitly remove thrown cloth
 		silently try the actor trying taking off the noun;
 		if the actor is wearing the noun, stop the action;
 
+Check an actor throwing something at (this is the implicitly take thrown object rule):
+	if the actor is not the holder of the noun:
+		carry out the implicitly taking activity with the noun;
+		if the actor is not the holder of the noun, stop the action.
+
 Check an actor throwing something at (this is the futile to throw things at inanimate
 	objects rule):
 	if the second noun is not a person:
@@ -2046,7 +2048,7 @@ The attacking action is accessible to Inter as "Attack".
 The specification of the attacking action is "Violence is seldom the answer,
 and attempts to attack another person are normally blocked as being unrealistic
 or not seriously meant. (I might find a shop assistant annoying, but IF is
-not Grand Theft Auto, and responding by killing him is not really one of
+not Grand Theft Auto, and responding by killing them is not really one of
 my options.) So the Standard Rules simply block attempts to fight people,
 but the action exists for rules to make exceptions."
 
@@ -3098,6 +3100,17 @@ The announce the story file version rule is listed in the carry out requesting t
 	file version rulebook.
 The announce the story file version rule is defined by Inter as "ANNOUNCE_STORY_FILE_VERSION_R".
 
+
+@ And similarly for COPYRIGHT.
+
+=
+Requesting copyright licences is an action out of world and applying to nothing.
+The requesting copyright licences action is accessible to Inter as "Copyright".
+
+The announce the copyright licences rule is listed in the carry out requesting
+	copyright licences rulebook.
+The announce the copyright licences rule is defined by Inter as "ANNOUNCE_COPYRIGHT_LICENCES_R".
+
 @ There's really no very good reason why we provide the out-of-world command
 SCORE but not (say) TIME, or any one of dozens of other traditional what's-my-status
 commands: DIAGNOSE, say, or PLACES. But we are conservative on this; it's easy
@@ -3210,42 +3223,3 @@ The announce the pronoun meanings rule is defined by Inter as "ANNOUNCE_PRONOUN_
 	"means " (B),
 	"is unset" (C),
 	"no pronouns are known to the game." (D).
-
-@ The dialogue system offers an action "talking about", but not "talking to X about":
-this is a model of conversation which is aimed at simulating multi-person encounters,
-where lines are spoken more into the room than at any one person.
-
-=
-Section 10 - Dialogue-related actions (for dialogue language element only)
-
-Talking about is an action applying to one object.
-
-The talking about action has a list of dialogue beats called the leading beats.
-
-The talking about action has a list of dialogue beats called the other beats.
-
-Before an actor talking about an object (called T):
-	repeat with B running through available dialogue beats about T:
-		if B is performable to the actor:
-			if the first speaker of B is the actor:
-				add B to the leading beats;
-			otherwise:
-				add B to the other beats;
-
-Carry out an actor talking about an object (called T)
-	(this is the first-declared beat rule):
-	if the leading beats is not empty:
-		perform entry 1 of the leading beats;
-		if the dialogue line performance count is greater than zero:
-			continue the action;
-	if the other beats is not empty:
-		perform entry 1 of the other beats;
-		if the dialogue line performance count is greater than zero:
-			continue the action;
-	if the player is the actor:
-		say "There is no reply." (A);
-		stop the action;
-	otherwise:
-		if the player can hear the actor:
-			say "[The actor] [talk] about [T]." (B);
-		stop the action.

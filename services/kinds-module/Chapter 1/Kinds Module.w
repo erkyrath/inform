@@ -20,6 +20,7 @@ which use this module:
 @e kind_constructor_casting_rule_CLASS
 @e kind_constructor_instance_CLASS
 @e kind_constructor_instance_rule_CLASS
+@e arithmetic_schema_CLASS
 @e unit_sequence_CLASS
 @e star_invention_CLASS
 @e additional_property_CLASS
@@ -36,6 +37,7 @@ DECLARE_CLASS_ALLOCATED_IN_ARRAYS(kind_constructor_casting_rule, 100)
 DECLARE_CLASS_ALLOCATED_IN_ARRAYS(kind_constructor_comparison_schema, 100)
 DECLARE_CLASS_ALLOCATED_IN_ARRAYS(kind_constructor_instance, 100)
 DECLARE_CLASS_ALLOCATED_IN_ARRAYS(kind_constructor_instance_rule, 100)
+DECLARE_CLASS_ALLOCATED_IN_ARRAYS(arithmetic_schema, 50)
 DECLARE_CLASS_ALLOCATED_IN_ARRAYS(unit_sequence, 50)
 DECLARE_CLASS(star_invention)
 DECLARE_CLASS(additional_property)
@@ -88,6 +90,7 @@ to some routine of her own, gazumping this one.
 @e DimensionRedundant_KINDERROR from 1
 @e DimensionNotBaseKOV_KINDERROR
 @e NonDimensional_KINDERROR
+@e ImproperSubtraction_KINDERROR
 @e UnitSequenceOverflow_KINDERROR
 @e DimensionsInconsistent_KINDERROR
 @e KindUnalterable_KINDERROR
@@ -116,6 +119,9 @@ void KindsModule::problem_handler(int err_no, parse_node *pn, text_stream *E,
 			break;
 		case NonDimensional_KINDERROR:
 			Errors::with_text("multiplication rule quotes non-numerical kinds: %S", text);
+			break;
+		case ImproperSubtraction_KINDERROR:
+			Errors::with_text("subtraction rules can only subtract a dimensionless kind from itself", text);
 			break;
 		case UnitSequenceOverflow_KINDERROR:
 			Errors::with_text("multiplication rule far too complex: %S", text);

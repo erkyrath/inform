@@ -214,6 +214,7 @@ void Hierarchy::establish(void) {
 @e LANGUAGE_ELEMENTS_NOT_USED_MD_HL
 @e MEMORY_ECONOMY_MD_HL
 @e MAX_INDEXED_FIGURES_HL
+@e COPYRIGHT_LICENCES_HL
 @e NO_TEST_SCENARIOS_HL
 @e MEMORY_HEAP_SIZE_HL
 @e LOCALPARKING_HL
@@ -255,6 +256,7 @@ void Hierarchy::establish(void) {
 		H_C_T(LOCALPARKING_HL,                I"LocalParking")
 		H_C_T(RNG_SEED_AT_START_OF_PLAY_HL,   I"RNG_SEED_AT_START_OF_PLAY")
 		H_C_T(MAX_INDEXED_FIGURES_HL,         I"^max_indexed_figures")
+		H_C_T(COPYRIGHT_LICENCES_HL,          I"COPYRIGHT_LICENCE_TEXT")
 		H_C_T(MAX_FRAME_SIZE_NEEDED_HL,       I"MAX_FRAME_SIZE_NEEDED")
 		H_F_T(SUBMAIN_HL,                     I"Submain_fn", I"Submain")
 		H_C_T(AFTER_ACTION_HOOK_HL,           I"AfterActionHook")
@@ -545,6 +547,10 @@ void Hierarchy::establish(void) {
 @e SERIAL_MD_HL
 @e LANGUAGE_MD_HL
 @e DESCRIPTION_MD_HL
+@e LICENCE_MD_HL
+@e COPYRIGHT_MD_HL
+@e ORIGIN_URL_MD_HL
+@e RIGHTS_HISTORY_MD_HL
 @e EPISODE_NUMBER_MD_HL
 @e SERIES_NAME_MD_HL
 @e YEAR_MD_HL
@@ -569,6 +575,10 @@ void Hierarchy::establish(void) {
 		H_C_T(SERIAL_MD_HL,                   I"^serial")
 		H_C_T(LANGUAGE_MD_HL,                 I"^language")
 		H_C_T(DESCRIPTION_MD_HL,              I"^description")
+		H_C_T(LICENCE_MD_HL,                  I"^licence")
+		H_C_T(COPYRIGHT_MD_HL,                I"^copyright")
+		H_C_T(ORIGIN_URL_MD_HL,               I"^origin")
+		H_C_T(RIGHTS_HISTORY_MD_HL,           I"^rights")
 		H_C_T(EPISODE_NUMBER_MD_HL,           I"^episode")
 		H_C_T(SERIES_NAME_MD_HL,              I"^series")
 		H_C_T(YEAR_MD_HL,                     I"^year")
@@ -1047,7 +1057,7 @@ void Hierarchy::establish(void) {
 			H_C_U(INSTANCE_INTERNAL_FILE_FORMAT_MD_HL,      I"^internal_file_format")
 			H_C_U(INSTANCE_INTERNAL_FILE_ID_MD_HL,          I"^resource_id")
 			H_C_U(INSTANCE_FILE_IS_BINARY_MD_HL,            I"^is_binary")
-			H_C_U(INSTANCE_LEAFNAME_MD_HL,                  I"^filename")
+			H_C_U(INSTANCE_LEAFNAME_MD_HL,                  I"^leafname")
 			H_C_U(INSTANCE_IS_FIGURE_MD_HL,                 I"^is_figure")
 			H_C_U(INSTANCE_FIGURE_FILENAME_MD_HL,           I"^filename")
 			H_C_U(INSTANCE_FIGURE_ID_MD_HL,                 I"^resource_id")
@@ -1195,7 +1205,19 @@ void Hierarchy::establish(void) {
 @e KIND_STRONG_ID_MD_HL
 @e KIND_PRINT_FN_MD_HL
 @e KIND_CMP_FN_MD_HL
-@e KIND_SUPPORT_FN_MD_HL
+@e KIND_CREATE_FN_MD_HL
+@e KIND_CAST_FN_MD_HL
+@e KIND_COPY_FN_MD_HL
+@e KIND_COPY_SHORT_BLOCK_FN_MD_HL
+@e KIND_QUICK_COPY_FN_MD_HL
+@e KIND_DESTROY_FN_MD_HL
+@e KIND_MAKE_MUTABLE_FN_MD_HL
+@e KIND_HASH_FN_MD_HL
+@e KIND_SHORT_BLOCK_SIZE_MD_HL
+@e KIND_LONG_BLOCK_SIZE_MD_HL
+@e KIND_LONG_BLOCK_SIZE_FN_MD_HL
+@e KIND_SERIALISE_FN_MD_HL
+@e KIND_UNSERIALISE_FN_MD_HL
 @e KIND_MKDEF_FN_MD_HL
 @e KIND_DSIZE_MD_HL
 @e KIND_DOCUMENTATION_MD_HL
@@ -1308,7 +1330,19 @@ void Hierarchy::establish(void) {
 			H_C_U(KIND_STRONG_ID_MD_HL,       I"^strong_id")
 			H_C_U(KIND_CMP_FN_MD_HL,          I"^cmp_fn")
 			H_C_U(KIND_PRINT_FN_MD_HL,        I"^print_fn")
-			H_C_U(KIND_SUPPORT_FN_MD_HL,      I"^support_fn")
+			H_C_U(KIND_CREATE_FN_MD_HL,       I"^create_fn")
+			H_C_U(KIND_CAST_FN_MD_HL,         I"^cast_fn")
+			H_C_U(KIND_COPY_FN_MD_HL,         I"^copy_fn")
+			H_C_U(KIND_COPY_SHORT_BLOCK_FN_MD_HL, I"^copy_short_block_fn")
+			H_C_U(KIND_QUICK_COPY_FN_MD_HL,   I"^quick_copy_fn")
+			H_C_U(KIND_DESTROY_FN_MD_HL,      I"^destroy_fn")
+			H_C_U(KIND_MAKE_MUTABLE_FN_MD_HL, I"^make_mutable_fn")
+			H_C_U(KIND_HASH_FN_MD_HL,         I"^hash_fn")
+			H_C_U(KIND_SHORT_BLOCK_SIZE_MD_HL, I"^short_block_size")
+			H_C_U(KIND_LONG_BLOCK_SIZE_MD_HL, I"^long_block_size")
+			H_C_U(KIND_LONG_BLOCK_SIZE_FN_MD_HL, I"^long_block_size_fn")
+			H_C_U(KIND_SERIALISE_FN_MD_HL,    I"^serialise_fn")
+			H_C_U(KIND_UNSERIALISE_FN_MD_HL,  I"^unserialise_fn")
 			H_C_U(KIND_MKDEF_FN_MD_HL,        I"^mkdef_fn")
 			H_C_U(KIND_DSIZE_MD_HL,           I"^domain_size")
 			H_C_U(RUCKSACK_CLASS_MD_HL,       I"^rucksack_class")
@@ -1743,6 +1777,8 @@ void Hierarchy::establish(void) {
 @e MARKER_MD_HL
 @e INDEX_TEXT_MD_HL
 @e GROUP_HL
+@e DEFERRED_RESPONSES_HAP
+@e DEF_RESPONSE_ID_HL
 @e RULE_APPLICABILITY_CONDITIONS_HAP
 @e AC_TEXT_MD_HL
 @e AC_AT_MD_HL
@@ -1777,6 +1813,9 @@ void Hierarchy::establish(void) {
 				H_C_U(AS_BLOCK_CONSTANT_HL,   I"as_block_constant")
 				H_C_U(PARKING_ARRAY_HL,       I"response_local_parking")
 				H_F_U(LAUNCHER_HL,            I"launcher")
+			H_END
+			H_BEGIN_AP(DEFERRED_RESPONSES_HAP, I"deferred_response", I"_deferred_response")
+				H_C_U(DEF_RESPONSE_ID_HL,     I"deferred_response_id")
 			H_END
 			H_BEGIN_AP(RULE_APPLICABILITY_CONDITIONS_HAP, I"applicability_condition", I"_applicability_condition")
 				H_C_U(AC_TEXT_MD_HL,          I"^text")

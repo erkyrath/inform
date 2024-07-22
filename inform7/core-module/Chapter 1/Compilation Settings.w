@@ -26,6 +26,7 @@ meaningful only for works of IF and are inert for Basic Inform projects.
 @e SLOW_ROUTE_FINDING_UO
 @e DICTIONARY_RESOLUTION_UO
 @e NO_AUTO_PLURAL_NAMES_UO
+@e NAMELESS_ROOM_DESCRIPTIONS_UO
 
 @ Note that Inform recognises these by their English names, so there would be no
 need to translate this to other languages.
@@ -45,7 +46,8 @@ need to translate this to other languages.
 	index figure thumbnails |       ==> { INDEX_FIGURE_THUMBNAILS_UO, - }
 	fast route-finding |  			==> { FAST_ROUTE_FINDING_UO, - }
 	slow route-finding | 			==> { SLOW_ROUTE_FINDING_UO, - }
-	dictionary resolution           ==> { DICTIONARY_RESOLUTION_UO, - }
+	dictionary resolution |         ==> { DICTIONARY_RESOLUTION_UO, - }
+	nameless room descriptions      ==> { NAMELESS_ROOM_DESCRIPTIONS_UO, - }
 
 @ Some of the pragma-like settings are stored here:
 
@@ -84,7 +86,7 @@ void CompilationSettings::initialise_gcs(void) {
 	global_compilation_settings.scoring_option_set = NOT_APPLICABLE;
 	global_compilation_settings.use_exact_parsing_option = FALSE;
        	global_compilation_settings.no_auto_plural_names = FALSE;
-	int N = 9;
+	int N = 14;
 	if (TargetVMs::is_16_bit(Task::vm())) N = 6;
 	global_compilation_settings.dictionary_resolution = N;
 	global_compilation_settings.fast_route_finding = FALSE;

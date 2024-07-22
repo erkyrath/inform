@@ -70,7 +70,9 @@ The exception is the Settings panel, which contains some preference settings for
 
 Clicking the Go button translates the text in the Source panel into a computer program which enacts the interactive fiction, and automatically sets it going (in the Story panel, which opens as needed).
 
-If the Source is empty of text, Inform will be unable to create anything: it needs at least one name of a location where the drama can unfold. For reasons of tradition, such locations are normally called "rooms", though people have used them to represent anything from grassy fields to states of mind and other metaphorical places.
+All Inform stories take place in one or more "rooms". These need not be indoor locations, and can represent anything from grassy fields to states of mind. If we click Go when there's no text at all in the Source panel, Inform will perhaps surprisingly still make a story, though a very empty one. It will create a room for the story to take place in, and put the player in it, but nothing else will exist and there will be nothing to do or look at.
+
+So instead we'll supply a title and a name for the opening room:
 
 	{*}"Midsummer Day"
 	
@@ -381,7 +383,7 @@ Much of this can be seen, and seen more easily, in the World tab of the Index pa
 
 ## The TEST command {PM_TestMultiWord} {PM_TestDuplicate} {PM_TestBadRequirements} {PM_TestContainsUndo} {PM_TestCommandTooLong} {PM_TestDoubleWith} {PM_UnknownInternalTest}
 
-^^{TEST+testcmd+} ^^{testing commands: >TEST} ^^{transcripts: creating with the TEST command} ^^{test (test name) with (commands)+assert+} ^^{PURLOIN+testcmd+} ^^{testing commands: >PURLOIN}
+^^{TEST+testcmd+} ^^{testing commands: >TEST} ^^{transcripts: creating with the TEST command} ^^{test (test name) with (commands)+assert+} ^^{PURLOIN+testcmd+} ^^{testing commands: >PURLOIN} ^^{>AGAIN}
 
 The only way to thoroughly test a work of IF is to run a complete solution through it, and carefully check the resulting transcript of dialogue. But most works of interactive fiction contain occasional vignettes, either in terms of short scenes of narrative, or in the behaviour of particular things or rooms. The examples in the documentation are like this: in almost every example, typing ``TEST ME`` puts the story through its paces.
 
@@ -476,7 +478,7 @@ Newcomers will probably not need extensions for quite some while, let alone need
 
 ## Use options {PM_UONotNumerical} {PM_UnknownUseOption} {OPTIONS}
 
-^^{use options} ^^{use (options...)+assert+} ^^{punctuation: comma: displaying serial comma} ^^^{punctuation: comma <-- comma} ^^{|,: displaying serial comma} ^^{scoring: enabling} ^^{descriptions (displayed): full-length room descriptions / abbreviated room descriptions} ^^{rooms+kind+: descriptions} ^^{use options: catalogue: |American dialect} ^^{American dialect+useopt+} ^^{use options: catalogue: |the serial comma} ^^{serial comma+useopt+} ^^{use options: catalogue: |scoring} ^^{scoring+useopt+} ^^{use options: catalogue: |full-length room descriptions} ^^{full-length room descriptions+useopt+} ^^{use options: catalogue: |abbreviated room descriptions} ^^{abbreviated room descriptions+useopt+} ^^{use options: catalogue: |VERBOSE room descriptions} ^^{VERBOSE room descriptions+useopt+} ^^{use options: catalogue: |BRIEF room descriptions} ^^{BRIEF room descriptions+useopt+} ^^{use options: catalogue: |SUPERBRIEF room descriptions} ^^{SUPERBRIEF room descriptions+useopt+} ^^{use options: catalogue: |undo prevention} ^^{undo prevention+useopt+} ^^{>UNDO}
+^^{use options} ^^{use (options...)+assert+} ^^{punctuation: comma: displaying serial comma} ^^^{punctuation: comma <-- comma} ^^{|,: displaying serial comma} ^^{scoring: enabling} ^^{descriptions (displayed): full-length room descriptions / abbreviated room descriptions} ^^{rooms+kind+: descriptions <-- descriptions (displayed): room descriptions} ^^{use options: catalogue: |American dialect} ^^{American dialect+useopt+} ^^{use options: catalogue: |the serial comma} ^^{serial comma+useopt+} ^^{use options: catalogue: |scoring} ^^{scoring+useopt+} ^^{use options: catalogue: |full-length room descriptions} ^^{full-length room descriptions+useopt+} ^^{use options: catalogue: |abbreviated room descriptions} ^^{abbreviated room descriptions+useopt+} ^^{use options: catalogue: |VERBOSE room descriptions} ^^{VERBOSE room descriptions+useopt+} ^^{use options: catalogue: nameless room descriptions} ^^{use options: catalogue: |BRIEF room descriptions} ^^{BRIEF room descriptions+useopt+} ^^{use options: catalogue: |SUPERBRIEF room descriptions} ^^{SUPERBRIEF room descriptions+useopt+} ^^{use options: catalogue: |undo prevention} ^^{undo prevention+useopt+} ^^{>UNDO}
 
 One more preliminary. Inform has a small number of optional settings which affect the result of translating the source. The sentence:
 
@@ -501,7 +503,11 @@ change the normal way room descriptions are shown: normally they are given in fu
 	Use brief room descriptions.
 	Use superbrief room descriptions.
 
-The default is now ``VERBOSE``, but until 2010 it was ``BRIEF``.
+The default is ``VERBOSE``. Another option affecting room descriptions is:
+
+	Use nameless room descriptions.
+
+This suppresses the usual boldface printed name of a room which appears at the top of a description.
 
 Next we have:
 
@@ -636,7 +642,7 @@ then the first room to be created will actually be the Y2 Rock Room, so that's w
 
 ## Rooms and the map {kind_room} {MAP} {PM_SameKindEquated} {PM_DescriptionsEquated}
 
-^^{rooms+kind+: connections between rooms} ^^{connections between rooms <-- exits} ^^{index map <-- map} ^^{directions+kind+ <-- compass directions} ^^{|called: in creating rooms} ^^{|from: inside / outside from} ^^{|inside from} ^^{|outside from} ^^{use options: catalogue: |unabbreviated object names} ^^{unabbreviated object names+useopt+} ^^{abbreviations: object names}
+^^{rooms+kind+: connections between rooms} ^^{connections between rooms <-- exits <-- map: designing} ^^{index map <-- map: in Index panel} ^^{directions+kind+ <-- compass directions} ^^{|called: in creating rooms} ^^{|from: inside / outside from} ^^{|inside from} ^^{|outside from} ^^{use options: catalogue: |unabbreviated object names} ^^{unabbreviated object names+useopt+} ^^{abbreviations: object names}
 
 Rooms are joined together at their edges by "map connections", most of which are pathways in one of the eight cardinal compass directions: north, northeast (written without a hyphen), east, southeast, south, southwest, west, northwest. We also have up and down, suitable for staircases or ladders. In real life, people are seldom conscious of their compass bearing when walking around buildings, but it makes a concise and unconfusing way for the player to say where to go next, so is generally accepted as a convention of the genre.
 
@@ -798,7 +804,7 @@ The cup, the pistol and the table are all allowed to have the `fixed in place` p
 
 ## Scenery
 
-^^{scenery (thing)+prop+} ^^{scenery (thing)+propcat+} ^^{immobile things: |scenery} ^^{things+kind+: immobile: |scenery} ^^{hiding things from room descriptions by making them scenery <-- concealment+rel+: in a room} ^^{descriptions (displayed): hiding things from room descriptions} ^^{supporters+kind+: mentioned because of supported things}
+^^{scenery (thing)+prop+} ^^{scenery (thing)+propcat+} ^^{immobile things: |scenery} ^^{things+kind+: immobile: |scenery} ^^{hiding things from room descriptions by making them scenery <-- concealment+rel+: in a room} ^^{descriptions (displayed): hiding things from room descriptions} ^^{rooms+kind+: printing the room contents: hiding things} ^^{supporters+kind+: mentioned because of supported things}
 
 As we have just seen, making something `fixed in place` will prevent it from being picked up or moved. But it remains substantial enough to be described in its own paragraph of text when the player visits its location. This can be unfortunate if it has also been described already in the body of the main description for that location. For instance, if we wrote:
 
@@ -1315,7 +1321,7 @@ because they are too vague. Inform needs to know exactly where the fob watch and
 
 ## New kinds {NEWKINDS}
 
-^^{kinds <-- types} ^^{kinds: defining} ^^{defining: kinds} ^^{kinds: hierarchy of kinds} ^^{kinds: of value} ^^{kinds: of thing} ^^{kinds: defining: kinds of thing} ^^{defining: kinds of thing} ^^{things+kind+: kinds of} ^^{rooms+kind+} ^^{things+kind+} ^^{directions+kind+} ^^{regions+kind+} ^^{animals+kind+} ^^{man+kind+} ^^{woman+kind+} ^^{Inform 6 equivalent: classes} ^^{Kinds page of Index panel+ui+} ^^{user interface: Index panel: Kinds page} ^^{Index panel+ui+: Kinds page}
+^^{kinds <-- types} ^^{kinds: defining} ^^{defining: kinds} ^^{kinds: hierarchy of kinds} ^^{kinds: of value} ^^{kinds: of thing} ^^{kinds: defining: kinds of thing} ^^{defining: kinds of thing} ^^{things+kind+: kinds of} ^^{things+kind+: object kind, as distinct from thing} ^^{rooms+kind+} ^^{things+kind+} ^^{directions+kind+} ^^{regions+kind+} ^^{animals+kind+} ^^{man+kind+} ^^{woman+kind+} ^^{Inform 6 equivalent: classes} ^^{Kinds page of Index panel+ui+} ^^{user interface: Index panel: Kinds page} ^^{Index panel+ui+: Kinds page}
 
 Values in Inform are the nouns in its sentences. They represent numbers, times of day, pieces of text, places, people, doors, and so on. Because values have such an enormous variety, and because we often want to talk about what some of them have in common, we need a way to sort these values into categories, and those are called _kinds_. Some examples:
 
@@ -1419,7 +1425,7 @@ without knowing that `coffer` is a kind, it simply makes a thing called `open co
 
 ## Degrees of certainty
 
-^^{(always / never), in assertions+sourcepart+} ^^{(never / always), in assertions+sourcepart+} ^^{(usually / seldom), in assertions+sourcepart+} ^^{(seldom / usually), in assertions+sourcepart+} ^^{default properties of kinds} ^^{kinds: default properties}
+^^{(always / never), in assertions+sourcepart+} ^^{(never / always), in assertions+sourcepart+} ^^{(usually / seldom), in assertions+sourcepart+} ^^{(seldom / usually), in assertions+sourcepart+} ^^{default properties of kinds} ^^{kinds: default properties} ^^{properties: defaults for kind}
 
 When we write:
 
@@ -1689,7 +1695,7 @@ And while we're at it, let's give each `brightness` its own corresponding `tempe
 
 ## Conditions of things {PM_EitherOnThree}
 
-^^{kinds: defining: kinds of value} ^^{defining: kinds of value} ^^{values: kinds of value} ^^{kinds: enumerated values} ^^{properties: holding a new kind of value} ^^{properties: value properties: defining} ^^{value properties: defining} ^^{defining: value properties} ^^{(condition), naming properties+sourcepart+}
+^^{kinds: defining: kinds of value} ^^{defining: kinds of value} ^^{values: kinds of value} ^^{kinds: enumerated values} ^^{properties: holding a new kind of value} ^^{properties: value properties: defining} ^^{value properties: defining} ^^{defining: value properties} ^^{(condition), as name for value property+sourcepart+}
 
 Now for an even more abbreviated way to create a new kind of value, and at the same time create a property to hold it. Suppose we have something, say a wine cask, which we know is always in one of three different states. We can write:
 
@@ -2073,7 +2079,7 @@ results in red being zesty, but blue and green being flat; blue because the sour
 
 ## Text with substitutions {PM_TSWithPunctuation}
 
-^^{text <-- strings of characters} ^^{text: displaying} ^^{text substitutions: text} ^^{descriptions (displayed): room descriptions with substituted text} ^^{punctuation: square brackets: text substitutions} ^^{|[ ]: text substitutions} ^^{punctuation: quotation marks: defining texts} ^^{|": defining texts}
+^^{text <-- strings of characters} ^^{text: displaying} ^^{text substitutions: text} ^^{descriptions (displayed): with substituted text} ^^{rooms+kind+: descriptions: with substituted text} ^^{punctuation: square brackets: text substitutions} ^^{|[ ]: text substitutions} ^^{punctuation: quotation marks: defining texts} ^^{|": defining texts}
 
 In the previous chapter, [Kinds], we gave properties to certain kinds of things in order to change their appearance and behaviour, and saw brief glimpses of one of Inform's most useful devices: _text substitution_. The following gives a more complete example:
 
@@ -2721,7 +2727,7 @@ Whichever effect we use, we should be careful to ensure that we return to normal
 
 ## Accented letters
 
-^^{characters (letters): special / accented}^^^{characters (letters) <-- letters <-- accented letters}^^^{characters (letters) <-- symbols}
+^^{characters (letters): accented and exotic letters and symbols}^^^{characters (letters) <-- letters <-- accented letters}^^^{characters (letters) <-- symbols}
 
 Inform 7 is infused by the English language, so it's a challenge using it to write a work of IF in any other language. (With that said, extensions do exist which have made considerable progress on this problem: nil desperandum.) But even a book in English contains occasional quotations or words borrowed from other tongues, so we are going to need more than plain A to Z.
 
@@ -2777,13 +2783,15 @@ As we have seen, Inform allows us to type a wide range of characters into the so
 
 Unicode characters can be named (or numbered) directly in text. For example:
 
-	"[unicode 321]odz Churchyard"
+	"[unicode U+0141]odz Churchyard"
 
-produces a Polish slashed L. Characters can also be named as well as numbered:
+produces a Polish slashed L, that is, prints as ``Łodz Churchyard``. The notation `unicode U+0141` uses hexadecimal digits, and actually refers to the character whose number is 321, because 321 in base 16 is 141. (Inform would also have accepted `unicode 321` in decimal, but it's far more usual for Unicode to be quoted in hexadecimal.)
+
+Characters can also be named as well as numbered:
 
 	"[unicode Latin capital letter L with stroke]odz Churchyard"
 
-The Unicode standard assigns character numbers to essentially every marking used in text from any human language: its full range is enormous. (Note that Inform writes these numbers in decimal: many reference charts show them in hexadecimal, or base 16, which can cause confusion.)
+The Unicode standard assigns character numbers to essentially every marking used in text from any human language: its full range is enormous.
 
 This means, for instance, that we can write text such as:
 
@@ -2794,11 +2802,25 @@ Admittedly, character names can get a little verbose:
 
 	"[unicode Greek small letter omega with psili and perispomeni and ypogegrammeni]"
 
-Inform can "only" handle codes in the range 32 to 131071, and note that if the project Settings are to compile to the Z-machine, this range stops at 65535: thus many emoji characters – say, `"[unicode fish cake with swirl design]"` – can only be used if the story will compile to Glulx or another modern target. But by default, stories are compiled the modern way, so this should not be a problem in practice.
+Occasionally, the presence of words like "with" in the names of Unicode characters can cause ambiguities — for example, in this sentence:
+
+	The secret sign is initially unicode Latin capital letter L with stroke.
+
+This can be avoided by using brackets around the name, to make clear how the sentence should be read:
+
+	The secret sign is initially unicode (Latin capital letter L with stroke).
+
+Inform can "only" handle codes in the range `unicode U+20` to `unicode U+1FFFF`, that is, 32 to 131071 in decimal, and note that if the project Settings are to compile to the Z-machine, this range stops at `unicode U+FFFF`: thus many emoji characters – say, `unicode fish cake with swirl design` – can only be used if the story will compile to Glulx or another modern target. But by default, stories are compiled the modern way, so this should not be a problem in practice.
 
 There are far too many possible names to list here: formally, any character name in the Basic Multilingual Plane or the Supplementary Multilingual Plane of version 15.0.0 of the Unicode standard can be used.
 
-But before getting carried away, we should remember the hazards: Inform allows us to type, say, `"[unicode Saturn]"` (an astrological sign) but it appears only as a black square if the resulting story is played by an interpreter using a font which lacks the relevant sign. For instance, Zoom for OS X uses the Lucida Grande and Apple Symbol fonts by default, and this combination does contain the Saturn sign: but Windows Frotz tends to use the Tahoma font by default, which does not. (Another issue is that the fixed letter spacing font, such as used in the status line, may not contain all the characters that the font of the main text contains.) To write something with truly outré characters is therefore a little chancy: users would have to be told quite carefully what interpreter and font to use to play it.
+Still another alternative is to write `unicode "C"`: this is no use inside a text substitution because the double-quotation marks can't be used there, but something like:
+
+	The secret sign is initially unicode "☣".
+
+...will work fine. `unicode "☣"`, `unicode U+2623`, `unicode 9763` and `unicode Biohazard Sign` are all ways to write the same value, which has the kind `unicode character`.
+
+But before getting carried away, we should remember the hazards: Inform allows us to type, say, `unicode Saturn` (an astrological sign) but it appears only as a black square if the resulting story is played using a font which lacks the relevant sign. (Another issue is that the fixed letter spacing font, such as used in the status line, may not contain all the characters that the font of the main text contains.) To write something with truly outré characters is therefore a little chancy.
 
 At one time, Inform could only use named Unicode values in a story which had first included an extension:
 
@@ -2815,7 +2837,7 @@ A feature of Inform now best avoided is that, in a limited way and only on a nar
 
 Text is normally printed in between the typed commands of the player, rolling upwards from the bottom of the screen, as if a dialogue is being typed by an old-fashioned teletype. But it can also be displayed in a bolder way, floating above the main text, and this is sometimes used to display quotations.
 
-> phrase: {ph_boxed} display the boxed quotation (text)
+> phrase: {ph_boxed} display the/-- boxed quotation (text)
 >
 > This phrase displays the given text on screen in an overlaid box. For reasons to do with the way such quotations are plotted onto the screen, their text is treated literally: no substitutions in square brackets are obeyed, and no non-Latin characters can be used in it. The quotation will only ever appear once, regardless of the number of times the `display the boxed quotation ...` phrase is reached. Rather than being shown immediately – and thus, probably, scrolling away before it can be seen – the display is held back until the next command prompt is shown to the player. Example:
 >
@@ -3456,7 +3478,7 @@ Lastly, note that the `the` in text like `two of the doors` matters: without it,
 
 ## Actions {ACTIONS} {kind_actionname} {PM_APWithNoParticiple} {PM_APUnknown} {PM_NonActionIn}
 
-^^{actions} ^^{success: for actions} ^^{failure: for actions} ^^{taking+action+} ^^{ACTIONS+testcmd+} ^^{testing commands: >ACTIONS}
+^^{actions} ^^{success: for actions} ^^{failure: for actions} ^^{taking+action+ <-- >GET} ^^{ACTIONS+testcmd+} ^^{testing commands: >ACTIONS}
 
 _Actions_ are what we get if we try to break down a narrative into its smallest moments. We might casually say that we are "going shopping", but this involves many smaller steps: going north, going east, entering the shop, examining a loaf of bread, taking it, giving money to the baker, and so on.
 
@@ -3485,6 +3507,8 @@ The testing command ``ACTIONS`` causes Inform to log every action as it happens,
 A good way to get a sense of the constant flow of actions is to use this command and then wander around an existing work, trying things out. ``ACTIONS`` can also give an insight into the web of rules governing play: there are more than ten different ways an attempt to take something can fail, for instance.
 
 ## Actions versus commands
+
+^^{>OOPS} ^^{>AGAIN}
 
 Actions and commands are not quite the same thing. Commands are the words typed in players: ``EXAMINE BLUEPRINT`` is an example of a command. When the player types this (and assuming there is a blueprint available), the action `examining the blueprint` is what then happens.
 
@@ -3562,7 +3586,7 @@ We have seen that instead rules automatically stop actions, whereas before rules
 
 It is also possible to be explicit about stopping the action:
 
-> phrase: {ph_stopaction} stop the action
+> phrase: {ph_stopaction} stop the/-- action
 >
 > This phrase stops the current rule, stops the rulebook being worked through, and finally stops the action being processed. Example:
 >
@@ -3572,7 +3596,7 @@ It is also possible to be explicit about stopping the action:
 
 Finally, we can prevent Inform from stopping the action when it otherwise might:
 
-> phrase: {ph_continueaction} continue the action
+> phrase: {ph_continueaction} continue the/-- action
 >
 > This phrase ends the current rule, but in a way which keeps its rulebook going, so that the action being processed will carry on rather than being stopped. Example:
 >
@@ -3682,7 +3706,7 @@ Games with a lot of conversation often involve great heaps of rules like the one
 
 ## The other four senses
 
-^^{senses} ^^{actions: involving senses} ^^{rules: for senses} ^^{rooms+kind+: listening to (with no object)} ^^{rooms+kind+: smelling (with no object)} ^^{listening to+action+} ^^{smelling+action+} ^^{touching+action+} ^^{tasting+action+}
+^^{senses} ^^{actions: involving senses} ^^{rules: for senses} ^^{rooms+kind+: listening to (with no object)} ^^{rooms+kind+: smelling (with no object)} ^^{listening to+action+} ^^{smelling+action+} ^^{touching+action+} ^^{tasting+action+} ^^{looking under+action+}
 
 The five senses are all simulated with actions. Sight is so informative that it is handled by a whole range of actions: `looking`, which describes the general scene; `examining something`, which takes a closer look at a specific thing; `looking under something`, and so on.
 
@@ -4530,6 +4554,7 @@ produces, as it suggests, a random number drawn from the choices 2, 3, 4 or 5, e
 >
 >     a random number from 10 to 99
 >     a random time from 2:31 PM to 2:57 PM
+>     a random time period from 6 minutes to 1 hour 25 minutes
 >
 > If we make a new kind of value:
 >
@@ -4662,27 +4687,27 @@ Ordinarily we must explicitly ask to use the information presented in a table, b
 
 ## When play ends {rules_wpe}
 
-^^{when play ends+rb+} ^^{rules: run at end of story} ^^{end of story <-- story structure: ending} ^^{victory} ^^{death} ^^{winning the story} ^^{losing the game} ^^{(finally), ending the story+sourcepart+} ^^{>AMUSING} ^^{story structure: ending}
+^^{when play ends+rb+} ^^{rules: run at end of story} ^^{end of story <-- story structure: ending} ^^{victory} ^^{death} ^^{winning the story} ^^{losing the story} ^^{(finally), ending the story+sourcepart+} ^^{>AMUSING} ^^{story structure: ending}
 
 Short of something like a power cut, the story can only end when one of the two participants chooses to end it: either the player, by deciding that enough is enough, or us.
 
 In story-telling, there are many kinds of ending: happy, sad, decisive, bittersweet, surprise. Inform doesn't try to interfere in that kind of artistic choice, but it does need to know one thing about the ending: is it final, or not? Many authors like to make additional menu items available if the player has completed the story right through, but not if she has reached an early or wrong ending. (See the activity `amusing a victorious player`, for example.)
 
-> phrase: {ph_end} end the story
+> phrase: {ph_end} end the/-- story
 >
 > This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message "The End." The end is not considered final.
 
-> phrase: {ph_endfinally} end the story finally
+> phrase: {ph_endfinally} end the/-- story finally
 >
 > This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message "The End." The end is considered final, and any hidden menu options will be revealed.
 
-> phrase: {ph_endsaying} end the story saying (text)
+> phrase: {ph_endsaying} end the/-- story saying (text)
 >
 > This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is not considered final. Example:
 >
 >     end the story saying "You have been stymied"
 
-> phrase: {ph_endfinallysaying} end the story finally saying (text)
+> phrase: {ph_endfinallysaying} end the/-- story finally saying (text)
 >
 > This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is considered final, and any hidden menu options will be revealed. Example:
 >
@@ -4726,7 +4751,7 @@ appears. For example:
 
 Surprisingly, the end is not always the end:
 
-> phrase: {ph_resume} resume the story
+> phrase: {ph_resume} resume the/-- story
 >
 > This phrase causes an ended story to resume exactly as if no `end the story...` phrase had been used. Example:
 >
@@ -4771,7 +4796,7 @@ A sentence like the following allows the initial time to be set up as something 
 
 	The time of day is 3:13 PM.
 
-Here, `3:13 PM` is a constant value of a kind not seen before: it's a kind of value called `time`, and the value `time of day` is a time that varies. After one turn it will be 3:14 PM, then 3:15 PM and so on.
+Here, `3:13 PM` is a constant value of a kind called simply `time`, and the value `time of day` is a time that varies. After one turn it will be 3:14 PM, then 3:15 PM and so on.
 
 Note that the sentence above is an assertion (a statement about the initial state of affairs), not an instruction which can be part of a rule. It would be equivalent to write:
 
@@ -4817,6 +4842,8 @@ Clocks and watches vary considerably in how much detail they show, and we tend n
 
 The phrase `... to the nearest ...` rounds off the given time, just as it sounds; as we'll see later, it can actually round off any arithmetic values, not just times. For instance, `9:58 PM to the nearest ten minutes` is 10:00 PM.
 
+Note that `ten minutes` here is also a value, and it's a value of a kind called `time period`, which is not quite the same as `time`. A `time period` can be positive or negative, and can be enormous: `360 hours 12 minutes` is a valid `time period` constant.
+
 In talking about lengths of time, rather than times of day, it's useful to have these:
 
 > phrase: {ph_durationmins} (number) minutes ... time
@@ -4851,7 +4878,7 @@ Carrying out easy calculations with times is straightforward:
 
 Here we are using two phrases:
 
-> phrase: {ph_shiftbefore} (time) before (time) ... time
+> phrase: {ph_shiftbefore} (time period) before (time) ... time
 >
 > This phrase produces a time earlier by the amount given, keeping within the 24 hour clock. Example:
 >
@@ -4859,7 +4886,7 @@ Here we are using two phrases:
 >
 > produces 10:30 PM.
 
-> phrase: {ph_shiftafter} (time) after (time) ... time
+> phrase: {ph_shiftafter} (time period) after (time) ... time
 >
 > This phrase produces a time later by the amount given, keeping within the 24 hour clock. Example:
 >
@@ -4877,11 +4904,32 @@ Similarly, we have conditions:
 >
 > This condition is true if the first time occurs later in the day than the second. In recognition of the fact that very few stories begin before 4 AM, whereas many run on past midnight, the start of the day is taken to be 4 AM: thus 3:59 AM is after 11:10 PM, but 4:04 AM is before it.
 
+These phrases are really just verbal conveniences, though, because we can do the same thing with everyday arithmetic. `10 minutes before 9:00 AM` is the same thing as calculating `9:00 AM minus 10 minutes`.
+
 ## Calculating times
 
 ^^{time: calculations} ^^{calculation: with time} ^^{numbers: converting to times}
 
-We will occasionally need to perform more complex calculations with time, and in order to do that, we have a way to convert the time of day to numbers. Thus the phrase `the minutes part of ...` takes a time and produces a number from 0 to 59; similarly `the hours part of ...` extracts a number from 0 to 23, using the twenty-four hour clock.
+The ordinary arithmetic for numbers doesn't quite work for times. What would it even mean to add `1:00 PM` to `3:10 PM`, or, worse still, to multiply or divide them, or to take the square root of `9:00 AM`? But we _can_ subtract them: `3:10 PM minus 1:00 PM` does mean something — it produces `2 hours 10 minutes`, which is a value of the kind `time period`. And similarly we can add a time period to a time, to get a changed time: `9:00 AM plus 75 minutes` is `10:15 AM`, and `9:00 AM plus 24 hours` is just `9:00 AM` again.
+
+So, for example:
+
+	{*}The Horological Chamber is a room.
+	
+	The clock error is a time period that varies.
+	
+	The broken grandfather clock is in the Chamber. "An erratic grandfather clock seems to say it is [the time of day plus the clock error]."
+	
+	To thump the mechanism:
+		now the clock error is a random time period from -10 minutes to 10 minutes.
+	
+	When play begins, thump the mechanism.
+	
+	Instead of attacking the broken clock:
+		thump the mechanism;
+		say "You thump the clock, which now reads [the time of day plus the clock error].".
+
+We will occasionally need to perform more complex calculations with time, and in order to do that, it's a convenience to have a way to convert the time of day to numbers. Thus the phrase `the minutes part of ...` takes a time and produces a number from 0 to 59; similarly `the hours part of ...` extracts a number from 0 to 23, using the twenty-four hour clock.
 
 > phrase: {ph_minspart} minutes part of (time) ... number
 >
@@ -4899,15 +4947,11 @@ We will occasionally need to perform more complex calculations with time, and in
 >
 > produces 8.
 
-To go the other way, we can convert any number to a duration by writing `minutes` or `hours` after it. For instance:
+If we need to convert a time period to a number of minutes, a nifty way to do this is to divide it by `1 minute`:
 
-	{*}The clock error is a number that varies. To thump the mechanism: now the clock error is a random number from -10 to 10.
-	
-	The broken grandfather clock is in the Chamber. "An erratic grandfather clock seems to say it is [clock error minutes after the time of day]."
-	
-	When play begins, thump the mechanism. Instead of attacking the broken clock: thump the mechanism; say "You thump the clock, which now reads [clock error minutes after the time of day].".
+	14 minutes divided by 1 minute
 
-Note that `clock error` is a number, but `clock error minutes` is a time.
+The result being the number 14. And to go the other way, we can convert any number to a `time period` by writing `minutes` or `hours` after it.
 
 ## Future events {PM_AtWithoutTime} {PM_UnusedTimedEvent} {TIMEDEVENTS}
 
@@ -4926,7 +4970,7 @@ We often want to arrange for something to happen at some point in the future. He
 
 The event here is called `the egg-timer clucks`, but this event name could have been anything we chose: as it happens, the event involves the egg-timer, but it doesn't need to have `egg-timer` in the name. Events like this happen only when instructed to happen, using one of the following phrases:
 
-> phrase: {ph_timefromnow} (rule) in (time) from now
+> phrase: {ph_timefromnow} (rule) in (time period) from now
 >
 > This phrase causes the given rule to be run at a given time offset from the current time of day. Example:
 >
@@ -4956,7 +5000,7 @@ The Scenes panel of the Index can be a useful way to see what events have been s
 
 ## Actions as conditions {PM_PTAPTooComplex}
 
-^^{actions: as conditions} ^^{rules: actions referred to in conditions} ^^{rules: past tense of conditions} ^^{past tense, of conditions in rules} ^^{tense: of conditions in rules} ^^{English: tense: of conditions in rules}
+^^{actions: as conditions} ^^{rules: actions referred to in conditions} ^^{rules: past tense of conditions} ^^{conditions: actions as conditions} ^^{past tense, of conditions in rules} ^^{tense: of conditions in rules} ^^{English: tense: of conditions in rules}
 
 There are two ways that descriptions of actions can be used as conditions. First, we can simply describe an action, and then the condition will be true if that is what the player is trying to do, and not otherwise:
 
@@ -5152,13 +5196,13 @@ The Scenes page of the index is intended to help with this. The Plot section sho
 
 Note the useful value `time since Train Stop began`:
 
-> phrase: {ph_scenetimesincebegan} time since (scene) began ... time
+> phrase: {ph_scenetimesincebegan} time since (scene) began ... time period
 >
 > This phrase produces the time since the named scene began, which only makes sense, of course, if it has indeed begun. Example:
 >
 >     time since Entire Game began
 
-> phrase: {ph_scenetimesinceended} time since (scene) ended ... time
+> phrase: {ph_scenetimesinceended} time since (scene) ended ... time period
 >
 > This phrase produces the time since the named scene ended, which only makes sense, of course, if it has indeed ended. Example:
 >
@@ -5330,6 +5374,1618 @@ Just as Inform uses a simple but practical design for the boundaries between roo
 Settings in IF where one revisits the same location but at a different time, or after a dramatic change, have historically been difficult to test properly and prone to mistakes. (The classic example would be where a character killed during Act I reappears unharmed in Act II.) The design of scenes is an attempt to encourage a style of writing which minimises the risk of these accidents.
 
 Since scenes are, in the end, only a convenient way to organise rules, and do nothing that cannot be done by other means, this simplified system of scene changing does not really restrict us.
+
+# Dialogue
+
+## If again this apparition come...
+
+Some stories are all about exploration: lone travellers going places and discovering things. But other stories are more intimate, and conversational. They involve characters talking to each other about what is happening. And sometimes the talking _is_ what's happening: the story might be a romance, or a political intrigue, or a detective mystery. "Dialogue" is what we'll call the sort of to-and-fro when characters get into a conversation — not necessarily a long talk, but where the story will only work for the player if the speakers seem to be making sense, and not repeating themselves endlessly, or making oblique comments out of nowhere.
+
+That means writing something closer to a script than to a rulebook. But that script can still be richly interactive and flexible. In Inform, this is set out in special _dialogue sections_ of the source text. Instead of being set out in sentences and paragraphs like a novel, or a non-fiction book, dialogue sections look like the script for a play or movie: what printers call "playtext". Regular sections cannot contain playtext, while dialogue sections cannot contain anything else.
+
+In this section, we'll get a taste for Inform's dialogue features by playing out parts of Act I, Scene 1 of _Hamlet_. Let's say that the player is Horatio, who has climbed to the castle battlements with his friend Marcellus to question Bernardo, a guard, about the recent sighting of a ghost.
+
+	Section 1 - Elsinore
+
+	The Battlements is a room. Marcellus and Bernardo are men in the Battlements. Fortinbras and the ghost are men.
+
+	Section 2 - On the Battlements (dialogue)
+
+	(This is the starting beat.)
+
+	Player: "What, has this thing appear'd again to-night?"
+
+	Bernardo: "I have seen nothing."
+
+	Marcellus: "Horatio says tis but our fantasy."
+
+So here `Section 1 - Elsinore` is a regular section of source text: it creates a single room with two people in it, and two who are off-stage (for now). `Section 2 - On the Battlements` is a dialogue section, because its title ends with the bracketed word `(dialogue)` — this is what marks it out as special. Only section headings can be marked as `(dialogue)`, not chapter, part, book, or volume headings. There can be any number of dialogue sections in a story.
+
+The resulting story starts like so:
+
+``` transcript
+Battlements
+You can see Marcellus and Bernardo here.
+
+You: "What, has this thing appear'd again to-night?"
+
+Bernardo: "I have seen nothing."
+
+Marcellus: "Horatio says tis but our fantasy."
+```
+
+That was the _performance_ of what is called a _beat_. Dialogue is divided up into _beats_ — small plot moments which usually consist of a few _lines_ of dialogue or narration. Each beat is opened by a _cue_ paragraph in brackets, followed by lines which occupy further paragraphs. So this dialogue section consists of a single beat, which contains three lines.
+
+The cue for the beat usually tells Inform when the beat should be performed. In this case, it's:
+
+	(This is the starting beat.)
+
+and this tells Inform to perform it right at the start of the whole story, before the player has had a chance to type a single command.
+
+That little beat wasn't interactive in any way, and the player had to watch passively as it played out. Unless we want to party like it's 1599, we had better rewrite to offer _choices_ to the player:
+
+	(This is the starting beat.)
+
+	Player: "What, has this thing appear'd again to-night?"
+
+	Bernardo: "I have seen nothing."
+
+	Marcellus: "Horatio says tis but our fantasy."
+
+	-- "Ask Bernardo what he saw."
+
+		Player: "Well, sit we down, and let us hear Bernardo speak of this."
+	
+		Marcellus (now the ghost is in the Battlements): "Peace, break thee off! Look where it comes again."
+
+		Bernardo: "In the same figure like the King that’s dead."
+
+	-- "Dismiss this nonsense."
+
+		Narration: "You sternly tell the guards to watch for Fortinbras, not their shadows."
+
+The beat now contains seven lines, but the action will split mid-way as the player decides, and so at least one of these lines will never be performed. The choice is between two alternatives marked `--`, and it leads to two alternative endings to the beat — note that these alternate paths are indented by one tab stop underneath the choices they continue from.
+
+So now play might run like so:
+
+``` transcript
+Battlements
+You can see Marcellus and Bernardo here.
+
+You: "What, has this thing appear'd again to-night?"
+
+Bernardo: "I have seen nothing."
+
+Marcellus: "Horatio says tis but our fantasy."
+
+(1) Ask Bernardo what he saw.
+(2) Dismiss this nonsense.
+
+> 1
+Ask Bernardo what he saw.
+
+You: "Well, sit we down, and let us hear Bernardo speak of this."
+
+Marcellus: "Peace, break thee off! Look where it comes again."
+
+Bernardo: "In the same figure like the King that's dead."
+
+> LOOK
+Battlements
+You can see a ghost, Marcellus and Bernardo here.
+```
+
+When it comes to the moment, then, the player is asked to choose which of two alternative courses of action to follow. Only ``1`` and ``2`` are accepted as answers to that choice prompt:
+
+``` transcript
+(1) Ask Bernardo what he saw.
+(2) Dismiss this nonsense.
+
+> EXAMINE BERNARDO
+(Please type an option in the range 1 to 2 and press return.)
+```
+
+Once the beat has finished, the story goes back to accepted commands in the normal way that Inform stories do — in the example above the player typed ``LOOK`` and a looking action took place. How much dialogue appears in a story, versus traditional command-and-action play, is entirely up to the author. At the two extremes, there might be no dialogue at all, or the entire story might consist of one long branching mass of dialogue beats, each running into another, until the tale finishes — in such a way that the player never types a traditional command at all.
+
+But even if no commands are being typed, the rest of Inform is still at work beneath the surface. There's still a model world, keeping track of space and time. An example of that is that Inform won't perform a line of dialogue by somebody who is not within earshot. Suppose the beat had been written like so:
+
+	(This is the starting beat.)
+
+	Player: "What, has this thing appear'd again to-night?"
+
+	Fortinbras: "Nope, it's just my army invading Denmark."
+
+Even though his line is in the script, the player would never see Fortinbras speak it because, at this moment, Fortinbras is still in Norway and not up on the Battlements — so that line is simply skipped over. Of course, if Fortinbras _had_ spoken this line, the others would certainly have reacted. We can have the script take care of that possibility too:
+
+	(This is the starting beat.)
+
+	Player: "What, has this thing appear'd again to-night?"
+
+	Fortinbras: "Nope, it's just my army invading Denmark."
+	
+		Marcellus: "Sound the tocsin! My lords, we are besieged!"
+
+Again, the line by Marcellus is performed only if Marcellus is present to speak it, but there's a further restriction even if he is: he speaks only if Fortinbras has just spoken. That's because this line is indented underneath Fortinbras's line. Like the `--` choices, this is a branching point in the story.
+
+Had the script dragged in an even more unlikely speaker:
+
+	Lady Bracknell: "A spectre?"
+
+then Inform would have complained. It allowed the line by Fortinbras to appear in the script because Fortinbras _is_ a character (that is, the story contains an object of the kind `person` whose name is `Fortinbras`); but Lady Bracknell must be from a different play altogether.
+
+So Inform is tracking who the speakers are, and where they are, and what has been said so far, in order to keep dialogue going realistically. We can also move people around to manage their entrances and exits. This isn't done with "Enter" and "Exit", the way Shakespeare would have done things. Instead we'll use Inform's much more flexible `now` phrase as a sort of stage direction:
+
+		Marcellus (now the ghost is in the Battlements): "Peace, break thee off! Look where it comes again."
+
+If this line is performed, the ghost moves to the Battlements, but only then. And we can even have actors carry out actions:
+
+	Bernardo (after taking the spyglass): "Sire, I must scan th' horizon."
+
+Here, _if_ the line is about to be performed, the action `Bernardo taking the spyglass` is tried: and if it succeeds, the line is indeed performed.
+
+Variety can enter the script even if the beat doesn't branch, because the lines performed in a beat are just like other text in Inform: they can contain "substitutions" in square brackets. So, for example:
+
+	Bernardo: "Who [one of]stands[or]watches[or]hides[at random] there, good Marcellus?"
+	
+	Marcellus: "I count only [list of people in the Battlements]."
+
+These variations are only a small taste of what Inform's dialogue system can handle, and the rest of this chapter goes into that in some detail, so this won't be a short chapter. But as always, the easy things which are needed most often are quite quick to pick up, and the rest can be skipped until necessary.
+
+If this section has a moral (other than the inadvisability of killing a king in his own castle), it's this: Dialogue sections in Inform may look a little different from other Inform material, but the system they are built on is still Inform. There are still rooms, and things, and people, and actions, and a whole simulated world to help guide the performance, and to be changed by it.
+
+## Dialogue sections
+
+To recap, then, all dialogue material must appear in special _dialogue sections_ in the source text. A section is a dialogue section if its titling line ends with `(dialogue)`. For example:
+
+	Section 2 - On the Battlements (dialogue)
+
+Dialogue sections can contain square-bracketed comments, just like regular sections, but otherwise they can only contain special dialogue material.
+
+### Each item is its own paragraph
+
+Dialogue sections are organised by paragraphs, not sentences. Jamming lines, cues, and so on together without paragraph breaks between them will not work. For example, this:
+
+	Julian: "I say, that's the swarthy fellow we saw at Brannigan's Rocks."
+	Anne: "Yes, and that's gelignite he's carrying in that old red blanket."
+
+should have read:
+
+	Julian: "I say, that's the swarthy fellow we saw at Brannigan's Rocks."
+
+	Anne: "Yes, and that's gelignite he's carrying in that old red blanket."
+
+So, then, a dialogue section is a series of _beats_, and each beat begins with a _cue_ paragraph in round brackets, and then contains one or more of the following items, each in its own paragraph:
+
+1) Lines spoken by a `person`, which can include the `Player`. Lines broadly have the syntax `Speaker: "Speech."`
+
+2) `Narration` lines, where action is described but is not written as the direct speech of any person. These look like `Narration: "What is happening."` (To avoid confusion, do not call a character `Narration`.)
+
+3) Choices, which are different options which the player might take at this point in the conversation. These are introduced with a double-dash `--`.
+
+4) Flow markers. These have yet to appear, but are written with arrows `->` or `<-`. They guide the flow of dialogue through beats.
+
+### Indentation by tabs shows how dialogue branches
+
+The other general feature of dialogue sections to watch out for is _indentation_, which is typed by using tab characters to move inwards from the left margin. When something is indented, it belongs to the thing above it which is indented by one tab stop less. Beat cues cannot be indented: they belong only to themselves. But lines, narration, choices and flow markers can all be indented.
+
+In general, indentation marks where a branch takes place: it's possible that the dialogue will flow down into this branch, but also possible that it won't. The general rule is that the branch is taken only if the item branched from is performed. For example:
+
+	-- "Confiscate the gold"
+	
+		Player: "I'll take that bullion, you foreign rascal."
+
+Here the player's line of dialogue lies on a branch which is only performed if the `-- "Confiscate the gold"` choice is exercised. Similarly:
+
+	Julian (to Dick): "Let's get some fresh eggs from Spiller's Farm."
+	
+		Dick: "Topping, and some cream and strawberries too."
+
+Here the branch containing Dick's line will be performed only if Julian's line is performed. (Because it's spoken `to Dick`, it requires both to be present.)
+
+In general, then, if one line is a direct reply to another one, and there is any uncertainty about who might or might not be present, indentation should be used:
+
+	Speaker One: "A speech."
+	
+		Speaker Two: "A reply."
+		
+			Speaker One: "A rebuttal."
+		
+				Speaker Three: "An intervention."
+
+				Speaker Two: "A cross response."
+
+Here, the cross response will only be performed if the speech _and_ the reply _and_ the rebuttal are all performed. But it makes no difference whether the intervention was made or not.
+
+Indentation can go down as well as up, and this allows branches to converge back together in what some other dialogue systems (such as Ink) call a "gather". For example:
+
+	Marcellus: "It's just Scotch mist, blown east from old Aberdeen."
+	
+	Bernardo: "Nay, sire, it's a ghoul!"
+	
+	-- (if the shortbread is carried) "Assuage his night terrors"
+	
+		Player (before Bernardo eating the shortbread): "Here, take this old Highlands cure."
+
+		Bernardo (now Bernardo is not scared): "Hoots mon, that's better."
+
+	-- "Reprimand Bernardo"
+
+		Player: "I don't care if it is haunted, guard the Battlements."
+	
+	Narration: "The bell tolls two of the morn."
+
+Here we have two lines of dialogue, and then a divide according to which option the player chooses. Note that the `Narration:` line is at the same indentation level as the two choices where the dialogue branches: so this is where the branches come together again. The practical effect is that every performance of the beat ends with the tolling of the bell.
+
+## Dialogue beats and their cues
+
+Each beat begins with a cue paragraph, which must be placed in round brackets. These usually contain a single sentence, but can have more, so long as it all remains a single paragraph. Such sentences must end with full stops, placed inside the brackets. So this is correct:
+
+	(About the paranormal.)
+
+But this is not:
+
+	(About the paranormal).
+
+As a more extensive, and valid, example:
+
+	(About the Ghost. After the haunting beat. If the Ghost is in Elsinore.
+	Recurring. This is the Marcellus gets anxious beat.)
+
+And semicolons can also be used instead of full stops, if we want to. This doesn't change the meaning. For example:
+
+	(After the haunting beat; about the paranormal; recurring.)
+
+As these example cues suggest, the cue can do a lot, but the main idea is to say under what circumstances the beat should be performed.
+
+### Naming a beat
+
+Inform has a built-in kind of value called `dialogue beat`, and each beat declared in the source text corresponds to a value of this kind. Beats are by default nameless, since authors mostly don't need to refer to them as values. But there are times when we do want that, so:
+
+	(This is the Marcellus gets anxious beat.)
+
+Here, the beat for which this is the cue will have the value `Marcellus gets anxious beat`. The name has to end with the word `beat`. As we shall see, this enables rules or phrases in regular sections of the source text to ask, say, `if the Marcellus gets anxious beat is unperformed`, or to say `perform the Marcellus gets anxious beat`.
+
+The name `starting beat` is reserved. If a beat is given this name, then
+it is performed at the start of play, as in the Elsinore haunting dialogue with which this chapter began. Names of beats have to be unique, so it follows that there can only be one starting beat.
+
+### Making a beat its own scene
+
+If a cue says that it is not just a beat, but also a scene, like so:
+
+	(This is the fire drill scene.)
+
+then _two_ values are created: a beat called `fire drill beat`, and also a scene called `fire drill scene`. These values have different kinds — `dialogue beat` and `scene` respectively — but their fates are tied together. The scene automatically starts and ends when the beat begins and ends its performance, and vice versa. That is, if some other condition causes the scene to end while the performance of the beat is still mid-way, then the performance stops right there.
+
+This enables Inform's powerful scene-plotting machinery to mesh well with its dialogue engine. For example, `When the fire drill scene begins: ...` rules can be written, which will fire when the performance of the beat begins.
+
+### Making a beat `about` something
+
+`About` clauses tell Inform what a beat is talking about. As we'll see in the next section, Inform is always tracking what people are discussing: it is maintaining a set of live conversational subjects. It can only do this if beats (and sometimes lines as well) are marked up to show what they are about. For example:
+
+	(About the ghost and the Battlements.)
+
+	Bernardo: "The battlements of Elsinore have been lately haunted, 'tis true."
+
+At its simplest, an about sentence is the word `about` followed by
+a list of one or more issues being discussed — in this example, two. These have to be descriptions of objects, so a beat cannot be `about 102`, for example, or `about 10:13 pm`, because numbers and times are not objects. On the other hand, they do not need to be specific names. For example:
+
+	(About any dark room.)
+
+	Bernardo: "Every dark place in this castle is filled with footsteps."
+
+### Restricting the availability of a beat
+
+`If` and `unless` conditions in the cue for a beat make it performable only when the given condition is met, or not met. For example:
+
+	(If Denmark is rotten.)
+
+	(Unless Hamlet has the skull.)
+
+Note that this imposes _extra_ conditions which the beat has to meet in order to be performed: it may still not be performed for other reasons. For example,
+
+	(About the Gravedigger; unless Hamlet has the skull.)
+
+introduces a beat which will only be performed if the Gravedigger is being discussed, _and_ Hamlet does not have the skull.
+
+### The after, before, later, next, and immediately after clauses for a cue
+
+These say that the new beat can be performed only when another beat has already
+been performed at some point in the past; or, has not. For example:
+
+	(After the Marcellus gets anxious beat.)
+
+This is equivalent, in fact, to writing the condition sentence:
+
+	(If the Marcellus gets anxious beat is performed.)
+
+...but is simpler to read and understand. Similarly:
+
+	(Before the Marcellus gets anxious beat.)
+
+The special one-word sentence `Later` can only be used on the second or subsequent beats in a dialogue section, and means the same as `after` applied to the previous beat in that section. Thus
+
+	(About fish.)
+	
+	...
+	
+	(Later; about chips.)
+	
+	...
+
+means the same thing as
+
+	(About fish. This is the fishmonger beat.)
+	
+	...
+	
+	(After the fishmonger beat; about chips.)
+	
+	...
+
+`Immediately after` is equivalent to `after`, except that it allows the beat to be performed only the very next turn after the named beat was performed. The one-word `Next` is the corresponding version of `Later`, applying `immediately after` to the previous beat. For example:
+
+	(About Pygmalion and mentioning Cyprus.)
+
+	Galatea: "I haven't seen him around since I left Cyprus."
+
+	(Next, about Cyprus.)
+
+	Player: "Do you think he's still there?"
+
+	Galatea: "Maybe! I don't yet have a good understanding of object permanence!"
+
+	(About Cyprus.)
+
+	Player: "Did you like Cyprus?"
+
+	Galatea: "Yes, it was great, if you don't mind the weather."
+
+The effect here is that we'd see
+
+	> ASK GALATEA ABOUT PYGMALION
+	Galatea: I haven't seen him around since I left Cyprus.
+
+	> ASK HER ABOUT CYPRUS
+	Player: Do you think he's still there?
+
+	Galatea: Maybe! I don't yet have a good understanding of object permanence!
+
+`Immediately before` is, of course, impossible to arrange, so Inform doesn't provide that syntax.
+
+### Who is required to be present for a beat
+
+Consider this beat:
+
+	(About the Zeppelin.)
+	
+	Hans: "See our prodigious rate of climb, Ludwig!"
+	
+	Ludwig: "Jawohl, Hans."
+
+There would not be much point in performing this beat unless Ludwig and Hans
+were within earshot of the player, because none of the lines could actually
+be spoken, and so it would complete silently.
+
+Because of that, each beat has a list of _required speakers_. If the source text explicitly says that the beat needs to be performed, then it will be performed whether or not the required speakers are present, but if Inform is making its own decision to perform the beat (or not), then it will always look to make sure the required speakers are at hand. (More exactly, if the player `can hear` them, a test performed with the `audibility relation`). By default, the required speakers are all those whose names explicitly appear as speakers of lines within the beat: so in the case of the beat above, that will be Hans and Ludwig.
+
+But if that is not what the author wants, the cue can be more explicit:
+
+	(About the Zeppelin; requiring Hans.)
+	
+	Hans: "What a prodigious rate of climb!"
+	
+		Ludwig: "Jawohl, Hans."
+
+Inform might now choose to perform this beat even if Ludwig is not there, though of course Hans would then receive no reply to his remark.
+
+### Giving a beat properties
+
+As was mentioned above, each beat is a value of the `dialogue beat` kind. That kind has several either-or properties. If the name of such a property is included in the cue, then the beat gets the property in question.
+
+Out of the box, dialogue beats come with the following either-or properties already defined:
+
+- `performed` or `unperformed`. Has this been performed yet?
+
+- `recurring` or `non-recurring`. Can the director choose this beat more
+than once in the same play-through?
+
+- `voluntary` or `involuntary`. This affects only beats for which the
+player is the first speaker, and only when the director is in active mode. (See [When the director is active] for what this means.) Can such a beat be triggered just because it seems relevant?
+
+- `spontaneous` or `unspontaneous`. Only has an effect when the director
+is in active mode. Can the director bring this beat up out of nowhere to
+fill a gap in the conversation, even though it has no relevance at the
+moment?
+
+By default, at the start of play, all beats are `unperformed`, `non-recurring`, `voluntary` and `unspontaneous`. But this is easy to change:
+
+	(Spontaneous; recurring.)
+	
+	Bridget (recurring): "Are we nearly there yet?"
+
+As a special case, a beat can also be described as `fully recurring`. This makes not only the beat `recurring`, but also all the lines and choices which belong to it. For example:
+
+	(Spontaneous; fully recurring.)
+	
+	Bridget: "Are we nearly there yet?"
+
+## When the director is passive
+
+Dialogue is managed during play by a component of Inform called the _director_, which we think of as being like the director of a play. It sometimes has to manage quite a complex situation, so the testing command ``DIALOGUE`` causes the director to explain itself as it goes along; and ``DIALOGUE ALL`` even more so.
+
+At any given time the director is either _passive_ or _active_. Passive means that the director performs dialogue as it's asked to do so, but not otherwise. The director is always passive at the start of play and becomes active only if we explicitly ask it to: see [When the director is active].
+
+When the director is passive, beats are performed only as follows:
+
+- If there is a beat called the `starting beat`, it is performed at the
+start of play, after the initial room description but before the player
+has been asked for a command. This is done by the `performing opening dialogue beat rule` in the `startup rulebook`.
+
+- In response to the phrase `perform B`, where `B` is a named beat.
+
+- In response to the phrase `if dialogue about X intervenes`, where `X` is
+a potential conversational subject.
+
+- When a beat which is already being performed calls explicitly for another
+beat to be performed with a flow marker. (See [Flow Markers] for more.)
+
+- When the action `talking about` is tried. This action represents somebody trying to raise a subject in conversation. For example:
+
+      Romance is a concept.
+
+      Instead of kissing the Princess:
+          try talking about romance.
+
+  If there's a suitable beat of dialogue available which is `about romance`, it will then be performed. The same will happen if the player types commands like ``ASK ABOUT ROMANCE`` or ``TALK ABOUT ROMANCE``, because those commands are understood as the action `talking about romance`.
+
+  Note that `talking about` is just one way to nudge the dialogue director into action. A rule like `Instead of talking about romance` would block attempts to do this which arose from the `talking about` action, but would not block such dialogue arising from some other cause.
+
+## When the director is active
+
+The director remains in passive mode until and unless we say so, using:
+
+> phrase: {ph_directoractive} make the dialogue/dialog director active
+>
+> Switches the dialogue director to active mode.
+
+Which can be undone again:
+
+> phrase: {ph_directorpassive} make the dialogue/dialog director passive/inactive
+>
+> Switches the dialogue director to passive mode.
+
+All of the ways dialogue can begin in passive mode are still true for active mode (see [When the director is passive]). But in active mode, the director can also fill conversational lulls by trying to find relevant things to talk about, and people to talk about them.
+
+To do this, the director tracks a list of "live conversational subjects" which it might be interesting to talk about. The idea is that if somebody has just mentioned visiting Barcelona, then Barcelona might become a live subject. If conversation then lapses, the director will try to keep it going by finding something which somebody present can say about Barcelona.
+
+A lull in conversation is a turn in which no other dialogue has been performed. It's sometimes useful to know whether or not that's the case, so a simple phrase is provided:
+
+> phrase: {ph_dialoguethisturn} if dialogue has been performed this turn:
+>
+> This means exactly as it reads.
+
+The business of filling this dead air is then carried out by the `dialogue direction rule` in the `turn sequence rulebook`. What happens is that the director looks for a suitable beat to perform, where "suitable" means that:
+
+- the beat either has not been performed before or has the `recurring` property, _and_
+
+- all required speakers for the beat are within earshot, _and_
+
+- any `if`/`unless` conditions in the cue are met, _and_
+
+- any `after`, `before`, `later`, `next`, and `immediately after` conditions in the cue are met.
+
+That quite likely still leaves multiple beats to choose from, so the director makes a selection based on its _list of live conversational subjects_:
+
+1) The director first tries to choose a suitable beat which is `about` a live conversational subject, except that it will not choose a beat for which the player is the first speaker unless that beat has the `involuntary` property.
+
+2) Failing that, the director tries to find a suitable beat marked as having the `spontaneous` property.
+
+3) Failing even that, the director will give up, and the story will continue in silence for another turn.
+
+The list of live conversational subjects is best thought of as pretty ephemeral, and with a rapid turnover:
+
+- A subject becomes live whenever a line of dialogue `mentioning` it is performed. For example, if Bernardo says this line:
+
+      Bernardo (mentioning Denmark): "This bodes some strange eruption to our state."
+
+  then `Denmark` becomes a live conversational subject.
+
+- Similarly, if a whole dialogue beat is `about` something, then that becomes a live conversational subject as soon as performance of the beat begins.
+
+- Newly raised subjects appear at the beginning of the list, and less fresh ones at the end.
+
+- The list is truncated so that at most 20 different subjects can be live, with the least fresh subjects discarded as having likely been forgotten about.
+
+- When the director (in active mode) is forced to perform a `spontaneous` dialogue beat — in effect, changing the subject entirely — the list is wiped altogether.
+
+Something to bear in mind is that the director tracks this list all of the time, even though it only uses it in active mode. So if it is switched into active mode having been passive up to now, it may be starting with some subjects already live.
+
+## Entrances and exits
+
+It's possible to write an entire story made of nothing but dialogue, beginning with a starting beat being performed, and then more beats flowing from that until the story ends. In a story like that, there's no need even to create any rooms. For example:
+
+	"Not much to say"
+
+	Section of conversation (dialogue)
+
+	(This is the starting beat.)
+
+	Narration: "Welcome!"
+
+	-- "Hello!"
+
+		-> end the story saying "A world full of promise."
+
+	-- "Goodbye."
+
+		-> end the story saying "A missed opportunity."
+
+This is a complete story, though not much of one, of course. It does take place in a room, because Inform automatically creates a room called `Stage` where the above takes place, but this is never visible to the player since the `Use nameless room descriptions` option is automatically selected.
+
+Characters can be created and introduced by being moved to the `Stage` as needed. Here, `Raphael` is off-stage at the start of play, but is moved into play by the opening line of narration, thanks to the stage direction `now Raphael is on-stage`:
+
+	"Perugia 1508"
+
+	Raphael is a man.
+
+	Section of conversation (dialogue)
+
+	(This is the starting beat.)
+
+	Narration (now Raphael is on-stage): "Raffaello Sanzio da Urbino approaches from the Tiber bridge."
+
+	Raphael: "No, no, I really can't take on one more thing. The Holy Father wants another Madonna by Friday."
+
+	-- "And I want an Adoration of the Magi right now."
+
+		-> end the story saying "You somehow end up 852 ducats the poorer."
+
+	-- "Be reasonable, Raff."
+
+		Raphael: "You couldn't afford me, Primo."
+
+		-> end the story saying "You somehow end up with a chalk sketch of three indeterminate-aged women which is, nevertheless, another casual work of genius."
+
+If `Raphael` had not been moved to the `Stage`, he could not have spoken, because he wasn't in earshot. Multiple people can enter at the same moment:
+
+	Narration (now Raphael is on-stage; now Leonardo is on-stage): "Raffaello Sanzio da Urbino approaches from the Tiber bridge, arguing intensely with Leonardo di ser Piero da Vinci."
+
+Or indeed:
+
+	Narration (now everyone is on-stage): "Raffaello Sanzio da Urbino approaches from the Tiber bridge, flanked by a knot of his pupils and rivals."
+
+Similarly, `now X is off-stage` is equivalent to an exit for `X`.
+
+The timing here is a little important. This does not work as expected:
+
+	Michelangelo (now Michelangelo is on-stage): "Sorry, didn't mean to drip paint on you."
+
+The trouble is that Michelangelo can only perform the line if he is on-stage, but he only becomes on-stage through the line being performed: catch-22. He had better arrive in some earlier narration, or after somebody else has spoken. On the other hand, this does work:
+
+	Raphael (now Raphael is off-stage): "'I'm expected in Città di Castello,' Raff says, turning on his heel and striding away."
+
+Here the timing works in our favour, because Raphael performs the line and is then taken off-stage by the `now`.
+
+This way of marshalling our characters is probably best suited to single-room stories, or those which (as in the examples above) don't even specify a single room. If we have a world of multiple locations, it's better to say exactly where the characters go to and come from:
+
+	Raphael (now Raphael is in Saint Nicholas): "'I'm expected in Città di Castello,' Raff says, turning on his heel and striding away."
+
+And if we have joined multiple rooms together into a map, we can even have the actors walk around this map:
+
+	Raphael (before going northwest): "'I'm expected in Città di Castello,' Raff says, turning on his heel and striding away."
+
+## Managing dialogue beats
+
+There are many ways to manage dialogue. At one extreme we can put the dialogue director into active mode, and let the automatics do everything, so that conversation happens whenever appropriate in the course of play. Or we can keep it passive, but then run the entire story as one big script of dialogue.
+
+If we don't want either of those, though, and want a turn-based story in which there's just occasional dialogue which we will control explicitly as the author, Inform provides an extensive set of phrases to help with that. For example:
+
+	"Just Idol Talk"
+
+	The Jade Temple is a room. A green idol is here.
+
+	Louisiana Smith is a man in the Jade Temple.
+
+	Instead of taking the idol:
+		perform the warning-off beat.
+
+	Section of conversation (dialogue)
+
+	(About the green idol. This is the warning-off beat.)
+
+	Louisiana: "Don't touch that thing, kid."
+
+The important point there was the `perform` phrase:
+
+> phrase: {ph_performbeat} perform (a dialogue beat)
+>
+> Immediately perform the given beat of dialogue, regardless of any restrictions placed on it by its cue paragraph, or whether it has been performed before.
+
+What's good about `perform` is that it's simple to predict: it does exactly what it's told to do. Unfortunately, that's often not really what we want. For example, what happens if the player tries taking the idol twice?
+
+``` transcript
+> GET IDOL
+Louisiana: "Don't touch that thing, kid."
+
+> GET IDOL
+
+>
+```
+
+This is very unsatisfactory. What happened here is that the warning-off beat was indeed performed a second time, but because its only line had been performed already, that line was skipped. So nothing was done at all, and yet the action stopped. We could in fact make Louisiana willing to repeat himself:
+
+	(About the green idol. This is the warning-off beat.)
+
+	Louisiana (recurring): "Don't touch that thing, kid."
+
+But is this very much better?
+
+``` transcript
+> GET IDOL
+Louisiana: "Don't touch that thing, kid."
+
+> GET IDOL
+Louisiana: "Don't touch that thing, kid."
+```
+
+So this is a more nuanced way to write it:
+
+	Check taking the idol:
+		if dialogue about the idol intervenes:
+			stop the action.
+
+The key phrase here is:
+
+> phrase: {ph_dialogueintervenes} if dialog/dialogue about (an object) intervenes
+>
+> Tries to perform dialogue about the given conversational subject, and has the result `true` if such a beat has successfully been performed, and `false` if no good beat could be found. All conditions on the beat must have been met, and it must either have been `unperformed` or else `recurring`.
+
+This is a sort of compromise between telling the director exactly what to do, and letting the director do as it pleases. We're giving it permission to try to start a conversation about a given subject — in this case, the idol — but on the understanding that it may well not find anything to say. That's why this is framed as an `if...` condition.
+
+A modest variation:
+
+> phrase: {ph_dialogueintervenesled} if dialog/dialogue about (an object) led by (an object) intervenes
+>
+> Tries to perform dialogue about the given conversational subject, and has the result `true` if such a beat has successfully been performed, and `false` if no suitable beat could be found. If there's a choice of beats available, the director will prefer one in which the first speaker is the person `led by`. But if no such beat can be found, it will still perform some other beat provided at least the subject can be matched.
+
+This, then, would give Louisiana first chance to react if multiple people might want to speak:
+
+	Check taking the idol:
+		if dialogue about the idol led by Louisiana intervenes:
+			stop the action.
+
+As has already been said, `dialogue beat` is a kind, and each different beat declared in the source text is a value of this kind: that's how `perform` works, applied to any `dialogue beat` value. We've also seen that dialogue beats have four either-or properties available to them:
+
+- `performed` or `unperformed`. By default, `unperformed`.
+
+- `recurring` or `non-recurring`. By default, `non-recurring`.
+
+- `voluntary` or `involuntary`. By default, `voluntary`.
+
+- `spontaneous` or `unspontaneous`. By default, `unspontaneous`.
+
+Being properties, these can all be changed during play:
+
+	When the conference scene begins:
+		now the fire alarm beat is spontaneous.
+
+New properties for dialogue beats can also be created:
+
+	A dialogue beat can be testing only or meant for production.
+
+Which enables beats to be tagged in arbitrary ways:
+
+	(Testing only.)
+	
+	Bernardo: "Sorry to break the fourth wall, but will this program ever work?"
+
+In addition, the following adjectives can be tested at run-time:
+
+- `available` rather than `unavailable` if the beat currently meets its
+preconditions for being performed — its `after` or `before`, `if` and `unless` conditions.
+
+- `relevant` rather than `irrelevant` if the beat is `about` a topic in the
+current list of live conversational subjects.
+
+- `being performed` if the beat is currently in mid-performance.
+
+The following phrases are available:
+
+> phrase: {ph_listofspeakers} list of speakers required by (a dialogue beat) ... list of objects
+> 
+> Results in the set of speakers required to be present for the beat to be performed.
+
+> phrase: {ph_firstspeaker} first speaker of (a dialogue beat) ... object
+>
+> The first specific person who speaks a line in the beat. Note that this may be `nothing`, if the beat contains only narration, or is vague about who speaks the lines.
+
+> phrase: {ph_showmebeat} showme the beat structure of (a dialogue beat)
+>
+> For debugging. In effect, beats are miniature programs, but can be quite intricate: this prints a listing.
+
+The following relations are also sometimes useful:
+
+- `B is about S` is true if `S` matches something in the `about` list for `B`.
+Note that this can be true for multiple values of `S`. This relation is called
+`topicality`.
+
+- `B is performable to S` is true if `B` is either `recurring` or `unperformed`,
+and if all of the speakers on the `requiring` list for `B` can be heard by `S`.
+This relation is called `performability`.
+
+So, for example, `the warning-off beat is about the green idol` throughout play of the little example above, whereas `the warning-off beat is performable to the player` only up to the point where is is first performed: since it's not a `recurring` beat, it then isn't performable again.
+
+Note that the command parser is able to recognise dialogue beat names, and of
+course actions can be set up for them. For example:
+
+	Performing is an action out of world applying to one dialogue beat.
+
+	Carry out performing:
+		say "[the dialogue beat understood] requires [list of speakers required by the dialogue beat understood].";
+		repeat with L running through dialogue lines:
+			if L is in the dialogue beat understood:
+				now L is unperformed;
+		perform the dialogue beat understood.
+
+	Understand "perform [dialogue beat]" as performing.
+
+So, for example, ``PERFORM WARNING-OFF BEAT`` would run through it as if for the first time.
+
+The above phrases all work in both passive and active mode. In active mode, much depends on the list of live conversational subjects, so Inform also provides some phrases for examining and tinkering with that list — though in practice its automatic management is often fine.
+
+> phrase: {ph_makelive} make (an object) a live conversational subject
+>
+> Add this to become the frontmost member of the list of live conversational subjects tracked by the dialogue director.
+
+> phrase: {ph_makedead} make (an object) a dead conversational subject
+>
+> Remove this from the list of live conversational subjects tracked by the dialogue director.
+
+> phrase: {ph_clearsubjects} clear conversational subjects
+>
+> Empty the list of live conversational subjects tracked by the dialogue director.
+
+> phrase: {ph_getlivelist} live conversational subject list ... list of objects
+>
+> Returns the dialogue director's list of live conversational subjects.
+
+> phrase: {ph_setlivelist} alter the live conversational subject list to (list of objects)
+>
+> Sets the dialogue director's list of live conversational subjects to an arbitrary collection.
+
+These phrases are useful when something sudden and unexpected happens, which would obviously grab everyone's attention:
+
+	At 11:10 pm:
+		now the elephant is in the Drawing Room;
+		say "An elephant crashes in through the French windows!";
+		clear conversational subjects;
+		make the elephant a live conversational subject.
+
+And these phrases can also be used to strengthen the automatic list management performed above. For example:
+
+	After printing the name of (T - an object) when performing a dialogue line:
+		make T a live conversational subject.
+
+With such a rule in force, performing this line:
+
+	Bernardo: "The castles in [Barcelona] are warmer at night."
+
+would automatically make Barcelona a live subject.
+
+Emptying the list regularly is one way to be especially sure that no residual
+topics linger impossibly long: say, if the story jumps from the night before to
+next morning. For example, we might want this:
+
+	When a scene begins:
+		clear conversational subjects.
+
+One way to watch how the list is managed in practice is to add a rule like so, just for testing purposes:
+
+	Every turn:
+		showme the live conversational subject list.
+
+## About about
+
+The whole idea of making the dialogue director "active" is that it enables conversation to develop naturally, in a way which dovetails with everything else that happens in the story. This works best if dialogue beats are marked up with what they are `about`, and if good use is made of marking lines as `mentioning` things.
+
+A beat can be `about` any object, but it's mostly sensible to have beats about things — interesting items in the story, or people — or else objects of the `concept` kind, which are used for more abstract ideas. We can freely create those, like so:
+
+	Denmark and Horatio's philosophy are concepts.
+
+And then dialogue sections can make use of them:
+
+	(About the ghost.)
+
+	Marcellus (mentioning Denmark): "Something is rotten in the state of Denmark."
+
+	(About Horatio's philosophy.)
+	
+	Hamlet (to Horatio): "There are more things in heaven and earth, Horatio, than are dreamt of in your philosophy."	
+
+Being `about X, Y and Z` means that it involves all of the subjects `X`, `Y` and `Z`. This plays in two directions:
+
+- The beat is suitable to be performed whenever _any_ of `X`, `Y` or `Z` are live conversational subjects.
+
+- If the beat does indeed begin performance, they _all_ become live.
+
+For example, the first beat below is `about Velma and the robbery`. As we begin, Velma is live, but the robbery is not. Performance of the first beat changes that, and makes the second beat suitable to be performed soon.
+
+	(about Velma and the robbery)
+
+	Fred: "Velma totally hasn't been the same since that bullion robbery."
+
+	(about the robbery)
+
+	Fred: "Velma used to work the Lufthansa cargo desk at Stuttgart, and..."
+
+`About` clauses only have to describe objects, not necessarily name them exactly. For example:
+
+	A concept can be frightening or safe.
+	The paranormal is a frightening concept.
+	Garden design is a safe concept.
+
+...then:
+
+	(About any frightening concept.)
+
+would make the beat suitable if the paranormal were in play, but not for garden design. Similarly:
+
+	(About any woman in the Dining Room.)
+
+Or one might, for example, create a `discrediting` relation from concepts to people, and then have:
+
+	(About any concept which discredits Gordon.)
+	
+	Douglas (to Carolyn): "And you say the marriage wasn't a success?"
+
+Vague descriptions like this will match the current live subject list, for purposes of choosing relevant beats, but will not add to the live list when the beat is performed. For example:
+
+	(About a dwarf.)
+	
+	Snow White: "I have eight? no, seven indentured miners right now. No point remembering their names, they die so quickly. I just go by appearances. The present lot are Doc, Grumpy, Happy, Sleepy, Bashful, Sneezy, and Dopey. Might let Sneezy go, actually, don't want a sudden cave-in to knock out all seven at once. You can only buy fresh dwarfs on Wednesdays, you see, so one bad sneeze on a Thursday and..."
+
+...would match any of the dwarfs for purposes of relevance, but not make any of them live topics when the beat is performed. Writing it this way, on the other hand, would:
+
+	(About Doc, Grumpy, Happy, Sleepy, Bashful, Sneezy, and Dopey.)
+
+And then, for example:
+
+	(About Bashful.)
+
+	Snow White: "He's a varmint like all the rest of them."
+
+If a beat is bringing up unexpected new information, which should not be matched for relevance purposes when the beat is being chosen, `mentioning` should instead be used on the dialogue itself. For example:
+
+	(About a dwarf.)
+
+	Snow White (mentioning diamonds): "He's a varmint like all the rest, but the diamonds are in these crazy low tunnels, and I can't afford to muss my hair. I'm still super-active on the pageanting circuit, you know."
+
+## Dialogue lines
+
+By this point many lines of dialogue have already appeared, some of them with cryptic notes in brackets. It's time now to look at the full range of possibilities.
+
+A dialogue line occupies a single complete paragraph, and takes one of these forms:
+
+	Speaker: "Line which is said."
+
+	Speaker (some performance details): "Line which is said."
+
+If given, the performance details are one or more clauses, divided by full stops
+or semicolons, and placed in round brackets after the speaker name.
+
+### The speaker
+
+The speaker is either the word `Narration`, which means that the line is not dialogue, but bridging narration in the story:
+
+	Narration: "Jojo walks over to the jeep."
+
+Or else it is a description of who speaks. Usually that will be a literal name of somebody, but it need not be. These are all potentially valid speakers:
+
+- `Marcellus:`
+
+- `A woman:`
+
+- `Somebody who is not Marcellus:`
+
+- `The tallest person in the Dining Room:`
+
+Such vague descriptions sometimes match multiple possible speakers, and if so, the dialogue director chooses them using the following criteria, with the most important first:
+
+- On-stage (i.e., enclosed by some room) rather than off-stage.
+
+- Audible to the plyer rather than not.
+
+- Being the interlocutor of the previous speech in the same beat rather than not.
+
+- Being a `person` rather than an inanimate object.
+
+- Not being the immediately previous speaker.
+
+If there are several equally good possibilities under these criteria, a random choice is made. If there are none, the line of dialogue is skipped and not performed at all (and therefore is not given the `performed` property).
+
+### The name
+
+Just as every beat is a value of the kind `dialogue beat`, so every line is a value of the kind `dialogue line`. These are usually nameless, but can be given names, which would allow the source text to manipulate them. For example:
+
+	Marcellus (this is the reluctant admission line): "Something is rotten."
+
+The name has to end with `line`, and has to be unique: two different lines cannot have the same name.
+
+Most lines never need naming, of course, but the occasional use of names allows for tricks like:
+
+	Bernardo (if the reluctant admission line is performed): "Look, we've got to face it. Marcellus was right, Denmark's in trouble."
+
+### The interlocutor
+
+Most lines are delivered to the whole room in general, but some are pointedly spoken _to_ somebody, even if others are listening. If so, that person is called the _interlocutor_. `to` plus a description of an object specifies who that person is.
+
+This is useful for lines which make sense only in the presence of somebody else. For example:
+
+	Marcellus (to Bernardo; if the Prince cannot hear Marcellus): "The Prince looks moody tonight, i'faith."
+
+The line will not be performed unless Marcellus can hear Bernardo. Being the interlocutor also makes somebody slightly more likely to be chosen as the next speaker: see above.
+
+### What is mentioned
+
+`mentioning ...` says that the line makes a conversation subject live
+when it is performed. For example:
+
+	Marcellus (mentioning the ghost): "I be mighty afear'd of the Ghost."
+
+A whole list of subjects can be given: `mentioning the Ghost and Denmark`
+would give two, for example. As usual, it's possible to be vague: `mentioning the people in the Dining Room`, for example. But the whole point of `mentioning` is to single out what's important, so it's unlikely to be a good idea to allow too many things to be caught at a time by such a description.
+
+### Making the line conditional
+
+`if` or `unless` plus any condition causes the line to be skipped (and not given the `performed` property) if this requirement fails.
+
+### Actions as stage directions
+
+The `before` and `after` clauses say that an Inform action should be tried along with the performance of the line. Note that `before` means the line is performed before the action, and `after` means it is performed after.
+
+Unless otherwise specified, the actor of the action is the speaker, so this is an exception to the general rule of Inform that the default actor is the player. For example:
+
+	Gravedigger (after taking the shovel): "Here goes another shallow one."
+
+would be performed as:
+
+``` transcript
+The gravedigger takes the shovel.
+	
+Gravedigger: "Here goes another shallow one."
+```
+
+In the case of `after`, the action must succeed, or else the line is not performed after all. For example, if some rule made it impossible for any person to take the shovel, the Gravedigger would not in fact get it, and therefore his line would make no sense: so it would not be performed.
+
+The actor need not be the speaker, but the action has to succeed whoever the actor may be:
+
+	Gravedigger (to Hamlet; after Hamlet silently taking the shovel):
+		"Hey, I saw you picking up that shovel! That's a union job, sweet Prince!"
+
+As with `try`, the keyword `silently` causes uninteresting text such as ``The gravedigger takes the shovel.`` to be left unsaid.
+
+### Now conditions as stage directions
+
+`now` plus a condition allows the world model to be changed immediately after
+the line is performed. For example:
+
+	Marcellus (now Marcellus is in the Banqueting Hall): "Oh my. I'm running for it!"
+
+It's legal to pile up multiple `after`, `before` and `now` clauses on the
+same line, at your own risk:
+
+	Marcellus (after taking the ghost detector; after examining the ghost; now Marcellus is in the Banqueting Hall; before jumping): "Marcellus grabs the equipment, takes a quick reading, and panics. 'Oh my. I'm running for it!' And he makes a running jump."
+
+The sequence is: `after` actions first, in declaration order; then actual
+performance of the line; then `now` effects; then `before` actions, in
+declaration order. If any of the `after` actions should fail, the process
+stops there.
+
+### Lines without speaking
+
+The performance note `without speaking` makes a line non-verbal: something like a gesture, which may not involve words but is still performed by somebody.
+
+	Marcellus (without speaking): "Marcellus throws up his hands, appalled."
+
+The difference between this and `Narration:` is that there is a speaker,
+`Marcellus`. Because this is non-verbal, he needs to be visible, not audible.
+Similarly there can be an interlocutor, who must be visible to the speaker
+rather than audible to him. For example:
+
+	Marcellus (without speaking, to Bernardo): "Marcellus points a horrified finger, and nudges Bernardo."
+
+Unlike regular dialogue lines, this won't be performed if it's dark, and needs both Marcellus and Bernardo to be present.
+
+### Performance styles
+
+Using just the name of a `performance style`, but with the word `spoken` removed, indicates that the line is performed this way. By default it is performed in the style `spoken normally`: that is,
+
+	Bernardo: "Well, good night."
+
+is equivalent to:
+
+	Bernardo (normally): "Well, good night."
+
+But if we have created a performance style called `spoken with asperity`, then:
+
+	Marcellus (with asperity): "I've had it with these goddam ghosts."
+
+...would perform it that way. See [Performance styles] for more.
+
+### Properties of lines
+
+`dialogue line` comes with the following either-or properties built in:
+
+- `narrated` or `unnarrated`. Is this a `Narration:` line?
+
+- `performed` or `unperformed`. Has this been performed yet?
+
+- `recurring` or `non-recurring`. Can the director perform this line more
+than once in the same play-through? (Note that this same property has the
+same name, and a similar meaning, for scenes and beats.) By default, no.
+
+- `elaborated` or `unelaborated`. Is the speech more than a simple piece
+of reported speech?
+
+By default, lines are `unperformed` and `non-recurring`. Whether they are `narrated` depends on whether they give the speaker as `Narration`, and whether they are `elaborated` depends on the text of the line. For example:
+
+	Katie: "I suppose."
+	
+	Katie: "Your daughter gives her most grown-up pout. 'Whatever.'"
+
+The first line there is `unelaborated`, the second `elaborated` - because it
+contains internal quotation marks, so it's read as being a mixture of
+narration and speech, rather than purely being speech. It affects only how
+the line is performed. An unelaborated line is printed as `Speaker: "Speech."`,
+whereas an elaborated line is printed exactly as written, the assumption
+being that it will contain its own indication of who's speaking and which
+words are actually said. So we see:
+
+``` transcript
+Katie: "I suppose."
+
+Your daughter gives her most grown-up pout. "Whatever."
+```
+
+To qualify as `elaborated`, a speech must have at least two quotation marks `'`
+at word boundaries. The source text can override this in either direction:
+
+	Katie (unelaborated): "You call this 'peanut butter' but it's really icky."
+
+In practice, the commonest property to specify is `recurring`:
+
+	Katie (recurring): "Have you seen my iPad cable?"
+
+This allows the line to be performed any number of times: otherwise it will be skipped on a second performance of the same beat.
+
+### The speech text for a line
+
+The performed line is an Inform text, in double-quotes.
+
+This can contain text substitutions in square brackets, in the usual way for
+Inform text, giving access to an enormous range of effects.
+
+When such text is printed, the activity variable `speaker` will exist for it,
+and will hold the identity of the speaker performing the line. (If the line
+is narration, it will still exist, but will be equal to `nothing`.) Similarly
+for `interlocutor` and `style`. So for example:
+
+	A person in the Lounge:
+		"[The speaker] self-importantly [declare]: 'The greatest TV show of all
+		time is [if the speaker is female]Gilmore Girls[if not]24[end if].'"
+
+might be performed as:
+
+``` transcript
+Henry self-importantly declared: "The greatest TV show of all time is 24."
+```
+
+## Managing dialogue lines
+
+This is where we meet two more kinds: `dialogue line` and `performance style`. Each different line of dialogue in the source text is a different `dialogue line` value. That's true even if the texts are the same, as in the famous dialogue between Laurence Olivier (Szell) and Dustin Hoffman (Babe) in _Marathon Man_ (1976):
+
+	Szell: "Is it safe?"
+
+	Babe: "Are you talking to me?"
+
+	Szell: "Is it safe?"
+
+	Babe: "Is what safe?"
+
+	Szell: "Is it safe?"
+
+	Babe: "I don't know what you mean."
+
+...and so on. The three times Szell asks "Is it safe?" are three different `dialogue line` values.
+
+Every line is spoken in a `performance style`. Out of the box, Inform comes with just one defined `performance style`, called `spoken normally`. (Performance styles should have names beginning with `spoken`.) But more can always be defined:
+
+	Spoken angrily and spoken softly are performance styles.
+
+And this enables:
+
+	Szell (softly): "Is it safe?"
+
+	Babe (angrily): "I don't know what you mean."
+
+Performance styles really exist as a hook for ambitious extensions of the Inform dialogue system which, for example, change character art or pose for speakers who become angry, or which apply emotional parameters to autogenerated voice performance, in the event the game is using a text-to-speech engine. See [Performing something].
+
+Inform will not allow the following words to be used after `spoken` in the names of instances of this kind: `and`, `or`, `if`, `unless`, `before`, `after`, `now`, `to`, `this`, `without`. So, for example, it will issue a problem message rather than define `spoken before thinking`. This avoids ambiguity when lines are declared.
+
+As has already been said, `dialogue line` is a kind supporting the following either-or properties:
+
+- `narrated` or `unnarrated`. By default, `narrated` for a `Narration:` line, and otherwise `unnarrated`.
+
+- `performed` or `unperformed`. By default, `unperformed`.
+
+- `recurring` or `non-recurring`. By default, `non-recurring`.
+
+- `elaborated` or `unelaborated`. By default, `elaborated` if the speech text includes two or more quotation marks at word boundaries, and otherwise `unelaborated`.
+
+In addition, the following adjectives can be applied to dialogue lines:
+
+- `available` rather than `unavailable` if the line currently meets its
+preconditions for being performed — its `if` and `unless` conditions.
+
+- `non-verbal` rather than `verbal` if it is a non-verbal communication,
+written as being performed `without speaking`.
+
+And note that `L is in B` can be used to test whether or not the dialogue line `L` belongs to the beat `B` — note that every line is always part of just one beat. This makes it possible to iterate over the contents of `B` (`repeat with L running through dialogue lines in B`), or extract, say, `the list of dialogue lines in B` or `the number of dialogue lines in B`.
+
+The performance of a line is carried out by a collection of rulebooks called an _activity_ called `performing`. See the chapter on [Activities], and its section [Performing something] for more, but the gist is that Inform performs `L` by delegating the job to whatever rules exist in the `for performing` rulebook, applied to `L`. Ordinarily this rulebook contains just one rule, the `default dialogue performance rule`, which looks like this:
+
+	For performing a dialogue line (called L)
+		(this is the default dialogue performance rule):
+		if L is narrated or L is elaborated or L is non-verbal:
+			say "[textual content of L][line break]";
+		otherwise:
+			say "[The speaker]";
+			if the interlocutor is something:
+				say " (to [the interlocutor])";
+			say ": '[textual content of L]'[line break]".
+
+But it's possible to create new rules which pre-empt this standard way of doing things. As a very simple example:
+
+	For performing a narrated dialogue line (called L):
+		say "[italic type][textual content of L][roman type][line break]".
+
+Something to note here is that _in performing rules like this_ there are special variables whose values can be used:
+
+- `speaker`. This will be `nothing` for a line which is `narrated`. Note that the alternative is for it to be `something`, rather than `somebody`, because inanimate objects like loudspeakers do sometimes speak.
+
+- `interlocutor`. This will be `nothing` unless a line is spoken `to` somebody. Again, it might be a `thing` rather than a `person`: a microphone, for instance.
+
+- `style`. This will be whatever `performance style` the line is delivered with, so by default it will be `spoken normally`.
+
+Note that these variables do not exist outside of the `performing` activity, and in the case of `speaker` and `interlocutor`, can't even always be known at any other time. Consider this line, for example:
+
+	A woman other than Katie (to an animal): "[The speaker] crouches down to look at [the interlocutor]. 'Do you need feeding now?'"
+
+Until the actual moment of performing this, we can't know who exactly will speak, or who is spoken to. For the same reason, we can't know the exact text of what will be said, because it depends on who those people turn out to be. So the following tempting phrase, useful though it may be, can only safely be used in rules attached to the `performing` activity:
+
+> phrase: {ph_textualcontent} textual content of (a dialogue line) ... text
+>
+> This produces the text of the speech made, but it's only really safe to use this phrase in a rule belonging to the `performing something` activity, because the text may make reference to the current `speaker` and `interlocutor` — which are variables existing only inside that activity.
+
+## Decision points
+
+A _decision point_ is reached when the director is performing a beat and comes to a run of _choices_. The idea is that the player selects one of these choices, and then dialogue continues down whichever branch is called for.
+
+### Textual choices
+
+So far, we have only seen one sort of decision: where the player is offered specific options as the choices, and has to type 1, 2, ..., to indicate which to take.
+
+	Border agent: "Business or pleasure?"
+	
+	-- "Business."
+	
+		Agent: "Then where is your C-34d section (xciii) visa exemption waiver proffer certificate D?"
+
+	-- "Pleasure."
+	
+		Agent: "Fill out the address of your hotel and the name of your vessel, like it's the 1930s still."
+
+Those are called _textual choices_, since they consist of text like `"Business."`. But there are also two other ways a decision can present itself.
+
+### Action choices
+
+_Action choices_ cause the dialogue director to halt (temporarily) and allow the player to type a command, which is then understood as causing an action in the normal way. For example:
+
+	Border agent: "Passport, please."
+	
+	-- before giving the passport to the agent
+	
+		Agent: "Enjoy your stay."
+
+	-- otherwise
+	
+		Agent: "Federal law forbids any suspicious activity here, Ma'am. You're going to have to go with these officers."
+
+So, for example,
+
+``` transcript
+Border agent: "Passport, please."
+
+> GIVE PASSPORT TO AGENT
+Border agent: "Enjoy your stay."
+```
+
+Notice the `before` in the `-- before giving the passport to the agent` branch. This means that dialogue intercepts the action, and it never actually takes place. (So the player retains the passport, and none of the normal rules which might prevent the action from taking place are consulted.) If `after` is used rather than `before`:
+
+	-- after jumping
+	
+		Agent: "Ma'am, it's a serious offence to jump on the spot in an airport."
+
+...then the action _does_ take place, and only then will the Agent speak.
+
+But now suppose the action is one which might conceivably fail: suppose the player is smuggling something in a briefcase, and we want to anticipate ``DROP BRIEFCASE``. The case, however, might be handcuffed to the player's wrist: and we don't know whether it will be or not when the dialogue takes place. Let's suppose that we have written this rule:
+
+	Check dropping the briefcase:
+		if the player is wearing the handcuff, say "It's chained to your wrist!" instead.
+
+If the dialogue writes the choice this way:
+
+	-- before dropping the briefcase
+	
+		Agent: "I saw you! Pick that case up at once!"
+
+then we've somehow implied that the player _has_ dropped the case, which would be unrealistic with the handcuff in use. But if we have:
+
+	-- after dropping the briefcase
+	
+		Agent: "I saw you! Pick that case up at once!"
+
+then the dropping action does actually take place, so that the briefcase is now on the ground. Somehow, what we want is for all the checking rules on the action to take place, but then for the action itself to be intercepted _if_ it turned out to make sense. And that's indeed possible:
+
+	-- instead of dropping the briefcase
+	
+		Agent: "I saw you! Pick that case up at once!"
+
+So to sum up:
+
+1) `-- before (an action)` is selected whenever the player successfully types a command which generates this action. No rules are run to check whether it makes sense, and the action itself is not carried out.
+
+2) `-- instead of (an action)` is selected whenever the player successfully types a command which generates this action _and_ the action makes it through the "before" and "check" stages, that is, the action isn't somehow stopped by a `check` or `before` rule. Nevertheless, even though this means that Inform thinks the action is a possible one to carry out, it isn't actually carried out.
+
+3) `-- after (an action)` is only selected when the player successfully types a command which generates this action, _and_ it gets through "before" and "check" rules, _and_ it actually takes place.
+
+4) `-- otherwise` is selected only if none of the other choices were selected. There can only be one of these, and it must be the last choice in the run. It is always automatically `recurring`, so that it won't mysteriously fail to be chosen on a second run through the same decision.
+
+Note that there doesn't have to be an `-- otherwise` option. There usually is, as a catch-all, but if not, and none of the choices match, then the decision is left hanging for another turn and reconsidered then.
+
+This seems a good point to give an advance preview of flow markers. The following, slightly less hostile, immigration experience obliges the player to keep typing commands until realising that ``GIVE PASSPORT TO AGENT`` is the sensible thing to do.
+
+	Border agent: "Passport, please."
+	
+	-- (recurring) before giving the passport to the agent
+	
+		Agent: "Enjoy your stay."
+
+	-- (recurring) otherwise
+	
+		Agent: "Just the passport, if you please, Ma'am."
+		
+		<-
+
+Note that the success branch simply runs out of things to say, and so the dialogue ends with the agent saying "Enjoy your stay." But the failure branch runs into the _flow marker_ `<-`. This tells the director to go back to the last decision and try again.
+
+``` transcript
+Border agent: "Passport, please."
+
+> DROP BRIEFCASE
+Border agent: "Just the passport, if you please, Ma'am."
+
+> GIVE PASSPORT TO AGENT
+Border agent: "Enjoy your stay."
+```
+
+### Automatic choices
+
+"Automatic" choices sounds like a contradiction in terms, but really what happens is that it's Inform itself which makes the choice, rather than the player. For example:
+
+	-- step through
+
+		Liza: "One."
+
+	-- or
+
+		Liza: "Two."
+	
+	-- or
+
+		Liza: "Three."
+
+In an automatic choice, the first choice explains how to make the decision, and
+the rest must all be just `-- or`. In this case, what `step through` means is
+that the first time this choice is encountered, the first option is chosen (so
+Liza says "One."); the second time, the second option; the third time, the third
+option; and on the fourth and subsequent times, nothing is done.
+
+An alternative is:
+
+	-- cycle through
+
+		Liza (recurring): "One."
+
+	-- or
+
+		Liza (recurring): "Two."
+	
+	-- or
+
+		Liza (recurring): "Three."
+
+This is like `step through` except that the fourth time, we go back to Liza
+saying "One.", and the fifth time she says "Two.", and so on, round and round.
+Note that the choices in an automatic choice are always recurring, but that
+any dialogue within them is not. This is why we have to mark Liza's lines as
+`recurring` here.
+
+There are altogether five of these automatic mechanisms:
+
+- `step through`: each in turn, but only once through, then do nothing
+
+- `step through and stop`: each in turn, but repeat the last one indefinitely
+
+- `cycle through`: each in turn, going back to the start after the last
+
+- `shuffle through`: a random permutation, and then another random
+permutation when that completes, and so on
+
+- `choose randomly`: make an entirely random choice every time
+
+## Dialogue choices
+
+As we've seen, then, a dialogue choice is written as a paragraph beginning with `--`. Much like dialogue lines, dialogue choices can have optional annotations given to them between round brackets. But if we forget about those, the possible ways to write a choice are:
+
+Syntax                      | What it's for
+--------------------------- | -------------
+`-- "Text"`                 | A textual choice.
+`-- before (an action)`     | An action choice.
+`-- instead of (an action)` | An action choice.
+`-- after (an action)`      | An action choice.
+`-- otherwise`              | Concluding a set of action choices.
+`-- step through`           | Beginning an automatic set of choices.
+`-- step through and stop`  | Beginning an automatic set of choices.
+`-- cycle through`          | Beginning an automatic set of choices.
+`-- shuffle through`        | Beginning an automatic set of choices.
+`-- choose randomly`        | Beginning an automatic set of choices.
+`-- or`                     | Concluding an automatic set of choices.
+
+All of these were covered in [Decision points], so that just leaves the optional details placed in brackets. The conventions are just like those for dialogue lines:
+
+### The name
+
+Just as every beat is a value of the kind `dialogue beat`, and every line is a value of the kind `dialogue line`, so every option is a value of the kind `dialogue choice`. These are usually nameless, but can be given names, which would allow the source text to manipulate them. For example:
+
+	-- (this is the desperate choice) "Run for it in blind hope"
+
+The name has to end with `choice`, and has to be unique: two different choices cannot have the same name.
+
+### Conditions on a choice
+
+`if` or `unless` plus any Inform condition imposes a condition for the choice to be available.
+
+It's sometimes worth bearing in mind that this just might make _all_ of the options unavailable. Consider this:
+
+	-- (if the player is in the Great Hall) "Duck!"
+
+		Narration: "You duck."
+
+	-- (if the player can see the Lake) "Swim for it!"
+
+		Narration: "You swim."
+
+What if the player is neither in the Great Hall, nor in sight of the Lake? The answer is that the decision vanishes entirely, and the player is not even aware that there might have been one.
+
+When placing conditions on choices, this can be a very useful phrase to know:
+
+> phrase: {ph_dialoguechoices} current choice list ... list of dialogue choices
+>
+> This phrase can only sensibly be used when testing conditions applied to dialogue choices: it produces the list of those available _so far_. That can be used to make later choices only available if earlier ones aren't, or similar effects.
+
+For example:
+
+	-- "Hurl myself at the window."
+
+	-- "Tunnel through the wall."
+
+	-- (if the current choice list is empty; recurring) "Admit to being out of ideas."
+
+The first time this decision is performed, two options will be available — the first two. The player will choose one. If the decision is performed again, the player will be offered the one not chosen earlier. Should the decision ever come up again, the new option `"Admit to being out of ideas."` will be offered instead.
+
+### Properties of a choice
+
+Exactly as for beats and lines, a `dialogue choice` can have these either-or properties:
+
+- `performed` or `unperformed`. Has this been chosen yet?
+
+- `recurring` or `non-recurring`. Can the director offer this choice more
+than once in the same play-through?
+
+## Flow markers
+
+Flow markers are written `<-` or `->`, and cause the dialogue director to interrupt its normal performance of a beat. `<-` generally makes a backwards jump in the same beat, while `->` leads out to another beat.
+
+Flow markers actually have much in common with choices, and can accept exactly the same bracketed notes as choices have: they can be named and they can be conditional. For example,
+
+	<- (unless Polonius is in Elsinore)
+
+	-> (if Hamlet is not in the Graveyard) stop
+
+All flow markers are always `recurring`, without any need to say this.
+
+### Flow back
+
+`<-` on its own goes back to either the most recent decision point in the
+same beat, or (if there hasn't been a decision) to the start of the beat.
+
+As with control mechanisms in all programming languages, that makes it
+possible to get into endless loops:
+
+	(This is the ill-advised beat; fully recurring.)
+	
+	Fatboy Slim: "Right about now, the funk soul brother."
+	
+	Fatboy Slim: "Check it out now, the funk soul brother."
+
+	<-
+
+But it is extremely useful for situations like this one:
+
+	-- "Option which turns out not to work."
+	
+		Recording angel: "That didn't work. Try again."
+		
+		<-
+
+	-- "Another option which turns out not to work."
+	
+		Recording angel: "No, try again."
+		
+		<-
+
+	-- "The one option which works."
+	
+		Recording angel: "Well done."
+
+In effect this repeats the decision up to three times until the player heads
+down the track we want. Because the options above are `non-recurring`, the choices dwindle with each wrong guess until the player can only choose `"The one option which works."`.
+
+### Flow through another beat
+
+`-> perform B`, where `B` is the name of a beat, causes the director to
+perform that beat at this point. Note that after `B` finishes, the original
+beat _continues where it left off_. That nesting can go up to 20 beats deep.
+
+This too can be dangerous if wrongly handled:
+
+	(This is the equally ill-advised beat; fully recurring.)
+	
+	Fatboy Slim: "Right here, right now."
+	
+	-> perform the equally ill-advised beat
+
+But `-> perform` is very useful as a way of incorporating what amounts to a complicated sub-scene which is only needed in some situations.
+
+	-- "Climb the chimney"
+	
+		Narration: "You get only a few feet, and covered in soot."
+		
+		<-
+		
+	-- "Get into the wardrobe."
+	
+		Narration: "Hmm, there seems no end to these fur coats."
+		
+		-> perform the Narnia visit beat
+
+		Narration: "Goodness, back at that wardrobe you only dimly remember."
+
+The beat to be performed can also be the name of a variable, as in `the redirected beat` in the following example:
+
+	The redirected beat is a dialogue beat that varies. The redirected beat is the Queensryche beat.
+
+	Section 1 - Specific chat (dialogue)
+
+	(This is the starting beat.)
+
+	Example Friend: "Shall we listen to some music?"
+
+	-> perform the redirected beat
+
+	(This is the Queensryche beat.)
+
+	Example Friend: "I so like Queensryche, even without the diacritic."
+
+### Flow to a stop
+
+`-> stop` causes the current beat to finish right here, and is convenient
+when a drastic choice short-circuits what might otherwise have been a
+lengthy conversation.
+
+	-- "Run for the Numidian desert and live off locusts and honey"
+	
+		-> stop
+
+	-- "Ask if the eternal fate of the soul is determined at death"
+	
+		Augustine: "The purgatorial fires purify only those who die in communion."
+		
+		-- "But ..."
+
+Note that `-> stop` stops only the current beat. If one beat is performing another one using `-> perform`, and the second one stops, the first one then resumes.
+
+### Flow to the end of the story
+
+There are four variants of this:
+
+	-> end the story          
+	-> end the story finally
+	-> end the story saying "TEXT"
+	-> end the story finally saying "TEXT"
+
+These correspond exactly to the Inform phrases which `end the story`. All beats are abandoned at this point, of course, so this is even more drastic than `-> stop`.
+
+### Flow to another choice
+
+Finally, and only seldom needed, `-> another choice` can be used to clarify that what look like lots of options for a single decision are in fact two decisions in a row. For example:
+
+	-- "Boxers."
+	
+		Narration (after wearing the boxer shorts): "You feel less naked."
+
+	-- "Briefs."
+	
+		Narration (after wearing the briefs): "You feel somewhat less naked."
+
+	-> another choice
+	
+	-- "White hat."
+	
+		Narration (after wearing the white hat): "You feel noble."
+
+	-- "Black hat."
+	
+		Narration (after wearing the black hat): "You feel ignoble."
+
+The reason for the `-> another choice` flow marker is simply that we want two sets of two options, not one set of four. If any dialogue had appeared in between the two decisions, there would have been no need for the `-> another choice`, but since it didn't, we need some marker to hold the decisions apart from each other. `-> another choice` has to be unconditional, and doesn't get a name or properties: it isn't really present in the story at all.
+
+## Managing dialogue choices
+
+As has been mentioned already, each different choice in the source text is a different `dialogue choice` value, and in fact so is each different flow marker: under the surface, a flow marker is really just a special sort of choice.
+
+A `dialogue choice` comes with two either-or properties already defined:
+
+- `performed` or `unperformed`. By default, `unperformed`.
+
+- `recurring` or `non-recurring`. By default, `non-recurring`.
+
+In addition, the following adjectives can be applied to choices:
+
+- `flowing` rather than `offered` if the choice is a `->` or `<-` flow
+control marker rather than a `--` option offered as part of a decision.
+
+- `story-ending` if the choice is a flow marker ending the story. All `story-ending` choices are `flowing`, but not vice versa.
+
+Just as was also true for dialogue lines, `C is in B` can be used to test whether or not the dialogue choice `C` belongs to the beat `B` — note that every choice is always part of just one beat. This makes it possible to iterate over the contents of `B` (`repeat with C running through dialogue choices in B`), or extract, say, `the list of unperformed dialogue choices in B`.
+
+When the dialogue director wants to offer a decision based on textual choices to the player, it usually does so with a simple numbered list of options, and then asks the player to type a number. This is a lowest-common-denominator sort of thing to do, but many other user interfaces could be imagined: an Inform story presented on a website might want clickable options, for example.
+
+Because of that, Inform routes this business through an _activity_. See the chapter on [Activities], and its section [Offering something] for more, but the gist is that Inform delegates the job to whatever rules exist in the `for offering` rulebook, applied to a list of choices. Ordinarily this rulebook contains just one rule, the `default offering dialogue choices rule`, which looks like this:
+
+	For offering a list of dialogue choices (called L)
+		(this is the default offering dialogue choices rule):
+		let N be 0;
+		repeat with C running through L:
+			increase N by 1;
+			say "([N]) [textual content of C][line break]";
+		say conditional paragraph break;
+		let M be a number chosen by the player from 1 to N;
+		set the dialogue selection value to M;
+		say "[bold type][textual content of entry M of L][roman type][paragraph break]".
+
+This produces a simple numbered list, then asks the player to type one of those numbers (insisting and asking again if they type something else), and then prints back the chosen option in bold face.
 
 # Phrases
 
@@ -5924,7 +7580,7 @@ tests whether it is set; we can also test if it is not set using:
 
 A more substantial example from the Standard Rules is given by a phrase used mostly for internal, technical reasons:
 
-> phrase: {ph_listcontents} list the contents of (object)
+> phrase: {ph_listcontents} list the/-- contents of (object)
 >
 > This phrase produces a list of all things whose holder is the given object, according to Inform's traditional conventions for room descriptions and inventory listings. Example:
 >
@@ -6169,7 +7825,7 @@ Action-processing may be the single most important thing Inform does, so the sys
 
 ## Giving instructions to other people {var_person_asked}
 
-^^{actions: instructing other people}^^^{characters (people) <-- actors <-- other people}^^^{characters (people) <-- NPC <-- people}^^^{characters (people) <-- person+kind+: characters} ^^{characters (people): giving instructions to other characters} ^^{instructing other characters} ^^{ordering other characters} ^^{asking (actor) to try+action+ <-- +to+try (action): in (asking) action+sourcepart+} ^^{person asked (- object)+glob+} ^^{actor (- person)+actvar+} ^^{player: as opposed to the actor}
+^^{actions: instructing other characters}^^^{characters (people) <-- actors <-- other people}^^^{characters (people) <-- NPC <-- people}^^^{characters (people) <-- person+kind+: characters} ^^{characters (people): giving instructions to other characters} ^^{instructing other characters} ^^{ordering other characters} ^^{asking (actor) to try+action+ <-- +to+try (action): in (asking) action+sourcepart+} ^^{person asked (- object)+glob+} ^^{actor (- person)+actvar+} ^^{player: as opposed to the actor}
 
 So far, all actions have been carried out by the player: which is fine for exploring the passive world of an empty warehouse, but less good for a drama in which other characters have to be contended with. In fact, an action can be carried out by anybody – by any instance of the `person` kind, that is, which includes all the men, women and animals in the story, and not only the player.
 
@@ -6192,7 +7848,7 @@ So if the player types ``ALGY, TAKE SANDWICH``, the `person asked` would be Algy
 
 ## Persuasion {rules_per}
 
-^^{actions: instructing other characters: persuasion rules} ^^{persuasion+rb+} ^^{+toout+persuasion succeeds / fails (persuasion rules)} ^^{rules: persuasion rules for instructing characters} ^^{rules: for other characters} ^^{actions: rules for other characters} ^^{success: for persuasion} ^^{failure: for persuasion} ^^{paragraph breaks: for fooling persuasion refusal} ^^{instead of (action)+rb+: as failure of persuasion} ^^{rules: instead rules} ^^{characters (people): persuading}
+^^{actions: instructing other characters: persuasion rules} ^^{persuasion+rb+} ^^{+toout+persuasion succeeds / fails (persuasion rules)} ^^{rules: persuasion rules for instructing characters} ^^{rules: for other characters} ^^{actions: rules for other characters} ^^{success: for persuasion} ^^{failure: for persuasion} ^^{paragraph breaks: for fooling persuasion refusal} ^^{instead of (action)+rb+: as failure of persuasion} ^^{rules: instead rules} ^^{characters (people): obeying and refusing}
 
 `Asking ... to try ...` actions run through their Before and Instead rules like any other actions, but then (if no rule has intervened) something different happens: Inform has to decide whether the person asked consents to try the action or not. By default, the answer is always no, and text like the following will be printed:
 
@@ -6307,7 +7963,7 @@ Note that the text `try Will going west` involves the actor's name immediately p
 
 ## New actions {NEWACTIONS} {PM_MatchedAsTooLong} {PM_MultiwordPastParticiple} {PM_GrammarMismatchesAction} {PM_ActionAlreadyExists} {PM_ActionBothValues} {PM_ActionClauseUnknown} {PM_ActionMisapplied}
 
-^^{actions: defining new actions} ^^{defining: actions} ^^{Inform 6 equivalent: verbs} ^^{(applying to), in defining actions+sourcepart+} ^^{(requiring), in defining actions+sourcepart+} ^^{visibility+rel+: requirement in defining actions} ^^{touchability+rel+: requirement in defining actions} ^^{carrying+rel+: requirement in defining actions} ^^{light: requirement in defining actions} ^^{actions: referring to current action with (action)+sourcepart+} ^^{understand (verb) as (action)+assert+} ^^{understanding: verbs} ^^{Inform 6 equivalent: synonyms} ^^{synonyms} ^^{understanding: requirements for objects in actions}^^^{understanding <-- parsing}
+^^{actions: defining new actions} ^^{defining: actions} ^^{Inform 6 equivalent: verbs} ^^{(applying to), in defining actions+sourcepart+} ^^{(requiring), in defining actions+sourcepart+} ^^{(visible thing), in defining actions+sourcepart+} ^^{(touchable thing), in defining actions+sourcepart+} ^^{(carried thing), in defining actions+sourcepart+} ^^{light: requirement in defining actions} ^^{actions: referring to current action with (action)+sourcepart+} ^^{understand (verb) as (action)+assert+} ^^{understanding: verbs} ^^{Inform 6 equivalent: synonyms} ^^{synonyms} ^^{understanding: requirements for objects in actions}^^^{understanding <-- parsing}
 
 It is not often that we need to create new actions, but a large work of interactive fiction with no novelty actions is a flavourless dish. Here we shall create an action for photographing things.
 
@@ -6321,19 +7977,19 @@ The word `visible` here tells Inform that we do not need to be able to touch the
 
 Occasionally, when writing general rules about actions, it can be useful to find out what the current action's requirements are: the following conditions do what they suggest.
 
-> phrase: {ph_requirestouch} if action requires a touchable noun:
+> phrase: {ph_requirestouch} if action requires a/-- touchable noun:
 >
 > This condition is true if the action being processed is one whose (first) noun is an object which needs to be touchable by the actor. For example, it's true for `taking`, but false for `examining`.
 
-> phrase: {ph_requirestouch2} if action requires a touchable second noun:
+> phrase: {ph_requirestouch2} if action requires a/-- touchable second noun:
 >
 > This condition is true if the action being processed is one whose second noun is an object which needs to be touchable by the actor. For example, it's true for `putting the brick in the sack`, but false for `throwing the brick at the window`.
 
-> phrase: {ph_requirescarried} if action requires a carried noun:
+> phrase: {ph_requirescarried} if action requires a/-- carried noun:
 >
 > This condition is true if the action being processed is one whose (first) noun is an object which needs to be carried by the actor. For example, it's true for `dropping`, but false for `taking`.
 
-> phrase: {ph_requirescarried2} if action requires a carried second noun:
+> phrase: {ph_requirescarried2} if action requires a/-- carried second noun:
 >
 > This condition is true if the action being processed is one whose second noun is an object which needs to be carried by the actor.
 
@@ -6646,7 +8302,7 @@ Symmetrically, Inform also has `reaching outside` rules, used if the player is i
 
 ## Visible vs touchable vs carried
 
-^^{actions: requirements for actions} ^^{(requiring), in defining actions+sourcepart+} ^^{visibility+rel+: requirement in defining actions} ^^{touchability+rel+: requirement in defining actions} ^^{carrying+rel+: requirement in defining actions} ^^{light: requirement in defining actions} ^^{understanding: requirements for objects in actions} ^^{taking+action+: implicit taking} ^^{implicitly taking something+activity+} ^^{implicitly taking something+activitycat+}
+^^{actions: requirements for actions} ^^{(requiring), in defining actions+sourcepart+} ^^{(visible thing), in defining actions+sourcepart+} ^^{(touchable thing), in defining actions+sourcepart+} ^^{(carried thing), in defining actions+sourcepart+} ^^{light: requirement in defining actions} ^^{understanding: requirements for objects in actions} ^^{taking+action+: implicit taking} ^^{implicitly taking something+activity+} ^^{implicitly taking something+activitycat+}
 
 To recap, actions are created like so:
 
@@ -6678,7 +8334,7 @@ then trigger an action with the command ``WAVE MAGIC WAND AT BANYAN TREE``, the 
 
 ## Changing reachability {var_person_reaching}
 
-^^{rules: reaching inside / outside} ^^{rules: access to things referred to in actions} ^^{actions: reaching inside / outside rules} ^^{reaching inside / outside+rb+} ^^{actions: requirements for actions} ^^{touchability+rel+: requirement in defining actions} ^^{understanding: requirements for objects in actions} ^^{Inform 6 equivalent: scope rules} ^^{person reaching (- object)+glob+} ^^{container in question (- object)+glob+} ^^{supporter in question (- object)+glob+} ^^{+toout+deny access (reaching inside / outside)} ^^{+toout+allow access (reaching inside / outside)} ^^{+toout+access, deny / allow access (reaching inside / outside)}
+^^{rules: reaching inside / outside} ^^{rules: access to things referred to in actions} ^^{actions: reaching inside / outside rules} ^^{reaching inside / outside+rb+} ^^{actions: requirements for actions} ^^{(touchable thing), in defining actions+sourcepart+} ^^{understanding: requirements for objects in actions} ^^{Inform 6 equivalent: scope rules} ^^{person reaching (- object)+glob+} ^^{container in question (- object)+glob+} ^^{supporter in question (- object)+glob+} ^^{+toout+deny access (reaching inside / outside)} ^^{+toout+allow access (reaching inside / outside)} ^^{+toout+access, deny / allow access (reaching inside / outside)}
 
 The question of what the player can, and cannot, reach to touch is important in interactive fiction. It contains some of the subtlest ideas in the model world, though they often go unnoticed. For instance, if a key is on a shelf which is part of a closed box, can we reach for the key? This comes down to whether the shelf, described only as `part of` the box, is on the inside or the outside: and in fact, because it cannot know which is the case, Inform allows either. So in general it is best to regard `parts` as being exterior parts, but to avoid having parts on containers that might in the course of play be closed up with the player inside.
 
@@ -8295,10 +9951,10 @@ produces:
 
 ``` transcript
 "meaning of the verb contain" = relation of objects: containment relation
-"meaning of the verb provoke" = relation of objects: equality relation
+"meaning of the verb provoke" = relation of objects: never-holding relation
 ```
 
-As this demonstrates, if a verb has no meaning, or its meaning doesn't relate to objects, we get just the equality relation.
+As this demonstrates, if a verb has no meaning, or its meaning doesn't relate to objects, we get just the `never-holding relation`. This is a relation which, as the name suggests, never holds, and can't be made to hold, between any two values.
 
 In fact, Inform even defines a verb `to mean`: it's meaningful, and its meaning is the meaning relation. Thus:
 
@@ -8551,6 +10207,12 @@ Lastly, for completeness, we also provide:
 >
 > This text substitution writes out the number in unsigned decimal, in such a way that numbers normally considered decimal appear large, padding with initial zeros to ensure that the result is at least the given number of digits in length.
 
+One more phrase about `number` values is occasionally handy:
+
+> phrase: {ph_numberchosen} a/-- number chosen by the player from 1 to (number) ... number
+>
+> This prints an `>` prompt and then waits for the player to type a number (and press RETURN), and keeps asking until the player enters something in the range allowed. If the maximum value supplied is negative or zero, the phrase does not ask for player input, and simply returns 1.
+
 To reiterate, though: all these different notations for typing in, and for saying back, whole numbers are all to do with a single kind, `number`. Unlike some programming languages, Inform has no kind for "unsigned integer", nor for "integer which should always be written in binary".
 
 But it does also provide a `real number` kind, and that's where we go next. Those are always written in a signed way, and always use decimal digits.
@@ -8632,7 +10294,7 @@ In general we can't do the reverse, that is, we can't silently use a real number
 
 makes no sense. But we can explicitly convert them:
 
-> phrase: {ph_nearestwholenumber} (real number) to the nearest whole number ... number
+> phrase: {ph_nearestwholenumber} (real number) to the/-- nearest whole number ... number
 >
 > This phrase performs signed addition on the given values, whose kinds must agree, and produces the result. Examples:
 >
@@ -8731,6 +10393,7 @@ Brackets can be used to clarify: `2 minus 3 minus 1` produces `2 minus (3 minus 
 >
 >     200 - 1 = 199
 >     10:04 AM - two minutes = 10:02 AM
+>     10:04 AM - 10:02 AM = two minutes
 
 > phrase: {ph_times} (arithmetic value) \* (arithmetic value) ... value & (arithmetic value) times (arithmetic value) ... value & (arithmetic value) multiplied by (arithmetic value) ... value
 >
@@ -9376,9 +11039,9 @@ A blackboard propped against one wall reads: "122 / 10 is 12 remainder 2; but 12
 
 Whereas we are not allowed to divide 122 by 10kg: that would make no sense, since 122 is a number and not made up of kilograms. Inform will produce a problem message if we try. Similarly, Inform won't normally allow us to multiply two weights together – but see the next section.
 
-## Multiplication of units {PM_DimensionRedundant} {PM_DimensionNotBaseKOV} {PM_NonDimensional} {PM_UnitSequenceOverflow} {PM_DimensionsInconsistent} {PM_BadLPEquivalent} {PM_BadLPOffset} {PM_MultiplyingNonKOVs} {PM_BadArithmetic} {ARITHMETIC}
+## Multiplication and subtraction of units {PM_DimensionRedundant} {PM_DimensionNotBaseKOV} {PM_NonDimensional} {PM_UnitSequenceOverflow} {PM_DimensionsInconsistent} {PM_BadLPEquivalent} {PM_BadLPOffset} {PM_MultiplyingNonKOVs} {PM_BadArithmetic} {ARITHMETIC}
 
-^^{units of measure: multiplication of units} ^^{calculation: arithmetic with units} ^^{type-checking: of units of measure} ^^{units of measure: Metric Units+ext+} ^^{Metric Units+ext+} ^^{extensions: specific extensions: Metric Units}
+^^{units of measure: multiplication of units} ^^{units of measure: subtraction of units} ^^{units of measure: relative units} ^^{calculation: arithmetic with units} ^^{type-checking: of units of measure} ^^{units of measure: Metric Units+ext+} ^^{Metric Units+ext+} ^^{extensions: specific extensions: Metric Units}
 
 To recap, then, it is forbidden to multiply 122kg and 10kg, not because it could never make sense (a scientist might occasionally multiply two weights) but because the result is – what? Not a number, and not a weight any more. But we are allowed to tell Inform what the result ought to be, and once we have done so, the multiplication will be allowed:
 
@@ -9392,9 +11055,24 @@ which will turn up as:
 
 	The balance platform is 10m by 8m, giving it an area of 80 sq m.
 
-And having told Inform that lengths multiply to area, we could also divide an area by a length to get a length: no further instructions would be needed.
+And having told Inform that lengths multiply to area, we could also divide an area by a length to get a length: no further instructions would be needed. The `Metric Units by Graham Nelson` extension includes all of the standard ways that physical quantities are multiplied, and a good way to see these is to try out one of the Metric Units examples and look at the Kinds index, which includes a table showing how all of this works.
 
-The `Metric Units by Graham Nelson` extension includes all of the standard ways that physical quantities are multiplied, and a good way to see these is to try out one of the Metric Units examples and look at the Kinds index, which includes a table showing how all of this works.
+An alternative way to set things up is for one kind to represent values along some scale, but where arithmetic as such doesn't entirely make sense, and then a _second_ kind to represent relative values on that scale, where it does.
+
+The classic example of this is that it makes no good sense to talk about, say, doubling `2:15 PM`, or dividing it by `1:00 AM`, but where time differences do make sense. The Standard Rules therefore includes the sentence:
+
+	A time minus a time specifies a time period.
+
+And this establishes that, for example,
+
+``` transcript
+"4:31 pm minus 11:20 am" = time period: 5 hours 11 minutes
+"5:12 pm to the nearest 20 minutes" = time: 5:20 pm
+"4:31 pm plus 75 minutes" = time: 5:46 pm
+"5 minutes plus 6 minutes" = time period: 11 minutes
+"2 times 10 minutes" = time period: 20 minutes
+"20 minutes divided by 4 minutes" = number: 5
+```
 
 # Advanced Notations
 
@@ -10298,20 +11976,20 @@ But the same method can't be used to put blanks back, since a blank is not a val
 
 These more destructive phrases need a steady hand:
 
-> phrase: {ph_blankoutrow} blank out the whole row
+> phrase: {ph_blankoutrow} blank out the/-- whole row
 >
 > This phrase replaces the currently chosen row with blanks, erasing any value previously stored under any of the columns. Example:
 >
 >     choose row 1 in the Table of Fish Habitats;
 >     blank out the whole row;
 
-> phrase: {ph_blankoutcol} blank out the whole (table column) column in (table)
+> phrase: {ph_blankoutcol} blank out the/-- whole (table column) column in (table)
 >
 > This phrase replaces the currently chosen column with blanks, erasing any value previously stored in any of the rows. Example:
 >
 >     blank out the whole salinity column in the Table of Fish Habitats;
 
-> phrase: {ph_blankouttable} blank out the whole of (table)
+> phrase: {ph_blankouttable} blank out the/-- whole of (table)
 >
 > This phrase replaces every row of the currently chosen table with blanks, erasing any value previously stored anywhere in it. Example:
 >
@@ -11178,11 +12856,12 @@ In particular, any newly created kind of value can always be understood. We make
 
 Note the way we can refer to the limb mentioned by the player as the `limb understood`. Similarly, we could talk about the `number understood` if the value parsed had been a number, and so on.
 
-One of the built-in kinds of value is worth special note: time. A time can hold either a specific time of day, such as 10:23 PM, or a duration of something, such as 21 minutes. The `"[a time]"` token matches times of day, such as ``10:15 AM`` or ``MIDNIGHT``. But ``10 minutes`` wouldn't be recognised by `"[a time]"` since it isn't a specific moment in the day. To get around this, an alternative version called `"[a time period]"` is available. So:
+When commands need to talk about time, we need to remember that `"[a time]"` matches a value of the `time` kind — times of day, such as ``10:15 AM`` or ``MIDNIGHT``. By contrast, `"[a time period]"` matches a value of `time period`, such as ``10 MINUTES`` or ``AN HOUR``. So we would likely want:
 
+	Understand "wait until [a time]" as ...
 	Understand "wait for [a time period]" as ...
 
-would match ``WAIT FOR AN HOUR`` or ``WAIT FOR TWO HOURS 12 MINUTES``.
+in order to recognise ``WAIT UNTIL 10:20 AM`` and ``WAIT FOR TEN MINUTES``, respectively.
 
 ## Commands consisting only of nouns
 
@@ -11590,7 +13269,7 @@ However, by adding rules to the `multiple action processing rulebook`, we can ta
 >
 > This phrase produces the current multiple object list as a value. The list will be the collection of objects found to match a plural noun like ``ALL`` in the most recent command typed by the player. If there is no multiple object, say if the command was ``TAKE PEAR``, the list will be empty: it won't be a list of size 1.
 
-> phrase: {ph_altermultipleobjectlist} alter the multiple object list to (list of objects)
+> phrase: {ph_altermultipleobjectlist} alter the/-- multiple object list to (list of objects)
 >
 > This phrase sets the multiple object list to the given value. The list is ordinarily the collection of objects found to match a plural noun like ``ALL`` in the most recent command typed by the player, but using this phrase at the right moment (before the `generate action rule` in the turn sequence rules takes effect).
 
@@ -12528,6 +14207,89 @@ It's best to avoid situations where an item has a locale priority which is highe
 
 	{*}The describe what's on scenery supporters in room descriptions rule is not listed in any rulebook.
 
+## Performing something {act_performing}
+
+^^{performing something+descactivity+} ^^{dialogue lines: performing something+activity+}
+
+**1. When it happens.** Whenever the dialogue director has definitely decided to perform a line of dialogue. The activity shouldn't be used to undo that decision (i.e., by not printing anything): to suppress dialogue, put conditions on it. The activity has three private variables:
+
+- `speaker`. A `thing`, except that it will be `nothing` for a line which is `narrated`.
+
+- `interlocutor`. A `thing`, except that it will be `nothing` for a line which is not delivered `to` something.
+
+- `style`. A `performance style`, and by default `spoken normally`.
+
+**2. The default behaviour.** Performance is carried out by the `default dialogue performance rule`, which reads like so:
+
+	For performing a dialogue line (called L)
+		(this is the default dialogue performance rule):
+		if L is narrated or L is elaborated or L is non-verbal:
+			say "[textual content of L][line break]";
+		otherwise:
+			say "[The speaker]";
+			if the interlocutor is something:
+				say " (to [the interlocutor])";
+			say ": '[textual content of L]'[line break]".
+
+**3. Examples.** (a) This rule puts all narration in italics:
+
+	For performing a narrated dialogue line (called L):
+		say "[italic type][textual content of L][roman type][line break]".
+
+(b) Here we give a different performance for lines with a non-standard performance style:
+
+	Spoken furiously is a performance style.
+
+	Before performing a dialogue line (called L):
+		if the style is spoken furiously, say "[bold type]".
+
+	After performing a dialogue line (called L) :
+		if the style is spoken furiously, say "[roman type]".
+
+And then, say:
+
+	Elizabeth: "We had to pay the ransom, you know."
+
+	James (spoken furiously): "Even I wouldn't pay fifty thousand pounds for me!"
+
+See [Managing dialogue lines] for more.
+
+## Offering something {act_offering}
+
+^^{offering something+descactivity+} ^^{dialogue choices: offering something+activity+}
+
+**1. When it happens.** Whenever the dialogue director has one or more textual choices to ask the player to select between. This activity applies to a list of dialogue choices, which will never be empty.
+
+**2. The default behaviour.** Performance is carried out by the `default offering dialogue choices rule`, which reads like so:
+
+	Last for offering a list of dialogue choices (called L)
+		(this is the default offering dialogue choices rule):
+		let N be 0;
+		repeat with C running through L:
+			increase N by 1;
+			say "([N]) [textual content of C][line break]";
+		say conditional paragraph break;
+		let M be a number chosen by the player from 1 to N;
+		set the dialogue selection value to M;
+		say "[bold type][textual content of entry M of L][roman type][paragraph break]".
+
+**3. Examples.** (a) We could reformat this as a sentence rather than an itemised list like so:
+
+	For offering a list of dialogue choices (called L):
+		say "Choose: ";
+		let N be 1;
+		repeat with C running through L:
+			if N > 1, say "; ";
+			say "([N]) [textual content of C]";
+			increase N by 1;
+		say ".[line break]";
+		say conditional paragraph break;
+		let M be a number chosen by the player from 1 to N;
+		set the dialogue selection value to M;
+		say "[bold type][textual content of entry M of L][roman type][paragraph break]".
+
+See [Managing dialogue choices] for more.
+
 ## Deciding the scope of something {act_ds}
 
 ^^{scope} ^^{|in the presence of} ^^{|presence of} ^^{containment+rel+: placing the contents of something in scope} ^^{Inform 6 equivalent: scope rules} ^^{Inform 6 Designer's Manual+title+}
@@ -12652,7 +14414,7 @@ Note that, in order for our activity to succeed, we do need to supply a grammar 
 
 ## Reading a command {act_reading} {var_command} {kind_snippet}
 
-^^{understanding: special processing of keyboard input} ^^{Inform 6 equivalent: |BeforeParsing} ^^{snippets} ^^{player's command (- snippet)+glob+} ^^{matched text (- snippet)+glob+} ^^{punctuation: removing from player's command} ^^{regular expressions} ^^{text: regular expressions}
+^^{understanding: special processing of keyboard input} ^^{Inform 6 equivalent: |BeforeParsing} ^^{snippets} ^^{player's command (- snippet)+glob+} ^^{matched text (- snippet)+glob+} ^^{punctuation: removing from player's command} ^^{regular expressions} ^^{text: regular expressions} ^^{topics: matching snippets} ^^{>OOPS}
 
 **1. When it happens.** When reading a command from the keyboard.
 
@@ -12697,7 +14459,7 @@ To explain. Fragments of what the player has typed are called snippets: `the pla
 
 Lastly, we took drastic action with another new phrase:
 
-> phrase: {ph_rejectcommand} reject the player's command
+> phrase: {ph_rejectcommand} reject the/-- player's command
 >
 > This phrase should be used only in rules for the `reading a command` activity. It tells Inform not to bother analysing the text further, but to go back to the keyboard. (No time passes; no turn elapses; nothing happens in the simulated world.)
 
@@ -12735,7 +14497,7 @@ Note that `replace` and `cut` can only be used in `after reading a command` rule
 
 (e) Finally, we can make still more detailed alterations to the text of the command using the techniques presented in the chapter on [Advanced Text]. For instance:
 
-> phrase: {ph_changecommand} change the text of the player's command to (text)
+> phrase: {ph_changecommand} change the text of the/-- player's command to (text)
 >
 > This phrase should be used only in `after` rules for the `reading a command` activity; it replaces the current command text entirely. Example:
 >
@@ -14118,7 +15880,7 @@ Up to now, we have only been able to judge two texts by seeing if they are equal
 >
 > is always true.
 
-> phrase: {ph_exactlymatches} if (text) exactly matches the text (text):
+> phrase: {ph_exactlymatches} if (text) exactly matches the/-- text (text):
 >
 > This condition is true if the second text matches the first, starting at the beginning and finishing at the end. Both texts are read in substituted form.
 
@@ -14187,7 +15949,7 @@ Fortunately, such a notation already exists. This is the "regular expression" no
 
 As might be expected from the previous section, we simply have to describe the "find" text as `regular expression` rather than `text` and then the same facilities are available:
 
-> phrase: {ph_matchesre} if (text) matches the regular expression (text):
+> phrase: {ph_matchesre} if (text) matches the/-- regular expression (text):
 >
 > This condition is true if any contiguous part of the text can be matched against the given regular expression. Examples:
 >
@@ -14195,13 +15957,13 @@ As might be expected from the previous section, we simply have to describe the "
 >
 > is true, since this looks for a part of `"taramasalata"` which begins with `"a"`, continues with any number of characters, and finishes with `"l"`; so it matches `"aramasal"`. (Not `"asal"`, because it makes the leftmost match it can.) The option `case insensitively` causes lower and upper case letters to be treated as equivalent.
 
-> phrase: {ph_exactlymatchesre} if (text) exactly matches the regular expression (text):
+> phrase: {ph_exactlymatchesre} if (text) exactly matches the/-- regular expression (text):
 >
 > This condition is true if the whole text (starting from the beginning and finishing at the end) can be matched against the given regular expression. The option `case insensitively` causes lower and upper case letters to be treated as equivalent.
 
 And once again:
 
-> phrase: {ph_nummatchesre} number of times (text) matches the regular expression (text) ... number
+> phrase: {ph_nummatchesre} number of times (text) matches the/-- regular expression (text) ... number
 >
 > This produces the number of times that contiguous pieces of the text can be matched against the regular expression, without allowing them to overlap.
 
@@ -15168,7 +16930,7 @@ We can also write the equivalent phrases:
 >
 > empties it to `{ }`, the list with nothing in.
 
-> phrase: {ph_truncatefirst} truncate (list of values) to the first (number) entries/entry
+> phrase: {ph_truncatefirst} truncate (list of values) to the/-- first (number) entries/entry
 >
 > This phrase alters the given list so that it now consists only of the initial part of the list with the given length. Example:
 >
@@ -15176,7 +16938,7 @@ We can also write the equivalent phrases:
 >
 > turns `{1, 3, 5, 7, 9, 11}` to `{1, 3, 5, 7}`.
 
-> phrase: {ph_truncatelast} truncate (list of values) to the last (number) entries/entry
+> phrase: {ph_truncatelast} truncate (list of values) to the/-- last (number) entries/entry
 >
 > This phrase alters the given list so that it now consists only of the final part of the list with the given length. Example:
 >
@@ -15713,7 +17475,7 @@ On the other hand, there are also times when this is a needlessly complicated di
 
 ## Generic phrases
 
-^^{kinds: of kinds} ^^{values: kinds of kinds of value} ^^{|arithmetic value} ^^{|enumerated value} ^^{|sayable value} ^^{text substitutions: sayable values}
+^^{kinds: of kinds} ^^{values: kinds of kinds of value} ^^{|arithmetic value} ^^{|enumerated value} ^^{|sayable value} ^^{text substitutions: sayable values} ^^{generic phrases}
 
 The following looks quite innocent:
 
@@ -16613,6 +18375,13 @@ If the bibliographic named values are not set by the source text, Inform will st
 	Story headline: An Interactive Fiction
 	Story genre: Fiction
 	Release number: 1
+
+It is also possible to provide copyright and licencing details for a project. This follows the same syntax and conventions as for extensions, except that the word `story` is used instead of `extension`. See [Licence] for more.
+
+	The licence for this story is "CC-BY-4.0".
+	The copyright for this story is "Bartholomew Hendricks 2006-2024".
+	The origin for this story is "https://www.loosecannonif.com/bh".
+	The rights history for this story is "Adapted by permission from Jennifer Pond's novel 'The Transfinite Kitten' (2003)."
 
 ## Genres
 
@@ -17921,13 +19690,13 @@ First, though, a word about sharing. Anyone is free to write an extension on any
 
 But most extensions are written to be shared with strangers — that is, they are made available to anybody who wants to download and use them. There are several online repositories of extensions written in this way, of which one is the Inform Public Library, accessed from the Inform app.
 
-Whenever one author copies or adapts programs or text by another author, copyright law comes into play. If we want to publish or sell a story which uses an extension by somebody else, we need their permission. The form that permission usually takes is a general _licence_ (or "license", in US English) where the extension author says, in effect: Anybody can use this provided ... and then gives some conditions.
+### Credits for extensions
 
-During play of any story compiled by Inform 7, typing ``VERSION`` lists various serial numbers of the pieces of software used to make it. The list concludes with names, authors and version numbers of any extensions used. So every author whose work contributes to a story automatically gets a modest credit within it. The same list can be printed, at the discretion of the designer, using the textual substitution:
+During play of any story compiled by Inform 7, typing ``VERSION`` (or ``COPYRIGHT``) lists various serial numbers of the pieces of software used to make it. The list concludes with names, authors and version numbers of any extensions used. So every author whose work contributes to a story automatically gets a modest credit within it. The licencing terms for those extensions are also given. The same list can be printed, at the discretion of the designer, using the textual substitution:
 
 > phrase: {phs_extcredits} say "[the/-- list of extension credits]"
 >
-> This text substitution expands to one or more lines of text crediting each of the extensions used by the current source text, along with their version numbers and authors. Extensions whose authors have chosen the `use authorial modesty` option are missed out.
+> This text substitution expands to one or more lines of text crediting each of the extensions used by the current source text, along with their version numbers and authors. Extensions whose authors have chosen the `use authorial modesty` option are missed out (unless they declare a licence, in which case that licence is still mentioned, since it may be a legal necessity).
 
 If we want our extension to go uncredited – perhaps if it is a low-level enabling sort of thing, for instance – we can place the following sentence inside the definition of the extension:
 
@@ -17941,13 +19710,70 @@ A complete list, undiluted by modesty, can always be obtained using:
 >
 > This text substitution expands to one or more lines of text crediting each of the extensions used by the current source text, along with their version numbers and authors. Every extension is included, even those whose authors have opted for `use authorial modesty`.
 
-Sometimes authorship is complicated. What if Mary Brown finds some Inform 6 code written by John Smith in the mid-90s, and puts an I7 gloss on it to make an I7 extension, but then Pierre Dupont translates it into French: who's the author of the result? The rule is that the person making the current, latest version is the author listed in the titling line, so we end up with
+Whenever one author copies or adapts programs or text by another author, copyright law comes into play. If we want to publish or sell a story which uses an extension by somebody else, we need their permission. The form that permission usually takes is a general _licence_ (or "license", in US English) where the extension author says, in effect: Anybody can use this provided ... and then gives some conditions.
 
-	... by Pierre Dupont begins here.
+### Open-source licences for extensions
 
-But Mary and John deserve their credits too...
+The source text for an extension can contain special sentences which specify its licence, that is, the terms on which other Inform authors can use it. For example:
 
-_More to follow when IE-0036 is implemented._
+	The licence for this extension is "CC-BY-4.0".
+	The copyright for this extension is "Emily Short 2006-2024".
+	The origin for this extension is "https://www.emshort.com/inform".
+	The rights history for this extension is "Adapted by permission from sample code by Adam Cadre in 2006."
+
+Those are the only four things which can be set — `licence` (or the spelling `license` is also allowed), `copyright`, `origin` and `rights history`. All four are optional.
+
+- The `licence` must be _either_ `"Unspecified"` _or_ one of the standard SPDX machine-readable licence codes listed at: [https://spdx.org/licenses/](https://spdx.org/licenses/) — see below for notes on what to choose. Inform will throw a problem message if the licence is now deprecated by SPDX, usually because it has been found to be legally problematic in practice, and better versions are now available. Note that the SPDX list contains only open-source licences: if we don't want to open the source of an extension we should leave the `licence` at the default setting `"Unspecified"`.
+
+- The `copyright` declaration must take the form `"Owner's Name YYYY"`, where `YYYY` is a year after 1970, or else `"Owner's Name YYYY-ZZZZ"`, to indicate that it was created in year `YYYY` and most recently refreshed or rewritten in year `ZZZZ`. Note that it must not contain a `©` symbol, or text like `(c)` or `(C)` or `Copyright`: that's added later automatically. It should just give the owner's name and a date. Both a name and a year are required: Inform rejects `"2020"` or `"Emily Short"` with problem messages because of this.
+
+- The `origin` is the URL for the home web page of the extension, if there is one. Note that some popular licences, such as `CC-BY-4.0`, require users of the software under licence to reproduce the URL of its home page. If this URL is given, then Inform takes care of that requirement automatically.
+
+- The `rights history` should be one or more complete sentences explaining any other _legal_ notes necessary. Less is more here, but if, for example, we are making a new version of some old code by somebody else (and if their licence allows that, of course), then we should credit that. The `rights history` should not be used for miscellaneous acknowledgements, just for what's legally required.
+
+If one of the other four settings is made, but no `licence`, it defaults to `"Unspecified"`. If one of the other four settings is made, but no `copyright`, it defaults to the name of the author (given in the extension title, or the title sentence for a story) and the current year of compilation. `origin` and `rights history` are both blank by default.
+
+### Licences accepted by the Inform Public Library
+
+The best way to share an Inform extension with the world may be to submit it to the Inform Public Library. This is a curated collection, rather than being a service anyone can publish on, and the curators are looking for generally useful extensions whose subject matter will be suitable for users of all ages, and will not run into legal difficulties. Inform is widely used in education, so the Public Library may be being browsed in classrooms by young children.
+
+The Public Library also aims to host extensions which users can grab and make use of without legal worries, so it can only accept licenced extensions, and for policy reasons it will only accept a short list of simple, easily understood, popular and highly permissive licences — currently, six are allowed.
+
+This is many fewer than the full SPDX list, which currently includes some 617 non-deprecated open-source licences. But many of those are obscure enough that there's no case law on them, or else they are trying to achieve particular policy goals: the `BSD-3-Clause-No-Nuclear-Warranty`, for example. Not all are certified as "free" or "open" by the two bodies usually considered authoritative, the Free Software Foundation and the Open Source Initiative. And even those which are rated both "free" and "open", which are reasonably popular, and which have no obvious axe to grind, may not be sufficiently free for all of our users' needs.
+
+If we want to open-source an extension, leave users almost completely free to use it, but still keep the copyright and require users to acknowledge that, then the following can be used:
+
+Licence code     | Full name
+---------------- | ---------
+`"MIT"`          | MIT License
+`"CC-BY-4.0"`    | Creative Commons Attribution 4.0 International
+`"Artistic-2.0"` | Artistic License 2.0
+
+Extensions licenced on these terms can safely be used since Inform automatically complies with the need to acknowledge in its handling of the ``COPYRIGHT`` and ``LICENCE`` commands, and also when releasing a project. For example, if it releases a story to a website, that website will include a page of copyright acknowledgements. If the `MIT` licence is used, the text of that licence is included on this website page, which satisfies its only other requirement.
+
+`Artistic-2.0` only makes this list because it is the licence used for the source code to Inform itself, and so the built-in Inform extensions — the Standard Rules, Basic Inform and English Language — are covered by that automatically. It was designed for large pieces of software with a range of uses (it began as the licence for the Perl programming language), and is not a good fit for stand-alone extensions, since it has a relatively long and convoluted legal text. `CC-BY-4.0` is better known and more widely used, but some people feel it's better suited to pictures and text than to software, where `MIT` is much more widely used.
+
+The above all require attribution, and retain copyright. If we want to go further, the following are also available:
+
+Licence code  | Full name
+------------- | ---------
+`"MIT-0"`     | MIT No Attribution
+`"CC0-1.0"`   | Creative Commons Zero v1.0 Universal
+`"Unlicense"` | The Unlicense
+
+Here `MIT-0` is a halfway-house: the author does still retain copyright, but the user doesn't have to acknowledge that. This would be a good fit for a `Use authorial modesty.` sort of extension. (As with `MIT`, Inform auto-includes a copy of this licence as part of any website release, since that is still required.) Under `CC0-1.0` and `Unlicense`, even copyright is donated to the public domain: this will affect how Inform prints the rights details — Inform will say ``Placed in the public domain by ...`` rather than ``(c) ...`` — but won't very much affect the freedom of users, which is almost complete for any of these licences. For real zealots, `CC0-1.0` is thought to relinquish all conceivable patent claims too, and has had more legal attention than the `Unlicense`, but both have their adherents.
+
+Some no-attribution licences are so free that users can even remove our names, fraudlently claim to be the author themselves, and so on. They certainly don't need to give us any credit. But just because this is legally allowed does not mean it's ethical, and Inform automatically acknowledges all extension contributors, even if the licence does not require it. The Public Library will not host an extension if the curators think the author has been dishonest. So this concern is not much of a concern. A more likely scenario to think about is: what if it's twenty years from now, and somebody wants to take over this extension as the new maintainer, but we're not around to be asked? The more free the licence, the more clear the position will be for that new maintainer.
+
+Note that the Public Library will _not_ accept `CC-BY-NC-4.0`, `CC-BY-NC-ND-4.0` and so on, and will not accept `GPL-2.0`, `GPL-3.0` or similar. We have made this policy choice because:
+
+- We want Public Library users to feel completely free to publish commercial games. This is why we do not allow `-NC`, "no commercial use", licences.
+
+- Similarly, clauses intended to force users of an extension to share the results impose a restriction on the author of a story which we want to avoid. Authors should be free to publish stories without having to publish the source text if they want to. So, no `-SA`, "share-alike", restrictions, and no form of the GPL.
+
+- Any story using an extension could, at a stretch, be considered a derivative work, and we don't want the legal safety of an extension to come down to delicate questions of law. So, no `-ND`, "no derivative works", clauses.
+
+Extension authors are completely free to licence their extensions however they would like to, of course. Our shortlist of six licences is simply a hosting-policy choice made by the Inform Public Library. Users are free to choose other licences and circulate extensions elsewhere.
 
 ## Compatibility with story file formats
 
@@ -18145,7 +19971,7 @@ Finally, any phrase or variable defined immediately under a heading whose name e
 
 This is intended so that technical apparatus used only inside the extensions can be concealed from the outside user's immediate view. Inform as it is presently constituted does not allow extensions to make fully private definitions, but this feature at least allows them to make unadvertised ones.
 
-## Bundling other resources with an extension
+## Images and other resources
 
 An extension directory can, optionally, contain a subdirectory called ```Materials```. If it does, this can then contain a wide variety of useful things, laid out almost exactly like the materials folder for a project. Because it's included in the extension, anybody downloading the extension gets all of these extras along with it.
 
@@ -18180,6 +20006,100 @@ Hypothetical Project.materials/Figures/Red Fire Hydrants/dalmatian.jpg
 ```
 
 Note that this is in a subdirectory of ```Figures```, with the same name as that of the extension. This means the author could replace ```dalmatian.jpg``` from multiple different extensions, while still having a quite unrelated ```dalmatian.jpg``` used by the project's main source text.
+
+## Use options for extensions
+
+^^{use options: defining in extensions} ^^{use options: active / inactive+adj+} ^^{active / inactive (use option)+adj+} ^^{inactive / active (use option)+adj+} 
+
+Extensions should ideally cater for a range of possible uses, and one way to do that is to provide use options. We have seen many of these already, such as:
+
+	Use American dialect.
+	Use the serial comma.
+
+Extensions can also create use options. There are two sorts: "configuration flags", which are either set or not set; and "configuration values", which are numbers. The following creates one of each:
+
+	Use automatic low lintel ducking translates as a configuration flag.
+	Use duck depth translates as a configuration value.
+
+The user's story could then begin:
+
+	Include Ducking by Peter Drake. Use automatic low lintel ducking.
+	Use duck depth of 10.
+
+The distinction between these:
+
+	Use duck depth translates as a configuration value.
+	Use duck sway of 6 translates as a configuration value.
+
+is that `duck sway` has a default value of 6 (i.e., will be that if
+the source text never specifies anything), whereas `duck depth` has
+a default value of 0.
+
+If the user tries it, a problem message will reject this as a contradiction:
+
+	Use duck depth of 17.
+	Use duck depth of 22.
+
+If the idea is that a configuration value is some sort of maximum, which is often useful, then it can be defined as `at least` a value (which must be non-negative):
+
+	Use maximum actor height of at least 60 translates as a configuration value.
+
+Should the user then say both of these:
+
+	Use maximum actor height of at least 175.
+	Use maximum actor height of 200.
+
+there is then no contradiction, and the value comes out as 200, which satisfies both requirements. (Of course, it's unlikely that any user will type both sentences. But that user might type one sentence into the source text, and also include an extension which, perhaps without the user even knowing, is also trying to configure `Philately`.) This would still produce a Problem:
+
+	Use maximum actor height of at least 175.
+	Use maximum actor height of 160.
+
+Sneakily, we can also make what look to the user like several flags, but are actually mutually exclusive. For example, suppose we want the user to be able to select either of these, but not both:
+
+	Use bobbing ducks.
+	Use swivelling ducks.
+
+That can be done like so:
+
+	Use bobbing ducks translates as the configuration value DUCK_MOTION_TYPE = 1.
+	Use swivelling ducks translates as the configuration value DUCK_MOTION_TYPE = 2.
+
+As this suggests, under the hood a value called ```DUCK_MOTION_TYPE``` is being set. Attempting to set both options will now cause Inform to throw a problem message for a contradiction, as will a sentence like `Use bobbing ducks of 3`. (We know that these settings are numerical; the user does not.)
+
+So much for how we define these configuration flags or values, and how the user sets them: now for how to read back the settings which the user has made.
+
+1) The adjectives `active` and `inactive` apply to use options. A configuration flag is `active` if it has been used; a configuration value if it has been set to a non-zero value.
+
+2) The phrase `numerical value of U`, for any use option `U`, produces its current value. (For a flag, that will be 1 if it is active, 0 if it is inactive.)
+
+Note that `active` and `numerical value` are _not_ properties: they are set forever by the user, and cannot change at run-time. So `now U is active` and `now the numerical value of U is 10` do _not_ work.
+
+For example:
+
+	Before going through a low door when the automatic low lintel ducking option is active:
+		say "(first ducking your head)[line break]";
+		silently try ducking.
+
+To return to our two mutually exclusive options:
+
+	Use bobbing ducks translates as the configuration value DUCK_MOTION_TYPE = 1.
+	Use swivelling ducks translates as the configuration value DUCK_MOTION_TYPE = 2.
+
+...suppose the user has chosen neither. Then both are inactive, and both have a numerical value of 0. If the user has chosen to `Use swivelling ducks` then `swivelling ducks option` is `active` and has a numerical value of 2.
+
+In case helpful, here's a little diagnostic command called ``OPTIONS``:
+
+	{*}Showing use options is an action out of world, applying to nothing.
+
+	Understand "OPTIONS" as showing use options.
+
+	Carry out showing use options:
+		repeat with U running through active use options:
+			if the numerical value of U > 1:
+				say "[U] has been set to [numerical value of U].";
+			otherwise:
+				say "[U] is on.";
+		say "Inactive: [list of inactive use options].";
 
 ## Run-time problems
 
@@ -18224,7 +20144,265 @@ standing just on the edge of a deep hole.
 >
 > This phrase should be used only in extensions. The file ```CantDivideByZero.md``` must then exist in the extension's ```RTPs``` subdirectory, and must give an explanation.
 
-# Extension documentation and testing
+## Style and best practice guide
+
+_The following is not a comprehensive style guide, and these are very much guidelines, not rules. But they may be helpful when writing an extension which is to be shared with the world._
+
+### Use directory format for extensions, not single file format.
+
+The older single-file extension format is not described in this chapter, because it's much less capable and will eventually be deprecated. The Public Library will henceforth only accept directory-format extensions. Conversion is easy: in the Extensions panel for a project, a single-file extension will have a ```MODERNISE``` button next to it. Click this, and confirm.
+
+### Include enough material to make the extension worthwhile.
+
+If your feature is implemented in just one or two rules, which do not do anything very surprising, it's probably not substantial enough for an extension.
+
+### Avoid a miscellany of features.
+
+This doesn't mean "do only one thing". Many extensions usefully contain a bundle of related features. But they are best if those features naturally go together.
+
+It's better to build an extension around one sort of functionality than to build it around one sort of scenario or story. An extension for "everything you need to implement a shop" might be better broken down into two different extensions, one which implements money, change, and so on, and one which deals with managing the goods on sale.
+
+### Give your extension a descriptive name, avoiding comparatives.
+
+For example, `Rideable Vehicles` is preferable to `Better Vehicles`, because it says what it provides. Avoid stylish titles like `Locksmith`.
+
+For more on good titling practice, see [Title and authorship].
+
+### Give your extension a semantic version.
+
+Be strict about this. You can give an extension a version number on its opening line:
+
+	Version 9 of Locksmith by Emily Short begins here.
+
+See [Version numbering] for more.
+
+### Follow the semantic versioning convention.
+
+Under the hood, Inform tracks version numbers which follow the `MAJOR.MINOR.PATCH` semantic convention. If only one or two numbers are given, the others are implicitly 0: thus `9` means `9.0.0`, and `9.3` means `9.3.0`.
+
+If you release _any_ update of your extension, however minor the change, increase its version number. Semantic version numbers are a promise which you are making, so:
+
+- The `MAJOR` number must increase if there is any significant change to how the extension carries out its existing job.
+- Otherwise, increase just `MINOR` if you are adding new features, but not changing anything about existing ones.
+- Otherwise, increase just `PATCH` if you are fixing bugs, but making no change to the feature set.
+
+### Write a brief rubric text, describing what it does more fully.
+
+This is the short quoted text appearing just under the title in an extension's source text. Aim to write 30-50 words giving a fuller idea of what the extension does. For example:
+
+``` code
+"Provides more sophisticated listing options: the ability to impose special
+ordering instructions on a list, and also the ability to change the
+delimiters of the list to produce different styles and effects."
+```
+
+Do not include your name or the extension's title: they are described immediately above in any case.
+
+If the extension has been withdrawn, or is now deprecated, say so in the rubric.
+
+### Write documentation.
+
+An extension is really only useful if it comes with documentation, and there's a whole chapter of this book about how to write it: see [Extension Documentation and Testing].
+
+- Unless the extension works equally with both major compilation settings (Glulx or Z-machine), make a prominent compatibility note at the top of the documentation.
+
+- Similarly if the extension requires other extensions in order to work, or is incompatible with other popular extensions, or with modern versions of Inform.
+
+- If the extension _does_ work with Basic Inform alone, explicitly say so, because extensions usually don't.
+
+- Aim to be concise, but give as many examples as possible.
+
+- Every phrase which you document should be given a "box" giving its own specification, in the same style as the main Inform manual.
+
+- Documentation should include the names of any rules, rulebooks or activities which the user might want to customise or modify.
+
+### Provide examples.
+
+Examples are short Inform source texts, with a little commentary, demonstrating features of your extension. Try to write at least one for every non-obvious thing your extension can do, or every interesting use-case you've thought of which might not occur to other people. Imitate the style of the main Inform documentation examples.
+
+For each example, include within it a short test script which plays it out:
+
+	Test me with "get all / w / drop all / look / get all / w / drop all / look".
+
+### Provide test cases.
+
+For every example, include also the ideal textual output which it produces, so that your extension can be automatically tested. (Inform provides controls for the users to run these tests on an installed extension.)
+
+You can also provide test cases which are not part of the documentation, but verify the correct running of some part of your extension. For example, if you define an action, you can provide a test case which tries out every way a player, or a third party, might attempt the action, correctly or not.
+
+The better your test case coverage, the easier it is to keep the extension up to date when Inform changes, and the more confidence users will have with it.
+
+### Use rules, rulebooks, actions, and activities.
+
+Wherever possible, implement your features using rules: either as part of the Standard Rules rulebooks and activities, or as part of your own.
+
+Rules are good because they give the user great ability to customise how your extension operates, and also to understand what it's doing, since the `RULES` debugging command allows users to track this behaviour.
+
+There is no significant overhead to having multiple rules rather than just one, and wherever possible each rule should contribute one idea. For example, the Standard Rules implements the wearing action by first making three checks to see if it's sensibly possible for an actor to put on an article of clothing. But it breaks these out into three different rules, so that users can override just one and keep the other two, for example.
+
+### Name rules consistently.
+
+Every rule which affects an action, or does something which changes how the usual rulebooks or activities behave, or does something significant to provide your own functionality, should have a name.
+
+For action rules, follow the naming style used in the Standard Rules. For example, the wearing action is implemented with the following rules:
+
+	can't wear what's not clothing rule
+	can't wear what's not held rule
+	can't wear what's already worn rule
+	standard wearing rule
+	standard report wearing rule
+
+Here, the `check` rules have names beginning with "can't", because they each provide a single potential reason why an action cannot take place. Note that the names do not contain "you", i.e., these are _not_ named in the style:
+
+	you can't wear what's already worn rule
+
+The `standard wearing rule` is a carry out rule, and performs the actual action. What the word "standard" means here is that this is a single rule performing the change of world state which the action calls for, in what we consider the normal way. (Here, say, a hat object would become worn by the actor.)
+
+In general, actions are "atomic", in that you wouldn't want them to be only partly carried through. So a single carry out rule like this is appropriate even if the action does something complicated. But if it's very complicated, and you could imagine users wanting to tweak it, consider handling the actual change of game state with an activity.
+
+Similarly, the `standard report wearing rule` is a single rule providing a routine description of what happens. 
+
+### Use adaptive text.
+
+Adaptive text is the Inform feature which allows it to present the same basic sentences in different tenses, or agreeing with different nouns. A typical non-adaptive message would be:
+
+	"You're not holding that!"
+
+But this assumes the story is told with a second-person protagonist (called "you"), and that "that" is singular. The adaptive version would be:
+
+	"[We] [aren't] holding [regarding the noun][those]!"
+
+Verbs adapt, too, and if you need an unusual verb to do so, then go ahead and declare it: you won't tread on any other extensions by doing that. For example, once this declaration is made:
+
+	To hornswoggle is a verb.
+
+then you could write adaptive text like:
+
+	"[The actor] [hornswoggle] [the noun]."
+
+For many, many examples of adaptive text, see the action rules in the Standard Rules.
+
+### Use lettered responses.
+
+Rules for actions (and also for some activities) often print standard responses, and Inform provides features for users to modify or replace these. Your own rules can make that possible, too, by using response letters. For example:
+
+	Report an actor eating (this is the standard report eating rule):
+		if the action is not silent:
+			if the actor is the player:
+				say "[We] [eat] [the noun]. Not bad." (A);
+			otherwise:
+				say "[The actor] [eat] [the noun]." (B).
+
+This rule provides two responses, `A` and `B`. When you first define a rule, letter the different possible replies from `A` upwards. (If there are more than 26, you have too much going on for one rule: break it up.) When updating an extension to make a new release, _do not reletter these responses_: your users now expect `B` to be the one printing something like "The doctor eats the apple." So if you add a new response, make it `C`, even if it's higher up in the rule than `A`: that doesn't matter.
+
+### Naming of actions and activities
+
+Activities should be named in a way which concisely describes what they do:
+
+	issuing the response text activity
+	printing the locale description activity
+	
+Note the participles `issuing` and `printing`: do _not_ call these
+
+	issue the response text activity
+	print the locale description activity
+
+And similarly for actions:
+
+	climbing
+	tying it to
+
+### Make actions work for all actors.
+
+When Inform users are writing a story, it's quite common to write an action on the assumption that only the player will ever be the actor. If you're the author of the story, you can be sure that that will be true. But if you create an action in an extension, you don't know how it will be used, so don't make assumptions.
+
+In practice, this means writing the rules for the action to talk about `the actor`, not `the player`, and remembering that they may not be the same.
+
+For example, this is _not_ a good rule:
+
+	Check pushing something to (this is the can't push vertically rule):
+		if the second noun is up or the second noun is down:
+			say "[The noun] [cannot] be pushed up or down." (A);
+			stop the action.
+
+Firstly, it fires only if the actor is the player. Fix that like so:
+
+	Check an actor pushing something to (this is the can't push vertically rule):
+		if the second noun is up or the second noun is down:
+			say "[The noun] [cannot] be pushed up or down." (A);
+			stop the action.
+
+But even this version implicitly assumes the actor is the player, because it prints a complaint to the player if the action is impossible. The right way to do this is:
+
+	Check pushing something to (this is the can't push vertically rule):
+		if the second noun is up or the second noun is down:
+			if the actor is the player:
+				say "[The noun] [cannot] be pushed up or down." (A);
+			stop the action.
+
+This rule fires for any actor, and if the actor is trying to push an object upstairs or downstairs, the action will stop: but the complaint will be printed only if the player is the guilty party.
+
+### Make actions physically reasonable.
+
+Play nicely with the world-modelling conventions of the Standard Rules. Define your action in a way which limits its applicability to what is physically possible. For example:
+
+	Throwing it at is an action applying to one carried thing and one visible thing.
+
+### Write a specification for your action.
+
+Help users by providing some index documentation on your action. This doesn't need to be large or elaborate:
+
+	The specification of the inserting it into action is "By this action,
+	an actor puts something he is holding into a container: for instance,
+	putting a coin into a collection box."
+
+### Avoid global variables where possible.
+
+Try to avoid "global state" where possible, and minimise the use of sentences like:
+
+	The controller is a person that varies.
+
+For one thing, `controller` is a word which could easily cause clashes with nouns in your users' stories, but for another, do we need to store this at all?
+
+For example, an extension which automatically moves certain people around every turn, to simulate crowd behaviour, could be implemented using:
+
+	The wanderer list is a list of people that varies.
+
+And that might be the most efficient way to do it. But there are alternatives: for example, declaring an either/or property for whether a person is actively wandering or not.
+
+Similarly, if a variable is only needed to preserve state across multiple rules in the same action, rulebook or activity, make it a variable private to that action, rulebook or activity.
+
+### Either-or properties.
+
+If defining an either-or property, always give a name for its opposite too, and explicitly say what the usual state is.
+
+For example, instead of this:
+
+	A device can be switched on.
+
+Write this:
+
+	A device can be switched on or switched off. A device is usually switched off.
+
+### Move any substantial Inform 6 code into a kit.
+
+This will be the subject of the final chapter in this book, [Kits].
+
+"Substantial" here means that you need to define one or more Inform 6 functions or global variables. Old-fashioned extensions would generally do this with a so-called "inclusion", like so:
+
+	Include (-
+		[ FunctionName par1 par2;
+			...
+		];
+	-).
+
+While there is no plan to withdraw `Include ...` from the language, its use is now deprecated.
+
+Small kits are quite easy to construct, and can be included in an extension's directory so that the user never needs to know how all this is done.
+
+Give such a kit a name based on the extension's name: e.g. `Graphics Windows` might have a kit `GraphicsWindowsKit`.
+
+# Extension Documentation and Testing
 
 ## Making a documentation set for an extension
 
@@ -19368,91 +21546,704 @@ This is only likely to be helpful for the main Inform documentation, not for ext
 
 # Low-Level Programming
 
-## Using Inform 6 within Inform 7
+## The architecture of Inform
 
-^^{Inform 6} ^^{Inform 6 inclusions <-- defining: Inform 6 entities} ^^{extensions: Inform 6 code in extensions} ^^{Standard Rules+ext+} ^^{extensions: specific extensions: Standard Rules}
+^^{architecture of Inform} ^^{Inter code} ^^{I6 syntax} ^^{Inform 6} ^^{extensions: Inform 6 code in extensions}
 
-The current Inform, "Inform 7", had a low-level precursor unsurprisingly called Inform, which ran through versions 1 to 6. What made Inform 6 low-level was that its style of coding was much more like traditional programming: it reads as a simple form of C, or an elaborate form of assembly-language, but with some interactive fiction tweaks.
+Inside the Inform applications is a _compiler_, which turns source text which describes a story into a computer program which runs that story — or else, of course, refuses and issues Problem messages.
 
-That language is still used inside today's Inform project as a way to express very low-level operations. What happens to code like that is now very different (it is compiled into Inter, an intermediate-level representation used inside Inform, and no longer by the Inform 6 compiler). But the notation is the same, and the practical effect is that it is as if we are writing I6 code.
+Many programming languages are compiled. Inform is typical in that it does not perform the process in a single step. In fact it works in three main stages:
 
-The final sections of this chapter show how such I6 code can be mixed directly in with natural-language source text. The remaining pages will therefore make little or no sense to those who do not already know I6 notation, and in any case, such programming is really a last resort – it is always best to write regular source text than to resort to so-called "inclusions" of I6. Ideally, all I6 content would be confined to extensions (and this may be mandated in future releases of Inform), and even writers of extensions are asked to pare down their usage of I6 to the minimum necessary.
+1) Source text is compiled down to a so-called _intermediate language_, called Inter.
 
-The methods for incorporating I6 code into I7 have been designed with this in mind, that is, to encourage people to use I6 in as self-contained a way as possible: in particular to isolate the relatively few functions which need to be written in I6, and to give them natural language expression.
+2) Inter code is then _code-generated_ down to a low-level computer program written in some suitable _target language_.
 
-Finally, anyone hacking with I7 for a while is likely to become curious about the Basic Inform or Standard Rules extensions, and to look at the text which sets up the Inform language and world model. These extensions are, of course, no secret, but can be misleading to read. For one thing, they appear to have great freedom to set up the world model as it pleases, but in fact the I7 compiler may well crash unless certain things are done just so in the Standard Rules: they depend on each other.
+   - In the Inform app, this other language will be Inform 6, created in the 1990s for generating interactive fiction _story files_.
+   - For command-line users, it can instead be C, which can make an executable program for almost any computer old or new.
 
-Moreover, the Basic Inform and Standard Rules extensions use a number of syntaxes which are not documented in this chapter: these are constantly being altered, and it would not be safe to imitate them. Any I6-related syntax which is not documented in this chapter may be removed or changed in effect at any time without warning, for instance in an update of Inform to fix bugs.
+3) The relevant _back-end_ compiler, such as ```inform6``` or ```clang```, then turns that target program into the final product.
 
-## Defining phrases in Inform 6 {PM_UnendingI6} {PM_InlineTooLong} {PM_InlineRule} {PM_BadInlineExpansion} {PM_BadInlineTag}
+Inform, however, is unusual in allowing programmers quite a lot of access to what goes on at stage (2). In particular it's possible to
 
-^^{Inform 6 inclusions: phrases} ^^{phrases: defining in Inform 6} ^^{((- -)), for including Inform 6 code in Inform 7+sourcepart+} ^^{punctuation: curly braces: for including Inform 7 expressions in Inform 6+sourcepart+} ^^{|{ \}: for including Inform 7 expressions in Inform 6}
+- change details of how Inform generates Inter from source text at stage (1),
 
-The phrases described in this documentation, such as `end the story`, are all defined in the Standard Rules, and are for the most part defined not in terms of other I7 phrases but instead reduced to equivalents in I6. For instance:
+- teach Inform new ways to do this as part of phrase definitions, and
 
-	To end the story: (- deadflag=3; story_complete=false; -).
+- merge in Inter code which isn't generated from source text at all.
 
-The notation `(-` and `-)` indicates that what comes in between is I6 code. The minus sign is supposed to be a mnemonic for the decrease from 7 to 6: later we shall use `(+` and `+)` to go back up the other way, from 6 to 7.
+Although Inter code does have a textual form of a sort, it isn't the sort of thing any human would want to write directly. This is fairly typical:
 
-When a phrase is defined as containing only a single command, and that command is defined using I6 – as here – it is compiled in-line. This means that the phrase `end the story` will always be translated as ```deadflag=3; story_complete=false;```, rather than being translated into a call to a suitable function whose only statement is ```deadflag=3; story_complete=false;```.
+``` code
+typename K_number = int32
+typename K_func = function /main/K_number -> /main/K_number
+package (K_func) R_101 _code
+	local (/main/K_number) x
+	code
+		.begin
+		inv !if
+			inv !eq
+			val x
+			val 6
+			code
+				inv !return
+					val (/main/K_truth_state) 1
+		inv !return
+			val (/main/K_truth_state) 0
+```
 
-This is an easy case since the wording never varies. More typical examples would be:
+Inform therefore allows Inter to be produced not only from source text, but also from a second and much lower-level language. We will call this language "I6". We'll call it that because it looks very like Inform 6, though there are a handful of differences.
 
-	To say (something - number): (- print {something}; -).
+These two chapters will assume a rough familiarity with I6 syntax. Readers who have ever used a language like ```C``` will probably be able to pick this up as they go along. For example, the Inter code above corresponds roughly to a function of ```x``` written like so in I6:
+
+``` code
+[ R_101 x;
+	if (x == 6) return true;
+	return false;
+];
+```
+
+Failing guesswork, the documentation for the Inform 6 programming language is probably best: the _Inform Designer's Manual_, fourth edition (2001), the so-called "DM4", is the definitive book on that. This is open-access online: [Inform 6 Designer's Manual](https://inform-fiction.org/manual/html/). In 2001, Inform 7 did not exist, so "Inform" then meant "Inform 6".
+
+To reiterate, though, I6 material in an Inform source text is not fed in any direct way into the ```inform6``` compiler. It is translated into Inter code, which might or might not be code-generated to an Inform 6 program. Even if it is, the fragment which came from the I6 original will not look precisely the same.
+
+This is the first of two chapters about how to use I6 within Inform. In this chapter, we'll see how that can define powerful new phrases, among other things. These features will mostly benefit extension authors, but they can also be used directly in the source text for stories. In the next chapter, on [Kits], we'll go on to see how to create very much larger blocks of Inter which can provide the underpinning for powerful new features. Those can only usefully be created as parts of extensions.
+
+## Defining To phrases with I6 {PM_UnendingI6} {PM_InlineTooLong} {PM_InlineRule} {PM_BadInlineExpansion} {PM_BadInlineTag}
+
+^^{I6 syntax: phrases} ^^{phrases: defining in I6} ^^{((- -)), for writing I6 in source text+sourcepart+} ^^{punctuation: curly braces: used in I6 definitions of phrases+sourcepart+} ^^{|{ \}: used in I6 definitions of phrases}
+
+The phrases described in this book all have definitions given in the extensions automatically included with all projects — `Basic Inform`, the `Standard Rules` or, in a few cases, `English Language`. Those phrases are mostly, though not universally, defined using I6 notation, using the feature described below.
+
+For example, `Basic Inform` makes this definition:
+
+	To say (something - number) in words:
+		(- print (number) say__n=({something}); -).
+
+The minus sign in `(-` and `-)` is supposed to be a mnemonic for the decrease from 7 to 6: later we shall use `(+` and `+)` to go back up the other way, from 6 to 7.
+
+The use of the `(-` and `-)` notation, in place of an ordinary phrase body, tells Inform how to convert an _invocation_ of the phrase into Inter code. For example, `say 125;` would then be converted to the Inter resulting from this:
+
+``` code
+	print (number) say__n=(125);
+```
+
+whereas `say the capacity of the basket` might become:
+
+``` code
+	print (number) say__n=(I_basket_U1.A_capacity);
+```
+
+What has happened here, then, is that the _token_ `{something}` in the definition has been replaced by the value supplied to the `say` phrase.
+
+A few notes:
+
+1) The I6 code given can contain multiple statements, not just one, and can include loops, function calls and so on. In practice they seldom run to more than a line or two, but they absolutely can.
+
+2) These fragments of I6 will, once they become Inter code, eventually be translated to a target program. Even if that program is written in Inform 6, the original `say 125` and `say the capacity of the basket` would now come out differently again:
+
+   ``` inform6
+   LanguageNumber((say__n = 125));
+
+   @push self;
+   LanguageNumber((say__n = GProperty(OBJECT_TY, (self = I_basket_U1), A_capacity)));
+   @pull self;
+   ```
+
+   The details are unimportant. But it illustrates the point that writing I6 guides the compiler to create Inter: it doesn't compose literal Inform 6 material.
+
+3) Programmers may want to note the difference between this and a more regular definition:
+
+       To say (something - number) in words:
+           say "I don't know how to say [something] in words."
+
+   This second definition would create a _function_, and would call that function with the argument `125` or `I_basket_U1.A_capacity`. Phrases defined by `(-` and `-)` are more like what are called _macros_, though since they are type-checked they are more like the modern-day macros of languages like Swift or Rust than like the old-school macros of C.
+
+There can of course be more than one token in a phrase:
+
 	To sort (T - table name) in (TC - table column) order:
 		(- TableSort({T}, {TC}, 1); -).
 
-When the braced name of one of the variables in the phrase preamble appears, this is compiled to the corresponding I6 expression at the relevant position in the I6 code. So, for instance,
+When the braced name of a token appears in the I6 — for example, ```{TC}``` — this is compiled to the I6 expression for whatever was supplied in that token.
 
-	say the capacity of the basket
+Braces `{` are significant in I6, so this syntax rule might cause ambiguity. To obtain a real brace, it's enough to ensure that the character following it is a space.
 
-might be compiled to
-
-``` inform6
-print O17_basket.capacity;
-```
-
-because `{something}` is expanded to `capacity of the basket` (I7 code) and then translated to ```O17_basket.capacity``` (I6 code), which is then spliced into the original definition `"print {something};"`.
-
-Braces `{` are of course significant in I6. A real brace can be obtained by making the character following it a space, and then I7 will not attempt to read it as a request for substitution.
-
-It's also possible for the pair of characters `-)` to occur in I6 code, for example here:
+It's also possible for the pair of characters `-)` to occur in I6 code, particularly with ```for``` loops like this one:
 
 ``` inform6
 for (i=3 : i>0 : i--)
 ```
 
-and I7 will read the `-)` as terminating the I6; we can get around this with an extra space:
+We can prevent Inform from reading the `-)` as terminating the I6 by again adding an extra space:
 
 ``` inform6
 for (i=3 : i>0 : i-- )
 ```
 
-Warning: Inform 6 uses a restricted character set, allowing use of most of the accented characters in ISO Latin-1 (those found in a set called ZSCII) but little beyond that. It's therefore hazardous to use any exotic Unicode characters in an inclusion.
+## Defining To decide phrases with I6
 
-## Phrases to decide in Inform 6
+^^{I6 syntax: phrases to decide whether/if} ^^{I6 syntax: phrases to decide a value} ^^{phrases: defining in I6}
 
-^^{Inform 6 inclusions: phrases to decide whether/if} ^^{Inform 6 inclusions: phrases to decide a value} ^^{phrases: defining in Inform 6}
+The previous section showed how to define so-called _void phrases_ with I6: that is, those which do something, but produce no value or opinion as a result.
 
-There are basically three forms of phrase in I7: phrases which do something, but produce no value or opinion as a result; phrases to decide whether or not something is true; and phrases to decide on a value. We have already seen examples of writing the first form in I6:
-
-	To say (something - number): (- print {something}; -).
-
-Here the I6 form is required to be I6 routine code in void context, that is, it will normally be one or more statements each of which ends in a semicolon (unless there are braced code blocks present). In this case, we have just one I6 statement, ending in a semicolon.
+We can also define _to decide phrases_ with I6. There are two sorts of these: first, those which decide whether or not something is true.
 
 An example of a phrase to decide whether something is true would be:
 
-	To decide whether in darkness: (- (location==thedark) -).
+	To decide whether (N - a number) scares people:
+		(- ({N} % 10 == 4) -).
 
-Here the I6 code providing the definition must be a valid I6 condition, and be in round brackets, but there is no semicolon.
+This in fact tests whether the number ends in a "4", which is considered bad luck in some Pacific Rim countries. (We'll ignore negative numbers.)
 
-Lastly, an example of a phrase to decide on a value:
+A key difference between this definition and the ones in [Defining To phrases with I6] is that the content between `(-` and `-)` is not a series of statements ending in semicolons: it's an _expression_, which evaluates to a number. If that number is non-zero, the decision is yes; otherwise, the decision is no. 
+
+In I6, there's no real difference between a condition and an expression, so a phrase to decide on a value is basically the same:
 
 	To decide which number is the hours part of (t - time): (- ({t}/60) -).
 
-Again, this is a value in I6 as well: no semicolon. It is probably safest to place the value in round brackets.
+Again, this must be an I6 expression. It's conventional to write the value in round brackets, to emphasise that it is a value, and not a piece of imperative code.
 
-## Handling phrase options
+This is all very well when the kind of value needed can easily be expressed in I6. That's true enough for `number`, `real number`, `truth state`, and `time`. But values which need more elaborate storage, like `text` or `list of real numbers`, are not so simple. Beware that the I6 expression ```"rabbit"``` certainly looks like text, but it is _not_ a valid Inform `text` value.
+
+However, just as braces can be used to represent "tokens" (like `{t}` or `{N}` in the examples above), they can also do certain other things. A particularly useful one is `{-new:KIND}`, which produces a valid default value for the kind named. For example, `{-new:text}` makes a valid (albeit empty) text.
+
+The following decides on the list `{54, -18}`:
+
+	To decide which list of numbers is the magic list:
+		(- (LIST_OF_TY_InsertItem(LIST_OF_TY_InsertItem({-new:list of numbers}, 54), -18)) -).
+
+As examples like this suggest, it's not really possible to work with tricky kinds of value such as text, stored actions or lists without some knowledge of how they are implemented by ```BasicInformKit```, which provides Inter-level support for them. That's where the `LIST_OF_TY_InsertItem` function can be found, for example.
+
+## By value and by reference
+
+Consider the following phrase definition, which reverses a list, so that `{1, 4, 9}` becomes `{9, 4, 1}`:
+
+	To reverse (L - a list of numbers):
+		(- LIST_OF_TY_Reverse({-lvalue-by-reference:L}); -).
+
+Clearly the actual work is done by the `LIST_OF_TY_Reverse` function from ```BasicInformKit```: how it does that work needn't concern us. But why isn't the definition this instead?
+
+	To badly reverse (L - a list of numbers):
+		(- LIST_OF_TY_Reverse({L}); -).
+
+The answer is that one translates `L` _by reference_, and the other _by value_.
+
+* `{L}` makes a _copy_ of the list passed to it, but
+* `{-lvalue-by-reference:L}` makes a direct reference to the original.
+
+So for example:
+
+	When play begins:
+		let L be {1, 4, 9};
+		showme L;
+		reverse L;
+		showme L;
+		badly reverse L;
+		showme L;
+
+produces first `{9, 4, 1}` — as expected, the effect of `reverse L` — but then `{9, 4, 1}` again. That's because `badly reverse L` made a copy of `L`, as a result of which it had its own independent list, which happened also to contain the numbers 9, 4, and 1; it reversed that copy; and then, since the copy was no longer needed for anything, threw it away. The original `L` was untouched.
+
+In general, then, if a phrase wants to mutate a piece of existing data in some way, it should be defined using a reference like this.
+
+## Defining generic phrases in I6
+
+^^{generic phrases} ^^{kinds: kind variables} ^^{variables: kind variables} ^^{characters (letters): capital letters as kind variables}
+
+We have already seen so-called _generics_: see [Generic phrases] and [Kind variables] for details. But for example,
+
+	To decide what list of Ks is tripled-up (V - value of kind K):
+		let L be a list of Ks;
+		add V to L;
+		add V to L;
+		add V to L;
+		decide on L.
+
+	When play begins:
+		showme tripled-up 23;
+		showme tripled-up "fish";
+		showme tripled-up {3, 7, 9};
+
+This shows the lists:
+
+``` transcript
+"tripled-up 23" = list of numbers: {23, 23, 23}
+"tripled-up "fish"" = list of texts: {"fish", "fish", "fish"}
+"tripled-up { 3, 7, 9 }" = list of lists of numbers: {{3, 7, 9}, {3, 7, 9}, {3, 7, 9}}
+```
+
+How might we replicate this if we were defining the same phrase using I6? Like so:
+
+	To decide what list of Ks is tripled-up (V - value of kind K):
+		(- (LIST_OF_TY_InsertItem(
+				LIST_OF_TY_InsertItem(
+					LIST_OF_TY_InsertItem(
+						{-new:list of K},
+						{V}),
+					{V}),
+				{V})) -).
+
+And note that the kind variable `K` is available inside the I6 definition, where it is used in `{-new:list of K}`.
+
+## Repeat loops and their variables
+
+A special syntax is available for defining new forms of `repeat` loop. For example:
+
+	To repeat fivefold begin -- end loop:
+		(-	for ({-my:1} = 1: {-my:1} <= 5: {-my:1}++)
+				{-block}
+		-).
+
+Note the `begin -- end loop` suffix, which tells Inform that a "block" of further phrases hangs off of the loop. It is available _only_ for phrases which begin `repeat` or `while`, and since it's hard to imagine non-standard forms of `while`, it exists really to allow a range of interesting `repeat` loops to be created.
+
+The body of the loop expands into the token `{-block}` in its definition. For example, in the following:
+
+	repeat fivefold:
+		say "Bang!"
+
+`say "Bang!"` is the material which `{-block}` expands to.
+
+The other noteworthy thing in this definition is the repeated mention of `{-my:1}`. What this does is to allocate a temporary local variable, which in this case will be used as a loop counter. It can be used exclusively by the phrase for as long as the phrase is executing: we will never know its name. (It may already have been used by some other phrase before us, and may go on to further adventures afterwards.) Note that this:
+
+	repeat fivefold:
+		repeat fivefold:
+			say "Bang!"
+
+works as expected, saying ``Bang!`` twenty-five times. Two different local variables are active here: `{-my:1}` for the outer loop will be a different variable from `{-my:1}` for the inner loop.
+
+I6 phrase definitions can allocate up to nine locals, `{-my:1}` to `{-my:9}`. While they are mostly useful for `repeat` loops, they're not restricted to them and do have other applications.
+
+The slightly foolish example above conceals its "loop variable". It's more usual to have a loop variable with a name. For example, `Basic Inform` contains a definition like so:
+
+	To repeat with (loopvar - nonexisting K variable)
+		running from (v - arithmetic value of kind K) to (w - K) begin -- end loop:
+			(-  for ({loopvar}={v}: {loopvar}<={w}: {loopvar}++) 
+					{block}
+			-).
+
+...to tell Inform how to compile something like:
+
+	repeat with ticker running from 9:10 am to 10:51 am:
+		say "The ticker reads [ticker].";
+
+Here `9:10 am` is a `time` value, and that is indeed an `arithmetic value`, so `v` is set to `9:10 am` and `K` is set to `time`; and that fits with `w`, because `10:51 am` is also a `time`. So far, so good.
+
+But note the first token, which has a rather unusual wording. `nonexisting K variable` matches any name which is not already taken, and creates a local variable with that name, giving it the kind `K`. So in this case, it creates `ticker`, and gives it the kind `time`.
+
+The loop header is then expanded. In `for ({loopvar}={v}: {loopvar}<={w}: {loopvar}++)`, the token `{loopvar}` expands to whatever local `ticker` has been assigned to. In the body of the loop, meanwhile, `ticker` compiles to this same local. And when the loop completes, the variable will be given up again.
+
+Besides `nonexisting K variable`, Inform also supports `existing K variable`, which differs from it in the obvious way. Both can only refer to local variables, which are basically `let` values and `repeat` loop counters. But these are in fact special cases of a more general concept, _storage_: somewhere a value can be stored. For example, if we write:
+
+	A door has a number called street number.
+	
+	The red door is a door in the Old Street.
+
+	The postal delivery time is a time that varies.
+
+...then `postal delivery time` and `street number of the red door` are both examples of storage which would not match either `existing K variable` or `nonexisting K variable`.
+
+The phrase token `storage` matches any storage location; `storage of KIND` matches storage holding a given kind. For example:
+
+	To clear the (name of kind of value K) in (S - storage of K):
+		(- 	{-my:1} = {-new:K};
+			{-copy:S:1}
+		-).
+
+Note another tricksy bracing there: `{-copy:S:1}` makes a copy of the data in `{-my:1}` and puts it in the storage item `S`. This is needed because it really isn't as simple as `{S} = {-my:1}`: it can expand to rather more code than that, depending on what the nature of the storage is.
+
+## Invocation counters {PM_LabelNamespaceTooLong}
+
+As we have seen, I6 phrase definitions are able to create temporary values, sometimes with natural-language names, sometimes anonymously, which last for the duration of the phrase's execution but no longer.
+
+But they can also be given some persistent state: that is, some sort of value which is retained between one invocation and the next.
+
+This is managed using _invocation counters_. Here is a simple example:
+
+	To moan:
+		(- 	print "That's ", {-counter:MOANCOUNT}, ".^";
+			{-counter-up:MOANCOUNT};
+		-).
+
+If we then run `moan; moan; moan`, we get:
+
+``` transcript
+That's 0.
+That's 1.
+That's 2.
+```
+
+There is no variable called `MOANCOUNT`. This is only a label we're using so that we can have multiple different counters and still distinguish them from each other. The first time Inform invokes `moan;`, it expands the bracing `{-counter:MOANCOUNT}` to 0. It also expands `{-counter-up:MOANCOUNT}`, which produces no code in the final program, but internally adds 1 to the `MOANCOUNT` held in the compiler. And so on. `moan; moan; moan` therefore compiles to the equivalent of:
+
+	print "That's ", 0, ".^";
+	print "That's ", 1, ".^";
+	print "That's ", 2, ".^";
+
+Note that this is contrast with:
+
+	repeat with X running from 1 to 3:
+		moan;
+
+This would print:
+
+``` transcript
+That's 0.
+That's 0.
+That's 0.
+```
+
+The counter does not count the number of times the phrase is _executed_: it counts the number of times it is _invoked_, that is, compiled. The `repeat` loop above does something three times, but what it does uses the same invocation each time.
+
+That really only seems mildly useful, though. Where invocation counters come into their own is in managing storage. Here is another toy example:
+
+	To remember (N - number):
+		(-	{-counter-makes-array:MEMCOUNT}
+			{-counter-storage:MEMCOUNT}-->{-counter:MEMCOUNT} = {N};
+		-).
+
+	To decide which number is the remembered number:
+		(-	({-counter-makes-array:MEMCOUNT}
+			{-counter-storage:MEMCOUNT}-->{-counter:MEMCOUNT})
+		-).
+
+What happens here is that `{-counter-makes-array:MEMCOUNT}` says that Inform should reserve run-time storage in an array which has one entry for each possible value of the counter (in this case, `MEMCOUNT`). In this toy example, the counter is never actually incremented — there's no `{-counter-up}` — so in fact the array will contain only a single entry. Still, that's memory. The effect is that:
+
+	remember 267;
+	say "Oh yes, I was going to use [the remembered number] for something.";
+
+will output ``Oh yes, I was going to use 267 for something.`` Between the execution of the two phrases, the value 267 was stashed in the array entry `{-counter-storage:MEMCOUNT}-->0` (because `{-counter:MEMCOUNT}` was 0).
+
+It is also possible to move counters downwards, using `{-counter-down:MEMCOUNT}`. This must be done with great care, because they cannot be allowed to go below zero. Still:
+
+	To remember (N - number):
+		(-	{-counter-makes-array:MEMCOUNT}
+			{-counter-up:MEMCOUNT}
+			{-counter-storage:MEMCOUNT}-->{-counter:MEMCOUNT} = {N};
+		-).
+
+	To decide which number is the remembered number:
+		(-	({-counter-makes-array:MEMCOUNT}
+			{-counter-storage:MEMCOUNT}-->{-counter:MEMCOUNT}
+			{-counter-down:MEMCOUNT})
+		-).
+
+Provided the user is very careful, this allows the following to work:
+
+	remember 5;
+	remember 11;
+	showme the remembered number;
+	showme the remembered number;
+
+producing
+
+``` transcript
+"remembered number" = number: 11
+"remembered number" = number: 5
+```
+
+So here we've made a little stack. The outer invocations of `remember` and `remembered number` are using the entry `{-counter-storage:MEMCOUNT}-->0`, which holds 5, and the inner pair are using the entry `{-counter-storage:MEMCOUNT}-->1`, which holds 11.
+
+As a final spin on all of this, `{-counter-makes-array:MEMCOUNT:3}` would have told Inform to allocate three consecutive array entries per counter value of `MEMCOUNT`, rather than just one. So we can have more storage then just one value, if we need it.
+
+This is all a little fragile and contrived-looking, but it will come into its own when we make segmented say phrases, in the next section.
+
+Counters can also be used to make jump labels. For example,
+
+	To start screening (N - number):
+		(-	{-counter-up:SCREENCOUNT}
+			{-counter-makes-array:SCREENCOUNT}
+			{-counter-storage:SCREENCOUNT}-->{-counter:SCREENCOUNT} = {N};
+		-);
+
+	To screen out (M - number):
+		(-	if ({-counter-storage:SCREENCOUNT}-->{-counter:SCREENCOUNT} == {M})
+				jump {-label:SCREENCOUNT};
+		-);
+
+	To finish screening:
+		(- .{-label:SCREENCOUNT}; -).
+
+And then, for example:
+
+	start screening 20;
+	screen out 5;
+	say "Well, it wasn't 5.";
+	screen out 10;
+	say "Or 10.";
+	screen out 20;
+	say "Or 20.";
+	finish screening;
+	say "Done.";
+
+produces:
+
+``` transcript
+Well, it wasn't 5.
+Or 10.
+Done.
+```
+
+because `screen out 20` jumped to the `finish screening` point, but `screen out 5` and `screen out 10` did not.
+
+In practice, this is a very rickety way to define bizarre control structures, but if used with care then some surprising effects are possible.
+
+## Defining segmented text substitutions with I6
+
+^^{Inform 6 inclusions: phrase elements}
+
+A "segmented" text substitution is a syntax where text is placed between two or more different text substitutions. For example:
+
+	"Annie [one of]dances[or]sulks[or]hangs out at Remo's[at random]."
+
+Here there are four segments: `one of`, `or`, `or`, and `at random`.
+
+Implementing segmented substitutions will make great use of the invocation counters and storage feature already described (see [Invocation counters]), but it needs something else, too. We have to guard against the user accidentally writing this:
+
+	"The hotel [at random] is on fire."
+
+We want `at random` to be legal only when closing a `one of` construction. But if `at random` had been defined as just another text substitution, Inform would not have been able to detect that.
+
+Inform therefore allows us to mark text substitutions as being any of three special kinds: beginning, in the middle of, or ending a segmented substitution.
+
+- If the phrase prototype ends `-- beginning CONSTRUCT`, then this is a substitution beginning the segmented substitution code-named `CONSTRUCT`.
+- If it ends `-- continuing CONSTRUCT`, then it can appear only between a beginning phrase and an ending phrase for the same `CONSTRUCT`. Any number of continuing segments can appear, including none.
+- If it ends `-- ending CONSTRUCT`, then it brings this use to an end. This phrase has to follow a beginning phrase for the same `CONSTRUCT`.
+
+These code-names are just labels to tell the compiler to tie the phrase definitions together: they have no other significance.
+
+As a simple example, in this construct we have a beginning and an ending segment but no continuing ones in between:
+
+	To say emphasis on -- beginning say_emphasis_on: (- style underline; -).
+	To say emphasis off -- ending say_emphasis_on: (- style roman; -).
+
+This creates `"[emphasis on]"` and `"[emphasis off]"` such that they can only be used as a pair, like so:
+
+	"This is [emphasis on]quite sophisticated[emphasis off]."
+
+Here we used the code-name `say_emphasis_on` to tell Inform to relate these two definitions together. It seems a good idea to choose code-names which, like this one, consist of the construction's name but with underscores in place of spaces: that way, no unexpected name clashes between code-names are likely to occur.
+
+Note that Inform does _not_ allow the same segmented say construction to be nested in the same text, and this greatly simplifies things when defining them.
+
+### Worked example: say one of
+
+The `say one of` construction is immensely useful, and also extensible. It can't be implemented fully in stand-alone phrase definitions, because it needs some supporting I6 functions, perhaps stored in some kit. Even so, it requires no special compiler support.
+
+In particular, let's see how `"[one of]Alice[or]Bettina[or]Carol[cycling]"` works. This is supposed to print ``Alice`` the first time, then ``Bettina`` the second, then ``Carol``, then back to ``Alice`` and so on.
+
+Unsurprisingly the beginning segment does almost all of the work, because that's the part which chooses what to print. Here goes, in slightly simplified form:
+
+	To say one of -- beginning say_one_of: (-
+		{-counter-makes-array:say_one_of}
+		{-counter-storage:say_one_of}-->{-counter:say_one_of} = {-final-segment-marker}({-counter-storage:say_one_of}-->{-counter:say_one_of}, {-segment-count});
+		switch (({-counter-storage:say_one_of}-->{-counter:say_one_of}{-counter-up:say_one_of})%({-segment-count}+1)-1)
+	{-open-brace}
+			0: -).
+
+	To say or -- continuing say_one_of:
+		(- {-segment-count}: -).
+
+	To say cycling -- ending say_one_of with marker I7_SOO_CYC:
+		(- {-close-brace} -).
+
+What does this produce? Suppose this is the 7th invocation of the phrase in the story, and suppose Inform has chosen to put the storage into `some_array`. Then we get code like this:
+
+	some_array-->6 = I7_SOO_CYC(some_array-->6, 3);
+	switch ((some_array-->6) % 4 - 1) {
+		0: print "Alice";
+		1: print "Bettina";
+		2: print "Carol";
+	}
+
+Note that when expanding a beginning phrase, `{-segment-count}` expands to the number of segments used (not counting the ending) — here, that's 3. But when expanding a continuing phrase, it expands to a count of the segments so far. So in the first use of `"[or]"` it becomes 1, and in the second 2.
+
+The `4` in the line `switch ((some_array-->6) % 4 - 1` is initially a little mysterious. What are there four of? The answer is that we are allowing for a fourth possibility, which is to print nothing at all. In the `one of ... cycling` construction, that never happens. But in `one of ... stopping`, for example, it does. The idea, then, is that if `some_array-->6` contains 1, we print ``Alice``; for 2, we print ``Bettina``; for 3, ``Carol``; but for 0, we would print nothing.
+
+The other enigmatic thing here is the "marker", which seems to be the strange-looking `I7_SOO_CYC`. This is a way to allow the same construction to have multiple possible endings. For example:
+
+	To say stopping -- ending say_one_of with marker I7_SOO_STOP:
+		(- {-close-brace} -).
+
+The only difference between `"[stopping]"` and `"[cycling]"` is that they have different markers: `I7_SOO_STOP` and `I7_SOO_CYC`. These are in fact the names of functions which can be found in ```BasicInformKit```. They look like so:
+
+	[ I7_SOO_CYC oldval count;
+		oldval++; if (oldval > count) oldval = 1;
+		return oldval;
+	];
+
+	[ I7_SOO_STOP oldval count;
+		oldval++; if (oldval > count) oldval = count;
+		return oldval;
+	];
+
+Each of these functions takes the original state of the counter, which will be `some_array-->6`, and the total number of segments, and returns a new state. Note that the initial state is always 0. `I7_SOO_CYC` takes this to 1, then 2, then 3, then 1, then 2, ...; whereas `I7_SOO_STOP` takes this to 1, then 2, then 3, then 4, then 4, then 4, ...: and this value causes printing not to occur. So that is how we get the cycling versus stopping behaviour.
+
+`Basic Inform` defines a number of other possible endings, each with its own marker function to perform the state change. Because `"[one of] ... [or] ..."` is such a useful construction – switching between alternative forms of text, which writers of IF very often do – the above implementation is intentionally left open for new endings to be added, and the examples below show how easily this can be done.
+
+Lastly: the weasel words about "slightly simplified form" above are because the description above leaves out some highly technical business to do with making sure that comparisons between two texts do not behave unexpectedly because one has been iterated during the comparison process. Essentially, we turn off the state changing during the time when a text comparison is being made. But this detail does not change the big picture.
+
+## Defining adjectives with I6
+
+^^{I6 inclusions: adjectives} ^^{adjectives: defining: with I6}
+
+There are three ways to specify that an adjective is defined at the I6 level. For example:
+
+	Definition: a number is prime rather than composite if Inter routine
+		"PRIMALITY_TEST" says so (it is greater than 1 and is divisible only by itself and 1).
+
+Inform now actually tests if a number N is prime by calling ```primality_test(N)```, and it assumes that we have also included such a routine in the output. The routine is expected to return true or false accordingly.
+
+The text in brackets does nothing functional, but is the text used in the Lexicon dictionary part of the Phrasebook index for the user's benefit; it should be a brief definition. Extension authors are asked to provide these little definitions, so that their users won't be confused by blank lexicon entries.
+
+The second way makes a more capable adjective, since it can not only be tested, but also made true or false using `now`. For example:
+
+	Definition: a scene is crucial if Inter routine "SceneCrucial" makes it so
+		(it is essential to winning).
+
+The difference here is `makes it so`, not `says so`, and as this implies, the routine has more power. `SceneCrucial` is called with two arguments: z
+`SceneCrucial(S, -1)` tests whether the scene is crucial or not and returns true or false; `SceneCrucial(S, true)` must make it true; and `SceneCrucial(S, false)` must make it false. Another useful difference is that if the kind of value is one which is stored in block form (e.g. for an adjective applying to text), the routine is given a pointer to the block, not a fresh copy.
+
+A third way to define an adjective, which should be used only if speed is exceptionally important, is to provide a "schema" – a sort of I6 macro, like those provided by the C preprocessor. For example:
+
+	Definition: a rulebook is exciting if I6 condition
+		"excitement_array-->(*1)==1" says so (it is really wild).
+
+The escape `*1` is expanded to the value on which the adjective is being tested. (This is usually faster than calling a routine, but in case of side-effects, the `*1` should occur only once in the condition, just as with a C macro.) To repeat: if in doubt, use the Inter routine method above.
+
+## Inform values from I6 {PM_TranslatesNonAction} {PM_TranslatesActionAlready} {PM_TranslatedTwice} {PM_TranslatedUnknownCategory} {PM_TranslatedToNonIdentifier} {PM_NonPropertyTranslated} {PM_NonQuantityTranslated} {PM_QuantityTranslatedAlready}
+
+^^{accessible to Inter as...+assert+} ^^{properties: making accessible to I6} ^^{actions: making accessible to I6} ^^{objects: making accessible to I6}  ^^{kinds: making accessible to I6} ^^{activities: making accessible to I6}  ^^{((+ +)), for including Inform 7 code in I6+sourcepart+}
+ 
+What if an I6-written definition needs to access something defined in the source text? For suppose, if the source text says:
+
+	The Maltese Falcon is on the mantelpiece.
+
+How can I6 code refer to the Falcon? Clearly, inside the Inter code for the story, there will be some constant whose value is the object number for the Falcon. But what is it? Probably something like `I_maltese_falcon_U1`, but only probably. The Inform compiler could have chosen anything it wanted. How can we find out? Here are three answers, with the best first.
+
+### By not finding out
+
+The flip answer is that there's almost certainly a better way to achieve whatever is needed by writing Inform source text in the ordinary way. For example, there's no need to write:
+
+	To decide whether clues are here:
+		(- (TestVisibility(player, I_maltese_falcon_U1)) -).
+
+since this works fine:
+
+	To decide whether clues are here:
+		decide whether or not the player can see the Maltese Falcon.
+
+### By making it accessible to Inter
+
+The next best option is to tell the Inform compiler to make the I6 value for the Falcon available by defining a constant which will refer to it. For example:
+
+	The Maltese Falcon object is accessible to Inter as "MALTESE_FALCON".
+
+	To decide whether clues are here:
+		(- (TestVisibility(player, MALTESE_FALCON)) -).
+
+Other constructs can also be made accessible in this way. Here is a rulebook:
+
+	The banana rules is a rulebook.
+
+	The banana rules is accessible to Inter as "BANANA_RULES".
+
+	A banana rule:
+		say "I am yellow!"
+
+	To exhibit the behaviour:
+		(- FollowRulebook(BANANA_RULES); -).
+
+And here is an activity:
+
+	Grimly testing something is an activity.
+
+	The grimly testing activity is accessible to Inter as "GRIM_ACT".
+
+	For grimly testing:
+		say "I am grimly testing."
+
+	To exhibit the behaviour:
+		(- CarryOutActivity(GRIM_ACT); -).
+
+An action:
+
+	Smashing is an action applying to one thing.
+
+	The smashing action is accessible to Inter as "Smash".
+
+	To go smash (target - a thing):
+		(- TryAction(false, player, ##Smash, {target}, nothing); -).
+
+A kind:
+
+	A fruit is a kind of thing.
+
+	The fruit kind is accessible to Inter as "K_fruit".
+
+A property:
+
+	A thing can be coveted or neglected.
+	
+	The coveted property is accessible to Inter as "coveted".
+
+A table and column:
+
+	Table of Fizzy Drinks
+	name	niceness
+	"coke zero"	1
+	"sprite"	0
+
+	The Table of Fizzy Drinks is accessible to Inter as "TABLE_FIZZ".
+
+	The niceness column table column is accessible to Inter as "NICENESS_COLUMN".
+
+Variables, however, cannot at present be made `accessible to Inter`.
+
+Note that none of these constructions — the `banana rules`, the `grimly testing something activity`, the `smashing action` and so on — are being created from raw Inter material. The Inform compiler is creating them, just as normal. All that is happening is that _names_ for them are being made available at the I6 level.
+
+### By using `(+` and `+)`
+
+This is very much a last resort. But for _some_ simple Inform values, it's possible to mix source text with I6 code like so:
+
+	To decide whether clues are here:
+		(- (TestVisibility(player, (+ Maltese Falcon +) )) -).
+
+Just as `(-` and `-)` is supposed to suggest stepping down from Inform 7 to I6, so `(+` and `+)` is supposed to suggest stepping up again.
+
+Two cautionary notes:
+
+1) It is likely that this feature will some day be removed from Inform. While it is not officially deprecated yet, it is troublesome for the compiler to support and is subject to restrictions which are difficult to remove or explain. If at all possible, we should already use `accessible to Inter` instead.
+
+2) On rare occasions, this notation can be triggered by accident. For example, this admittedly very strange definition looks as if it should work:
+
+       To count:
+           (- for (++{-my:1}; {-my:1}<10; {-my:1}++) print i, " "; -).
+
+   But in fact it doesn't, because it contains what Inform thinks is a matched pair of `(+` and `+)` either side of `+{-my:1}; {-my:1}<10; {-my:1}+`. That excerpt is obvious nonsense, of course, and it will throw a problem message. This could be fixed by inserting a space:
+
+       To count:
+           (- for ( ++{-my:1}; {-my:1}<10; {-my:1}++) print i, " "; -).
+
+   Note that `+)` is only significant where it follows a `(+`, and in this revised version it doesn't.
+
+## Use options from I6
+
+^^{use options: accessing from I6}
+
+A phrase with an I6 definition can access the settings of use options directly provided that they have been declared with a view to that. For example:
+
+	Use drifting lilypads translates as the configuration flag DRIFTING_LILYPADS.
+	Use horny skin translates as the configuration value SKIN_TYPE = 1.
+	Use scaly skin translates as the configuration value SKIN_TYPE = 2.
+	Use frog count of at least 10 translates as the configuration value FROG_COUNT.
+	Use maximum jump height of 6 translates as the configuration value JUMP_HEIGHT.
+
+See [Use options for extensions] for more on how to define these: the important point here is that, because the declarations supplied identifier names for the values, those values are now accessible from I6. For example:
+
+	To jump (H - height):
+		(-  if ({H} > JUMP_HEIGHT) print "Jumping ", JUMP_HEIGHT, " feet.^";
+			else print "Jumping ", {H}, " feet.^";
+		-).
+
+Note that `DRIFTING_LILYPADS`, `SKIN_TYPE`, `FROG_COUNT` and `JUMP_HEIGHT` are all constants, not variables.
+
+## Phrase options from I6
 
 ^^{Inform 6 inclusions: phrase options} ^^{phrases: defining in Inform 6}
 
@@ -19481,288 +22272,30 @@ This can be used by, say:
 
 `{phrase options}` is a special substitution: it is a bitmap which assigns the given options one bit each, starting with the least significant bit for the first-mentioned option (`with newlines` above) and going up to the most significant bit for the last (`with extra indentation`).
 
-## Making and testing use options
+## Inclusions of I6 code {PM_BadI6Inclusion} {PM_BeforeTheLibrary} {PM_WhenDefiningUnknown} {PM_IncludeInsteadOf}
 
-^^{Inform 6 inclusions: use options} ^^{use options: defining in Inform 6} ^^{use options: active / inactive+adj+} ^^{active / inactive (use option)+adj+} ^^{inactive / active (use option)+adj+} ^^{translates as...+assert+: use options}
+^^{I6 inclusions: long sections of code}
 
-Use options (see the chapter on [Source Text] above) manifest themselves in the I6 code generated by I7 as constants which are either defined, or not. For instance, the `use American dialect` option results in the constant ```DIALECT_US``` being defined, a constant which otherwise would not be. Some use options define the constant as a particular value, others simply define it (so that I6 gives this constant the value 0).
+With some reluctance, we now need to come to an entirely new sentence meaning: `Include (- ... -)`, which allows the user to insert whole I6 "directives" into a story. When defining phrases with `(-` and `-)`, we were only contributing small fragments of functions: but now we can write entire functions, variables and so forth.
 
-New use options can be created as in the following examples, which are found in the Standard Rules:
+Why the reluctance? The answer is that, where possible, it's always best to separate out Inform source text from any low-level I6 material. Any large quantities of I6 are much better placed in a kit: see the final chapter, [Kits]. So, for example, the source text for the `Standard Rules` and `Basic Inform` extensions do not make a single use of `Include (- ... -)`. Although they need a great deal of Inter code to back them up, all of that is in ```BasicInformKit```, ```WorldModelKit``` and so on.
 
-	Use American dialect translates as (- Constant DIALECT_US; -).
-	Use full-length room descriptions translates as (- Constant I7_LOOKMODE = 2; -).
-
-Most Inform users will not need to test whether a use option is currently set: after all, they will know whether or not their own story uses American dialect. But an extension does not know what use options apply in the story which is using it. An extension which needs to print a list, using its own formatting, might want to know whether `use serial comma` is active. Or it might want to speak differently in American dialect.
-
-To test for American dialect, we should ideally not use I6 to look for the constant ```DIALECT_US``` using #ifdef: there is no guarantee that this constant will not be renamed at some point. Instead we can perform the test directly in I7:
-
-	if the American dialect option is active, ...
-
-and similarly for all other named use options. The adjectives `active` and `inactive` have the obvious meanings for use options. This means it's possible to describe the current options like so:
-
-	say "We're currently using: [list of active use options].";
-
-The result might be, say,
-
-``` transcript
-We're currently using: dynamic memory allocation option [8192], maximum text length option [1024], maximum things understood at once option [100], American dialect option and fast route-finding option.
-```
-
-This may be useful for testing purposes.
-
-Use options can also allow the writer to raise certain maximum values. If we write an extension which needs some I6 array, say, and therefore has some limitation – for instance a footnotes presenter which can handle at most 100 footnotes before its array space runs out – it would obviously be cleaner to allow this maximum to be raised. We can set this up like so:
-
-	Use maximum presented footnotes of at least 100 translates as (- Constant MAX_PRESENTED_FOOTNOTES = {N}; -).
-
-With such a definition, the number given is the default value, and the I6 source is included whether or not anybody uses the option: the default value being given if nobody does. The text `{N}` is replaced with the value. So the above definition normally results in this being defined:
-
-	Constant MAX_PRESENTED_FOOTNOTES = 100;
-
-but if the user writes
-
-	Use maximum presented footnotes of at least 350.
-
-then instead the I6 inclusion becomes:
-
-``` inform6
-Constant MAX_PRESENTED_FOOTNOTES = 350;
-```
-
-The I6 constant ```max_presented_footnotes``` can then be used as the size of an array, for instance.
-
-Finally, note that it is legal to define the same use option more than once, but only if it has exactly the same meaning each time it is defined. (This is allowed so that multiple extensions all needing the same definition can safely make it, and still be used together.)
-
-## Longer extracts of Inform 6 code
-
-^^{Inform 6 inclusions: long sections of code} ^^{((- -)), for including Inform 6 code in Inform 7+sourcepart+} ^^{((+ +)), for including Inform 7 code in Inform 6+sourcepart+}
-
-Whole routines, object and class definitions (or any other directives) can be pasted in wholesale using sentences like so:
+With that said, here for example is a directive which creates an I6 function:
 
 	Include (-
-	[ ExtraFunction a b; return a*b; ];
+		[ FauxMultiply a b;
+			return a*b;
+		];
 	-).
 
-Such inclusions are pasted into the final compiled code at the end of the file, after the I6 grammar has been declared.
+And that could then be used like so:
 
-In such extracts, we sometimes need to refer to objects, variables or values which can't be described using I6: or rather, which can be described, but we don't know how. To this end, any text in an inclusion written in `(+` and `+)` parentheses is treated as an I7 value, and compiled accordingly, with all type-checking waived for the occasion. For instance:
+	To decide which number is the faux multiplication of (X - number) and (Y - number):
+		(- (FauxMultiply({X}, {Y})) -).
 
-	Include (-
-	Global my_global = (+ the tartan rucksack +);
-	-).
+Inclusions like this can also use `(+` and `+)` — see [Inform values from I6] for those — but the use of these is strongly discouraged, and subject to a number of hazards.
 
-Here `the tartan rucksack` is translated into `O18_tartan_rucksack`, or something similar: the I6 object created to represent the rucksack. Thus the actual line of code produced is
-
-	Global my_global = O18_tartan_rucksack;
-
-The material between `(+` and `+)` is generally treated as a value, and thus compiles to the I6 form of that value. But it could also be a property name, which compiles to the I6 form in question, or a defined adjective, which compiles to the name of the routine to call which tests whether that adjective is true.
-
-**Three warnings.** The material in `(-` and `-)` is not quite treated as literal. Certain characters cause Inform to react:
-
-1. Beware of accidental `(+` usage – for instance,
-
-	Include (-
-	[ MyCleverLoop i; for (++i; i<10; i++) print i; ]; ! Will fail to compile
-	-).
-
-looks reasonable, but contains `(+` and `+)`. Spaces around the first `++` would have been enough to avoid this one; `+)` is only significant where it follows a `(+`.
-
-2. Beware of placing an `@` character in the first column, that is, immediately following a new line. (In template code this marks off paragraph divisions.) So for instance,
-
-	Include (-
-	[ Set_Stream ret;
-	@glk 67 ret; ! Will fail to compile
-	];
-	-).
-
-is tripped up by the Glulx assembly language opcode `@glk` because this occurs in column 1. Indenting it with a little space or a tab is enough to avoid the problem.
-
-3. Be careful if you're creating an I6 variable holding initialised I7 text. For example,
-
-	Include (-
-	Global saved_optional_prompt = (+ "!!>" +); ! Will fail to compile
-	-).
-
-looks as if it will work, but doesn't, for reference-counting reasons we needn't go into; instead you need
-
-	Include (-
-	Array sop_storage --> PACKED_TEXT_STORAGE "!!>";
-	Global saved_optional_prompt = sop_storage;
-	-).
-
-But it's far better to avoid initialising text variables from I6 entirely. The same problems arise with constant lists.
-
-It should also be noted that the I6 syntax recognised inside `Include (- ... -)` is slightly restricted compared to the full range recognised by the stand-alone Inform 6 compiler. In particular:
-
-1. Only new-style `for` loops with colons in the header are allowed, so that `for (i=0: i<10: i++ )` is okay but `for (i=0; i<10; i++ )` is not. Moreover, `for` loops cannot contain empty clauses.
-
-2. Local variable names are not allowed to be the same as an I6 statement keyword: for example, `style` and `spaces` are not allowed.
-
-3. The (undocumented) Inform 6 function `indirect()` is not supported. But since `indirect(A)` is equivalent to `A()`, which does work, this is no real loss. Similarly, the `glk()` function is not supported: function calls to BasicInformKit should be used instead.
-
-4. Conditional compilation cannot be placed around cases in a `switch` statement.
-
-5. Compile-time constant expression evaluation can be used with arithmetic operations, so `Constant foo = bar + 1;` is okay, but not with bitwise or logical operations, so `Constant foo = (bar | 1);` does not work.
-
-6. Calculated values cannot occur as assembly-language operands.
-
-7. Calculated values can be used for array extents, but need to be put in brackets. For example:
-
-	Include (-
-	Array unit_captured_text --> (UNIT_CAPTURE_BUFFER_LEN + 1);
-	-).
-
-## Primitive Inform 6 declarations of rules
-
-^^{Inform 6 inclusions: rules} ^^{translates as...+assert+: rules} ^^{rules: defining in Inform 6}
-
-By writing a sentence like this:
-
-	The underground rule translates into I6 as "UNDERGROUND_R".
-
-we create a new rule, the `underground rule`, and also notify Inform that it will have no definition as I7 source text: instead, it will be provided as an I6 routine called ```underground_r```. We can define this with an Include like so:
-
-	Include (-
-	[ UNDERGROUND_R;
-		if (real_location hasnt light) { RulebookSucceeds(); rtrue; }
-		rfalse;
-	];
-	-).
-
-The rule should return false if it wants to make no decision, but call either `RulebookSucceeds` or `RulebookFails` and return true if it does. These routines can optionally take an argument: which will be the return value from the rulebook.
-
-Note that ```underground_r``` itself has no arguments. In the case of an action based rulebook, the I6 variables noun, second and actor can be referred to, while for a value based rulebook the parameter is stored in the I6 global variable parameter_object (which is not necessarily an object, in spite of the name).
-
-We can put this rule into a rulebook in the same way that any named rule can be:
-
-	The underground rule is listed in the spot danger rules.
-
-## Inform 6 objects and classes {PM_BadObjectTranslation}
-
-^^{Inform 6 inclusions: properties} ^^{Inform 6 inclusions: objects} ^^{Inform 6 inclusions: classes} ^^{translates as...+assert+: properties} ^^{translates as...+assert+: things} ^^{translates as...+assert+: kinds} ^^{properties: defining properties in Inform 6} ^^{things+kind+: creating: in Inform 6} ^^{kinds: defining: in Inform 6} ^^{Inform 6 Designer's Manual+title+}
-
-As might be expected, I7 compiles an I6 class for each kind, and an I6 object for each of its own objects. We can meddle with its compilation process here using a further refinement of Include. For instance, suppose we want the I6 class definition for things to come out containing a property like this:
-
-``` inform6
-Class K2_thing ! [...]
-	with marmalade_jar_size 6,
-	! [...]
-```
-
-How to arrange this? One way is to create an ordinary I7 property, like so:
-
-	A thing has a number called marmalade jar size. The marmalade jar size of a thing is usually 6. The marmalade jar size property translates into I6 as "marmalade_jar_size".
-
-(Without that last sentence, the property won't get any familiar name.) But sometimes we need more, and want to actually write new material to go into the definition. This can be done like so:
-
-	Include (- with before [; Go: return 1; ], -) when defining a vehicle.
-
-This glues in a new property to the class compiled to represent the I7 kind `vehicle`. (See the DM4 for why. However, since the entire actions machinery is different in the I7 world, note that `after`, `react_before` and `react_after` no longer have any effect, and nor does `before` for rooms.)
-
-And similarly:
-
-	Include (- has my_funny_attribute, -) when defining the hot air balloon.
-
-If we need a particular I7 object or kind to end up with a particular I6 name, we can write:
-
-	The whatsit object translates into I6 as "whatsit".
-	The thingummy kind translates into I6 as "thingummy_class".
-
-**Warning:** The `Include (- ... -) when defining ...` usage still works for the moment (except in projects compiled to C at the command line, where it may fail), but it is deprecated and likely to be removed in later versions of Inform. Avoid it if at all possible.
-
-## Inform 6 variables, properties, actions, and attributes {PM_TranslatesNonAction} {PM_TranslatesActionAlready} {PM_TranslatedTwice} {PM_TranslatedUnknownCategory} {PM_TranslatedToNonIdentifier} {PM_NonPropertyTranslated} {PM_NonQuantityTranslated} {PM_QuantityTranslatedAlready}
-
-^^{Inform 6 inclusions: properties} ^^{Inform 6 inclusions: global variables} ^^{Inform 6 inclusions: actions} ^^{translates as...+assert+: properties} ^^{translates as...+assert+: global variables} ^^{translates as...+assert+: actions} ^^{properties: defining properties in Inform 6} ^^{variables: global: defining in Inform 6} ^^{actions: defining new actions in Inform 6}
-
-I7's variables are usually compiled as entries in an array rather than as I6 variables. However, we can instead tell Inform to use an existing I6 variable (either one that we declare ourselves, or one in the I6 template layer). For example:
-
-	Room description style is a kind of value. The room description styles are Brief, Verbose and Superbrief.
-	The current room description style is a room description style that varies.
-	The current room description style variable translates into I6 as "lookmode".
-
-This is a feature provided to help I7 source text to use variables internal to the I6 template code. It can, if really necessary, also be used to give I7 names to entirely new I6-level variables, created like so:
-
-	Include (- Global my_variable = 0; -).
-
-This style of hybrid coding is really not encouraged.
-
-I7's properties are compiled sometimes as I6 properties, sometimes as I6 attributes, sometimes as bits in a bitmap somewhere. However, we can override I7 by telling it that one of its property names is equivalent to an already-existing I6 property or attribute: if so then I7 will use that name and will not compile any directive to create it. For example:
-
-	The switched on property translates into I6 as "on".
-	The initial appearance property translates into I6 as "initial".
-
-We do not need to translate `switched off`, the opposite to `switched on`: I7 will now compile this to `~on`.
-
-Lastly, actions can also be translated (though it's usually better to translate their rules instead and invent new I7 actions covering them):
-
-	The unlocking it with action translates into I6 as "Unlock".
-
-## Inform 6 Understand tokens {PM_GrammarTranslatedAlready}
-
-^^{Inform 6 inclusions: understanding grammar} ^^{Inform 6 inclusions: grammar tokens} ^^{translates as...+assert+: understanding (grammar tokens)} ^^{understanding: with Inform 6 functions} ^^{grammar tokens: defining in Inform 6} ^^{Inform 6 Designer's Manual+title+}
-
-The parser which deciphers the player's typed commands is written in I6, and many of the basic tokens of Understand grammar are implemented as "general parsing routines" (GPRs), the specification of which is described fully in the [Inform 6 Designer's Manual](https://inform-fiction.org/manual/html/index.html). I7 translates much of the source text's Understand grammar into GPRs, and once again we can bypass this process and supply an Understand token directly as an I6 GPR. For example:
-
-	The Understand token squiggle translates into I6 as "SQUIGGLE_TOKEN".
-
-We then have to include a routine of that name into I7's output using the `Include` instruction, on which more later.
-
-This creates a token `"[squiggle]"`; so for instance if the source text contains:
-
-	Understand "copy [squiggle]" as ...
-
-then Inform would parse the command ``COPY FIGURE EIGHT`` by calling the ```squiggle_token``` routine as a GPR with the word marker at 2, that is, at the word ``FIGURE``.
-
-As always, this should be done only where there seems no better way, or where speed is very important. For any fairly simple range of possibilities, it's better to use the techniques in the Understand chapter, or to use unit specifications.
-
-## Inform 6 adjectives
-
-^^{Inform 6 inclusions: adjectives} ^^{adjectives: defining: with Inform 6}
-
-There are three ways to specify that an adjective is defined at the I6 level. For example:
-
-	Definition: a number is prime rather than composite if I6 routine
-		"PRIMALITY_TEST" says so (it is greater than 1 and is divisible only by itself and 1).
-
-Inform now actually tests if a number N is prime by calling ```primality_test(N)```, and it assumes that we have also included such a routine in the output. The routine is expected to return true or false accordingly.
-
-The text in brackets does nothing functional, but is the text used in the Lexicon dictionary part of the Phrasebook index for the user's benefit; it should be a brief definition. Extension authors are asked to provide these little definitions, so that their users won't be confused by blank lexicon entries.
-
-The second way makes a more capable adjective, since it can not only be tested, but also made true or false using `now`. For example:
-
-	Definition: a scene is crucial if I6 routine "SceneCrucial" makes it so
-		(it is essential to winning).
-
-The difference here is `makes it so`, not `says so`, and as this implies, the routine has more power. `SceneCrucial` is called with two arguments: z
-`SceneCrucial(S, -1)` tests whether the scene is crucial or not and returns true or false; `SceneCrucial(S, true)` must make it true; and `SceneCrucial(S, false)` must make it false. Another useful difference is that if the kind of value is one which is stored in block form (e.g. for an adjective applying to text), the routine is given a pointer to the block, not a fresh copy.
-
-A third way to define an adjective, which should be used only if speed is exceptionally important, is to provide a "schema" – a sort of I6 macro, like those provided by the C preprocessor. For example:
-
-	Definition: a rulebook is exciting if I6 condition
-		"excitement_array-->(*1)==1" says so (it is really wild).
-
-The escape `*1` is expanded to the value on which the adjective is being tested. (This is usually faster than calling a routine, but in case of side-effects, the `*1` should occur only once in the condition, just as with a C macro.) To repeat: if in doubt, use the I6 routine method above.
-
-## Overriding definitions in kits {PM_BadI6Inclusion} {PM_BeforeTheLibrary} {PM_WhenDefiningUnknown} {PM_IncludeInsteadOf}
-
-^^{extensions: Inform 6 template layer} ^^{Inform 6 inclusions: Inform 6 template layer} ^^{templates, Inform 6 template layer}
-
-When Go is clicked, Inform translates the I7 source text into a large body of so-called "Inter" code: "Inter" is short for "intermediate". Large as this program is, it could not survive on its own: it needs a large body of pre-compiled code, also written in Inter, to sustain it. This additional material is organised in blocks called "kits". Most Inform users never need to know about kits, but for example, a typical Inform project includes kits called BasicInformKit, WorldModelKit and CommandParserKit.
-
-These kits are compiled from what is (nearly) Inform 6-syntax source code, and for the details of that, see the documentation on the low-level tool "inter". While it's absolutely possible for Inform users to create and use their own kits, that's beyond the scope of this book. But what we will cover here is the ability to include just a little extra Inter code – perhaps only a few functions or constants.
-
-In fact, we have seen the necessary syntax already:
-
-	Include (- ... -).
-
-puts the given material `...` into the project. For example:
-
-	Include (-
-		[ ExtraFunction a b; return a*b; ];
-	-).
-
-adds just a single function called `ExtraFunction`.
-
-And this works fine, but if we tried the same trick to create a function called `SquareRoot`, for example, then the result would be a problem message – because BasicInformKit also defines a function of the same name. This problem message is useful, because it warns us about accidental name clashes.
+There was no problem creating a new function called `FauxMultiply`, but what if we tried to create, say, `SquareRoot`? We would then run into trouble because there is already a function of that name in ```BasicInformKit```. So we would get a problem message about the name clash.
 
 But what if the name clash was not an accident at all, and what we actually wanted to give our own definition of `SquareRoot`, to be used instead of the one in BasicInformKit? This is also possible:
 
@@ -19774,7 +22307,9 @@ But what if the name clash was not an accident at all, and what we actually want
 
 And now whenever square roots are calculated, this snarky text will be printed, and the result will always be rather meaningless (since this I6 routine always returns 1). Unless one is very careful, the result of replacing kit definitions can be absolute chaos.
 
-An important historical note: between about 2010 and 2021, kits did not exist, and instead there were "template files" of Inform 6 code which served roughly then same purpose. These had names like `Relations.i6t` or `Mathematics.i6t` and were internally divided into named subsections; and Inform supported syntax like the following:
+### Historical note
+
+Between about 2010 and 2021, kits did not exist, but there were "template files" which served roughly then same purpose. These had names like `Relations.i6t` or `Mathematics.i6t` and were internally divided into named subsections; and Inform supported syntax like the following:
 
 	Include (- ... -) before "Relations.i6t".
 	Include (- ... -) instead of "Relations.i6t".
@@ -19784,153 +22319,2370 @@ to allow new material to be placed at oddball positions in the final code. There
 
 The `instead of` option now cannot work at all, and throws a problem message. The new way to substitute a fresh definition of something built-in is to use the `replacing` notation described above.
 
-With the demise of the "template layer", as it was called, another form of so-called "template hacking" has gone with it – the special notation:
+## How I6 differs from Inform 6
 
-	Include (- {-segment:MyStuff.i6t} -).
+To recap: I6 is the notation we are using when writing low-level code inside `(-` and `-)` markers. It looks very like the programming language Inform 6, but there are a handful of differences.
 
-to allow a whole extra file of Inform 6 code called `MyStuff.i6t` to be pasted in. The new way to do that is to create a new kit, say MyStuffKit, to hold the material in question. This is not hard to do, but beyond the scope of this book. See the documentation on the low-level Inform tool "inter".
+In particular:
 
-## Translating the language of play
+1) Only new-style `for` loops with colons in the header are allowed, so that `for (i=0: i<10: i++ )` is okay but `for (i=0; i<10; i++ )` is not. Moreover, `for` loops cannot contain empty clauses.
 
-^^{Inform 6 Designer's Manual+title+}
+2) Local variable names are not allowed to be the same as an I6 statement keyword: for example, `style` and `spaces` are not allowed.
 
-The "language of play" is the natural language used to communicate with the player at run-time: this is normally English.
+3) The (undocumented) Inform 6 function `indirect()` is not supported. But since `indirect(A)` is equivalent to `A()`, which does work, this is no real loss. Similarly, the `glk()` function is not supported: function calls to BasicInformKit should be used instead.
 
-That means that it is difficult to write, say, Spanish-language IF using Inform 7, though heroic work by the Spanish IF community has overcome this. Inform 6 provided for translation by isolating its linguistic code in a part of the I6 library called the "language definition file", which was normally `English.h`. Translations were gradually made to most major European languages, resulting in alternative language definition files called `French.h`, `Italian.h` and so on. Full details on how to write a language definition file were given in the Translations chapter of the DM4, that is, the fourth edition of the [Inform 6 Designer's Manual](https://inform-fiction.org/manual/html/).
+4) Conditional compilation cannot be placed around cases in a `switch` statement.
 
-In I7 the system is different. We use the template, not a library. Instead of providing a language definition file such as `French.h`, a translator should create an extension called something like `French Language by Jacques Mensonge`. (The language should be named in English, so `French Language by ...`, not `Langue français by ...`) This extension should then contain broadly the same material as an I6 language definition file, but written in a mostly higher-level way. See the extension `English Language by Graham Nelson` supplied with I7, which is included automatically by default.
+5) Compile-time constant expression evaluation can be used with arithmetic operations, so `Constant foo = bar + 1;` is okay, but not with bitwise or logical operations, so `Constant foo = (bar | 1);` does not work.
 
-## Segmented substitutions
+6) Calculated values cannot occur as assembly-language operands.
 
-^^{Inform 6 inclusions: phrase elements}
+7) Calculated values can be used for array extents, but need to be put in brackets. For example:
 
-A "segmented" substitution is a syntax where text is placed between two or more different text substitutions. Examples include:
+	Include (-
+	Array unit_captured_text --> (UNIT_CAPTURE_BUFFER_LEN + 1);
+	-).
 
-	"This hotel is [if the player is female]just awful[otherwise]basic[end if]."
-	"Annie [one of]dances[or]sulks[or]hangs out at Remo's[at random]."
+# Kits
 
-To create such syntaxes, it is not enough just to define how each expands into I6 code: for one thing we may need to know about the later terms in order to expand the earlier ones, which is normally impossible, and for another thing, the individual text substitutions mean nothing in isolation. For instance, Inform produces a problem if the following is tried:
+## About kits
 
-	"The hotel [at random] is on fire."
+A _kit_ is a body of code written entirely in I6 syntax. It is compiled independently from the source text of a story which uses it, and the two are then merged together (or _linked_). Kits can be quite large: ```BasicInformKit```, which sits inside the `Basic Inform` extension, runs to over 12,000 lines. Equally, they do not have to be. It's fine to write a kit containing just a single function or two.
 
-because `"[at random]"` is only legal when closing a `"[one of] ..."` construction. But if `"[at random]"` had been defined as just another text substitution, Inform would not have been able to detect such problems.
+Kits sit inside extensions, and provide them with support services. An extension can contain multiple kits, but of course does not need to contain any. Kits increase the power of extensions in a number of ways. They can access memory directly, and are not constrained by the kind-safety rules which would apply to higher-level code. For example, all the code to build, sort and dismantle lists is done by functions in ```BasicInformKit```. Kits can also create new fundamental kinds of value for Inform.
 
-Inform therefore allows us to mark text substitutions as being any of three special kinds: beginning, in the middle of, or ending a segmented substitution. There can be any number of alternative forms for each of these three variants. The syntax policed is that
+This chapter is the most technical in the book. It's aimed at writers of extensions who need more power, and it assumes the reader is comfortable with the material in the [Extensions] and [Low-Level Programming] chapters, together with at least a passing knowledge of Inform 6 syntax, since that's essentially the same thing as writing I6.
 
-1. Any usage must lie entirely within a single say or piece of text.
-2. It must begin with exactly one of the substitutions marked as `beginning`.
-3. It can contain any number, including none, of the substitutions marked as `continuing` (if there are any).
-4. It must end with exactly one of the substitutions marked as `ending`.
+## Adding a kit to an extension
 
-A simple example:
+Suppose the extension `Roots of Equations by Peter Drake` wants to perform some mathematical algorithms which will be coded in I6. We will do this by placing the I6 material in ```RootsOfEquationsKit```, which will live inside the extension like so:
 
-	To say emphasis on -- beginning say_emphasis_on: (- style underline; -).
-	To say emphasis off -- ending say_emphasis_on: (- style roman; -).
-
-This creates `"[emphasis on]"` and `"[emphasis off]"` such that they can only be used as a pair. The keyword `say_emphasis_on`, which must be a valid I6 identifier (and hence a single word), is never seen by the user: it is simply an ID token so that Inform can identify the construction to which these belong. (We recommend that anybody creating such constructions should choose an ID token which consists of the construction's name but with underscores in place of spaces: this means that the namespace for ID tokens will only clash if the primary definitions would have clashed in any case.)
-
-## Invocation labels, counters and storage {PM_LabelNamespaceTooLong}
-
-^^{Inform 6 inclusions: phrase elements}
-
-The process of expanding the I6 code which represents a phrase is called _invocation_. As we have seen, when a phrase is defined using a single piece of I6 code, invocation consists of copying out that I6 code, except that tokens in braces `{thus}` are replaced:
-
-	To say (something - number): (- print {something}; -).
-
-Ordinarily the only token names allowed are those matching up with names in the prototype, as here, but we have already seen one special syntax: `{phrase options}`, which expands as a bitmap of the options chosen. And in fact the invocation language is larger still, as a skim through the Standard Rules will show. The notes below deliberately cover only some of its features: those which are likely to remain part of the permanent design of Inform, and which are adaptable to many uses. **Please do not use any of the undocumented invocation syntaxes: they change frequently, without notice or even mention in the change log.**
-
-The first special syntaxes are textual tricks. {-delete} deletes the most recent character in the I6 expansion of the phrase so far. {-erase} erases the I6 expansion of the phrase so far. {-open-brace} and {-close-brace} produce literal `{` and `}` characters.
-
-The following:
-
-	{-counter:NAME}
-	
-	{-counter-up:NAME}
-	
-	{-zero-counter:NAME}
-	
-	{-counter-makes-array:NAME}
-
-create (if one does not already exist) a counter called ```NAME```. This is initially zero, and can be reset back to zero using `{-zero-counter:name}`, which expands into no text. The token `{-counter:name}` expands into the current value of the counter, as a literal decimal number. The token `{-counter-up:name}` does the same, but then also increases it by one. Finally, the token `{-counter-makes-array:name}` expands to nothing, but tells Inform to create an ```-->``` array called ```I7_st_name``` which includes entries from 0 up to the final value of the ```name``` counter.
-
-This allows each instance in the source text of a given phrase to have both (i) a unique ID number for that invocation, and (ii) its own word of run-time storage, which can allow it to have a state preserved in between times when it is executed. For example:
-
-	To say once only -- beginning say_once_only:
-		(- {-counter-makes-array:say_once_only}if (I7_ST_say_once_only-->{-counter:say_once_only} == false) {-open-brace} I7_ST_say_once_only-->{-counter-up:say_once_only} = true; -).
-	To say end once only -- ending say_once_only:
-		(- {-close-brace} -).
-
-To complete the tools available for defining a segmented substitution, we need a way for the definition of the head to know about the middle segments and the tail:
-
-When invoking either the head or the tail, {-segment-count} expands to the literal decimal number of pieces of text in between the two, which is always one more than the number of middle segments, since the text comes in between the segments. When invoking any middle segment, {-segment-count} expands to the number of pieces of text so far – thus it expands to 1 on the first middle segment invoked, 2 on the next, and so on.
-
-Lastly {-final-segment-marker} expands to the I6 identifier which marks the end segment, or to ```I6_null`` if the end segment has no marker. The idea of markers is to enable the head's definition to know which of a number of choices has been used for the tail, supposing that this is a construction with a variety of legal endings. For example:
-
-	To say emphasise -- beginning say_emphasise:
-		(- style {-final-segment-marker}; -).
-	To say with italics -- ending say_emphasise with marker underline:
-		(- style roman; -).
-	To say with fixed space type -- ending say_emphasise with marker fixed:
-		(- style roman; -).
-
-The markers used for the tails here are `underline` and `fixed`, and when the head is invoked, the marker for its tail is expanded into the argument of I6's `style` statement.
-
-The examples above are all to do with segmented substitutions, which is where they are most useful, but most of the syntaxes above work equally well for ordinary `To...` phrase definitions.
-
-## To say one of
-
-^^{Inform 6 inclusions: phrase elements}
-
-Many of the invocation syntaxes described in the previous section are used in the definition by the Standard Rules of the `"[one of] ... [or] ... [purely at random]"` construction, so it makes a good example of how they can be used.
-
-First, this is a segmented substitution with a single possible beginning (`"[one of]"`), a single possible middle (`"[or]"`) but a choice of many possible endings. Almost everything is compiled by the invocation of the beginning:
-
-``` inform6
-To say one of -- beginning say_one_of (documented at phs_oneof): (-
-	{-counter-makes-array:say_one_of}
-
-	{-counter-makes-array:say_one_flag}
-
-	if (I7_ST_say_one_flag-->{-counter:say_one_flag} == false) {
-		I7_ST_say_one_of-->{-counter:say_one_of} = {-final-segment-marker}(I7_ST_say_one_of-->{-counter:say_one_of},
-{-segment-count});
-		I7_ST_say_one_flag-->{-counter:say_one_flag} = true;
-	}
-
-	if (say__comp == false) I7_ST_say_one_flag-->{-counter:say_one_flag}{-counter-up:say_one_flag} =
-false;
-	switch ((I7_ST_say_one_of-->{-counter:say_one_of}{-counter-up:say_one_of})%({-segment-count}+1)-1)
-{-open-brace}
-
-		0: -).
-To say or -- continuing say_one_of (documented at phs_or):
-	(- @nop; {-segment-count}: -).
-To say purely at random -- ending say_one_of with marker I7_SOO_PAR (documented at phs_purelyrandom):
-	(- {-close-brace} -).
+``` code
+Ducking Action-v1.i7xd
+	extension_metadata.json
+	Materials
+		Inter
+			RootsOfEquationsKit
+				...
+	Source
+		Ducking Action.i7x
 ```
 
-The 3rd invocation of this (say) might compile the following:
+All kits have to have names ending in `Kit`, and by convention if an extension contains a single kit then its name is the extension title in camel-casing with the spaces removed and `Kit` suffixed. So `Roots of Equations` becomes ```RootsOfEquationsKit```.
 
-``` inform6
-I7_ST_say_one_of-->2 = I7_SOO_PAR(I7_ST_say_one_of-->2, 4);
-switch((I7_ST_say_one_of-->2)%5 - 1) {
-	0: ... first text ...
-	1: ... second text ...
-	2: ... third text ...
-	3: ... fourth text ...
+Note that kits live inside the `Inter` subdirectory of the `Materials` directory private to the extension. See [Images and other resources] for more on `Materials`, which can also include all manner of other good things.
+
+```RootsOfEquationsKit``` is itself a directory, which looks like this:
+
+``` code
+RootsOfEquationsKit
+	Contents.w
+	kit_metadata.json
+	Sections
+		Roots.w
+```
+
+The actual I6 source for the kit code is in the file `Roots.w`, but before we can get to that, we have to do some book-keeping.
+
+1) The `Contents.w` file doesn't look very interesting at first because there's only one source file, `Roots.w`, so this is currently like a contents page for a book with only one chapter:
+
+   ``` code
+   Title: RootsOfEquationsKit
+   Author: Peter Drake
+   Purpose: Some Newton-Raphson approximation functions.
+   Language: Inform 6
+
+   Sections
+       Roots
+   ```
+
+2) There must also be a `kit_metadata.json` file:
+
+   ``` code
+   {
+       "is": {
+           "type": "kit",
+           "title": "RootsOfEquationsKit"
+       }
+   }
+   ```
+
+   This should look very similar to the `extension_metadata.json` file found in extensions, and indeed it has a great deal in common, though as we shall see it can be considerably extended.
+   
+   Although it's legal for a kit's metadata to supply a `"version"`, there is no need. A kit which is being distributed inside an extension has a public-facing version of its own: its functionality is part of the extension's offer to the world, so it is all under the wrapper extension's version number.
+
+Why are there two files like this, not one, given that both are basically descriptions of what the kit is? One answer is that they actually serve different purposes: `Contents.w` describes the _source code_ for the kit, whereas `kit_metadata.json` describes the resulting compiled kit.
+
+The other is that kits are designed to be compatible with the ```inweb``` system for "literate programming". This is how it is that annotated forms of the source for ```BasicInformKit``` and ```WorldModelKit```, for example, are hosted at the Inform source code website.
+
+So-called _section files_ also have a marked-up format suitable for ```inweb```. (The ```.w``` at the end of the two filenames ```Contents.w``` and ```Roots.w``` means "web".)
+
+Here is a minimal but legal form for ```Roots.w```:
+
+``` code
+Roots
+
+Some functions for finding roots of polynomials by Newton-Raphson approximation.
+
+@ Just one placeholder for now:
+
+=
+[ EvaluatePolynomial f x;
+	print "Not implemented yet.^";
+];
+```
+
+Web files begin with a line giving the title of the section — here, ```Root``` — then skip a line, and give a sentence or two describing the content in slightly more detail. After that, they are a sequence of "paragraphs". Each paragraph begins with an ```@``` character on the left margin. There's then space for some commentary about what is coming up: authors usually use this space to document calling conventions for functions, or say why they work they way they do.
+
+There is then a line with an ```=``` character on the left margin. After that, the rest of the paragraph is I6 code. So the actual content of the above section, once all the annotations are peeled off, is just this:
+
+``` code
+[ EvaluatePolynomial f x;
+	print "Not implemented yet.^";
+];
+```
+
+In other words, the kit — which is now complete — provides just a single function.
+
+We can now use it. As established, ```RootsOfEquationsKit``` is sitting inside the extension `Roots of Equations by Peter Drake`. We call this the _wrapper extension_ for the kit. That extension might now contain this phrase definition:
+
+	To decide which real number is the evaluation of (polynomial - list of real numbers) at (x - real number):
+		(- (EvaluatePolynomial({polynomial}, {x})) -).
+
+If we then run a test project which includes the extension, and if we are looking carefully, we might notice this message scroll by on the console:
+
+``` code
+(Building RootsOfEquationsKit for architecture 16)
+(Building RootsOfEquationsKit for architecture 16d)
+(Building RootsOfEquationsKit for architecture 32)
+(Building RootsOfEquationsKit for architecture 32d)
+```
+
+This is because Inform can only use ```RootsOfEquationsKit``` once it has been built (i.e., compiled): and since Inform could see the source code for the kit, it went ahead and built the thing. Inform builds kits only when necessary. If the timestamp on the source code files is later than that of the built form of the kit, then Inform assumes the source code has been changed since the last time the kit was built, so it rebuilds. Otherwise, if the kit source remains unchanged, Inform won't build the kit again.
+
+In fact, it builds the kit not once but four times, once for each possible architecture the kit will run on. (Once built, a kit is what is sometimes called a "fat binary", in that it contains multiple different compiled versions in one.) ```16``` and ```32``` refer to the 16-bit and 32-bit versions used on Z-machine and Glulx respectively, and ```16d``` and ```32d``` the same but with debugging features enabled — in effect, not-for-release features. By default, in the app, a project will use the ```32d``` architecture, and then when released, the ```32``` architecture. Inform handles all of this automatically.
+
+If we look back at the directory, we see that more files have appeared:
+
+``` code
+RootsOfEquationsKit
+	arch-16.interb
+	arch-16d.interb
+	arch-32.interb
+	arch-32d.interb
+	Contents.w
+	kit_metadata.json
+	Sections
+		Roots.w
+```
+
+The ```.interb``` filename endings mean "Inter binary code", and there's one for each architecture.
+
+Something else happened on that first run: the `extension_metadata.json` file for the wrapper extension was quietly rewritten. It now includes a _dependency_ of the extension on the kit:
+
+``` code
+{
+    "is": {
+        "type": "extension",
+        "title": "Roots of Equations",
+        "author": "Peter Drake",
+        "version": "1"
+    },
+    "needs": [ {
+        "need": {
+            "type": "kit",
+            "title": "RootsOfEquationsKit"
+        }
+    } ]
 }
 ```
 
-First, we notified Inform that it needs to allocate an array (```I7_st_say_one_of```) providing storage associated with the counter `say_one_of`. This we used to count off individual invocations of `"[one of]"`, so that each would have its own word of storage – for the 3rd invocation, ```I7_st_say_one_of-->2```. We then call a state-changing routine, in this case ```I7_soo_par```, which is allowed to know the previous state and also the number of options available, and which returns the new state. The state is supposed to be the option chosen last time, but that means that there are not 4, but 5 possibilities: 0 for "there was no last time", then 1 to 4 for the possible outcomes. We reduce the state mod 5 to obtain the decision this time, and subtract 1 because it happens to be convenient to make the switch statement run from 0 to 3 rather than 1 to 4. (The reason we reduce the state mod 5 is to allow the state-changer to squirrel away secret information in the upper bits of the state, if it wants to. Note that subtracting one means that the switch value might be -1, which results in no text being printed: thus if the state-changer chooses 0, it can decide on none of the above.)
+This tracking goes on automatically and authors can usually just let it happen all by itself, but if we decided against the kit after all and removed it from the extension, then this dependency would have to be removed from `extension_metadata.json` before the extension would work again.
 
-In this design, the marker attached to the choice of ending substitution is the name of the I6 state-changer: here it's the ```I7_soo_par``` routine.
+The full set of features of ```inweb``` is extensive and this is not the place to go into that. In brief, though, kit section files like ```Roots.w``` can't use any of the interesting tangling features (such as ```@d```, or ```@< ... >@```); but they can use all the weaving features. Inform users don't need to have ```inweb``` in order to write or use kits, and don't need to understand what the last sentence said.
 
-``` inform6
-[ I7_SOO_PAR oldval count; if (count <= 1) return count; return random(count); ];
+## Compatibility of kits
+
+Since kits are mostly used to provide low-level support functions, they often need to work slightly differently on Glulx versus the Z-machine, or as we should really say, on the 32-bit versus the 16-bit architecture.
+
+### A one-architecture kit
+
+Suppose ```RootsOfEquationsKit``` can only be compiled for 32-bit architectures, which is not at all improbable if it wants to perform floating-point maths. It can be marked as such by editing its `kit_metadata.json` file as follows:
+
+``` code
+{
+	"is": {
+		"type": "kit",
+		"title": "RootsOfEquationsKit"
+	},
+	"compatibility": "for 32-bit only"
+}
 ```
 
-As it happens, this ignores the old value: after all, it is meant to be purely at random, and nothing could be less pure than taking the last outcome into consideration when choosing the next.
+When Inform builds the kit, it compiles only the `arch-32.interb` and `arch-32d.interb` binaries.
 
-Note that the counter `say_one_of` is advanced in invocation of the head. It might seem that the tidier design, somehow, would be to advance the counter in the invocation of the tails, but this is not a good idea. In general it is not safe to assume that the counter will have the same value when the tail is invoked that it had when the head was invoked, because segmented say constructions can legally be nested in Inform strings. Because of this, it is best to deal with a counter entirely in a single invocation, either of the beginning or the ending.
+So what happens if the `Roots of Equations` extension is then compiled in a project with the Z-machine setting, i.e., to a 16-bit story file? It will then be impossible for Inform to link in the `arch-16.interb` binary for ```RootsOfEquationsKit```, because there isn't one. Inform does not halt with a problem message: instead it simply carries on.
 
-Because `"[one of] ... [or] ..."` is such a useful construction – switching between alternative forms of text, which writers of IF very often do – the above implementation is intentionally left open for new endings to be added, and the examples below show how easily this can be done.
+The likely result is that linking errors will be produced with certain functions not being found. This can be made be more graceful, of course, by simply declaring the _extension_ in a restricted way:
+
+	Version 1 of Roots of Equations (for 32-bit only) by Peter Drake begins here.
+
+That way, any user trying to use the extension on the Z-machine will be told at once what the issue is, and no linking errors will ever be reached.
+
+### Two alternative kits
+
+Suppose, on the other hand, we are more ambitious and want `Roots of Equations` to run on all architectures, even though the 16-bit and 32-bit implementations are completely different.
+
+The trick then is to equip `Roots of Equations` with _two_ kits. One will be called `RootsOfEquations16Kit`, with this metadata:
+
+``` code
+{
+	"is": {
+		"type": "kit",
+		"title": "RootsOfEquations16Kit"
+	},
+	"compatibility": "for 16-bit only"
+}
+```
+
+and the other will be `RootsOfEquations32Kit`, with a similar set of metadata. The practical effect is that in any build including `Roots of Equations`, exactly one of `RootsOfEquations16Kit` and `RootsOfEquations32Kit` will be included.
+
+### Conditional compilation
+
+If in fact most of ```RootsOfEquationsKit``` should be the same on all architectures, but just one function would differ, conditional compilation can be used. This means using more or less the same ```#if...``` directives as would be used in Inform 6, but in I6 there are significant restrictions:
+
+- ```#ifdef``` and ```#ifndef``` can be used only on certain symbols:
+
+  - ```TARGET_ZCODE``` and ```TARGET_GLULX``` are defined only on 16-bit and only on 32-bit architectures, respectively. Their names are now a little misleading, but see below.
+
+  - ```DEBUG``` is defined only on the debugging architectures `16d` and `32d`. What this means in practice is that ```DEBUG``` is defined when using Inform in the apps, but not usually defined when making a release compilation.
+
+  - Otherwise, they can only be used on symbols defined (or not defined) higher up _in the same kit_. Because each kit is built independently of all others, I6 directives in one kit cannot know what symbols exist or do not exist in other kits.
+  
+- ```#iftrue``` and ```#iffalse``` can only be used on "fundamental constants", and then only to test them for equality against constant values. For example, ```#iftrue CHARSIZE == 1;``` is legal.
+
+We now usually prefer to write `#Iftrue (WORDSIZE == 2);` rather than the more traditional `#ifdef TARGET_ZCODE`, and similarly `#Iftrue (WORDSIZE == 4);` rather than `#ifdef TARGET_GLULX`. These more clearly express the idea of being on a 16-bit or 32-bit architecture, respectively.
+
+Here, for reference, are all of the fundamental constants except ```DEBUG``` (for which see above), and their normal values:
+  
+Symbol                    | 16-bit architectures | 32-bit architectures
+------------------------- | -------------------- | --------------------
+```CHARSIZE```            |                    1 | 4
+```WORDSIZE```            |                    2 | 4
+```NULL```                |                $ffff | $ffffffff
+```WORD_HIGHBIT```        |                $8000 | $80000000
+```WORD_NEXTTOHIGHBIT```  |                $4000 | $40000000
+```IMPROBABLE_VALUE```    |                $7fe3 | $deadce11
+```MAX_POSITIVE_NUMBER``` |                32767 | 2147483647
+```MIN_NEGATIVE_NUMBER``` |               -32768 | -2147483648
+```TARGET_ZCODE```        |                    1 | _undefined_
+```TARGET_GLULX```        |          _undefined_ | 1
+
+So, for example, this function is compiled very slightly differently according to whether ```DEBUG``` is in force or not:
+
+``` code
+[ ReleaseLine i;
+	print "Release ", VM_ReleaseNumber(), " / Serial number ";
+	serial = VM_SerialNumber();
+	for (i=0 : i<6 : i++) print (char) serial->i;
+	print " / Inform 7 v", (PrintI6Text) I7_VERSION_NUMBER;
+	#Ifdef DEBUG;
+	print " / D";
+	#Endif; ! DEBUG
+	new_line;
+];
+```
+
+## Run-time representations of Inform constructs
+
+Functions in kits frequently receive values passed to them from Inform source text. Some of those values are straightforward to deal with: a `number` value in source text behaves exactly as integers do in I6, for example. But others are not so easy to understand. If Inform passes an I6 function a `text`, or a `rule`, for example, what are we getting, and how can we deal with it?
+
+### Text constants
+
+Values of the Inform kind `text` are _not_ the same as text constants in the I6 sense. This function may look plausible, but it does not return a valid Inform `text`:
+
+``` code
+[ RedOrBlue N;
+	if (N % 2 == 0) return "Red";
+	return "Blue";
+];
+```
+
+This, however, does:
+
+``` code
+Array RED_TEXT --> PACKED_TEXT_STORAGE "Red";
+Array BLUE_TEXT --> PACKED_TEXT_STORAGE "Blue";
+[ RedOrBlue N;
+	if (N % 2 == 0) return RED_TEXT;
+	return BLUE_TEXT;
+];
+```
+
+```BasicInformKit``` already defines ```EMPTY_TEXT_VALUE```, which is a valid constant `text` holding no characters.
+
+These arrays are because `text` values are actually pointers to two-word blocks of memory, in which the first word defines one of a number of possible representations of the text, and the second gives details. See the source code for ```BasicInformKit``` for the gory details.
+
+### List constants, stored action constants, and more
+
+While it is possible to write similar array declarations to simulate constant lists, this is not recommended; their run-time representation may change in future. Similarly for other complex kinds: it is better to find a way to define constant values of those kinds in Inform source text (for example in an extension) and then pass those values down to the kit code for usage.
+
+### Variables
+
+^^{defined by Inter as...+assert+: variables} ^^{variables: defining in I6}
+
+We can create a valid Inform variable by providing an I6 global variable to store the contents. (Not all Inform variables are stored this way: some are stored in array entries, or on a stack. Those other ways, we cannot imitate.)
+
+The extension which wraps the kit will need to define a name:
+
+	The bounty on Spade is a number that varies.
+ 
+	The bounty on Spade variable is defined by Inter as "Spade_bounty".
+
+In effect, this makes a promise, and the kit has to keep the promise, which it can do very easily:
+
+``` code
+Global Spade_bounty = 0;
+```
+
+Note that the kit has the responsibility of seeing that the value in this variable is always valid for the kind it is supposed to have — but in this case, that's `number`, which is easy enough.
+
+### Rules and responses
+
+^^{defined by Inter as...+assert+: rules} ^^{rules: defining in I6}
+
+At run-time, a rule is represented by a function which must do one of three things:
+
+- return ```false``` to make no decision;
+
+- call ```RulebookSucceeds()``` and then return ```true``` to succeed; or
+
+- call ```RulebookFails()``` and then return ```true``` to fail.
+
+If the rule is for a rulebook which produces a value then it must pass the outcome value as a parameter if it succeeds:
+
+- call ```RulebookSucceeds(V)``` and then return ```true``` to succeed with value `V`.
+
+We can create a rule from a kit by writing such a function, and by giving it a name, and perhaps filing it in a rulebook, in the extension which wraps the kit:
+
+	The blossom rule is defined by Inter as "BLOSSOM_R".
+
+	The blossom rule is listed in the horticulture rules.
+
+The rule function can then go into the kit:
+
+``` code
+[ BLOSSOM_R;
+	if (real_location hasnt light) { RulebookSucceeds(); rtrue; }
+	rfalse;
+];
+```
+
+And now `blossom rule` is a value of the kind `rule` in Inform source text, while ```BLOSSOM_R``` can validly refer to it from I6 code and, in particular, elsewhere in the kit.
+
+If the rule is going to print anything, it should ideally do so using Inform's system of responses. These responses must be defined in the wrapper extension:
+
+	The blossom rule is defined by Inter as "BLOSSOM_R" with
+		"The garden is in blossom." (A),
+		"The garden is gloomily barren." (B).
+
+What then happens is that the Inform compiler creates a function ```BLOSSOM_RM``` (i.e., with the same name as the rule but with ```M``` appended) which can print a response on demand:
+
+``` code
+[ BLOSSOM_R;
+	if (real_location hasnt light) {
+		BLOSSOM_RM('A');
+		RulebookSucceeds(); rtrue;
+	}
+	BLOSSOM_RM('B');
+	rfalse;
+];
+```
+
+If the rule is to be used in a rulebook based on a value, or more often an action, then it will need to be able to access that so-called "basis".
+
+- For action-based rules, it should look at the I6 global variables ```actor```, ```noun``` and ```second```.
+
+- For value-based rules, it should look at the I6 global variable ```parameter_object```, which despite its name is not necessarily an object: it will be a value of whatever kind the rulebook is based on.
+
+### Rulebooks
+
+A rulebook is, like a rule, a function, and it has the same calling conventions. (In fact, a `rulebook` value is always a valid `rule` value at run-time.) Rulebooks can only be created by Inform source text: so if a kit needs a rulebook, it should be created in the wrapper extension.
+
+### Objects and kinds of object
+
+At runtime, an Inform object is represented by a value ```ofclass Object``` in the I6 sense, and the absence of an object is represented by the I6 constant ```nothing```. A kind of object is represented by a value ```ofclass Class```.
+
+However, not every value ```ofclass Object``` is valid as an `object` in Inform. ```WorldModelKit``` continues, for historical reasons, to define two pseudo-object values ```thedark``` and ```compass```: these are ```ofclass Object``` in I6, but must not be stored in `object` variables in Inform.
+
+Objects and kinds of object can only be created by Inform source text: so if a kit needs these, they should be created in the wrapper extension. I6 code like this:
+
+``` code
+Object oddity "an oddity";
+```
+
+simply creates another pseudo-object like ```thedark```, which is not an `object` in the Inform 7 sense.
+
+### Properties
+
+Although it is possible for kits to define Inform properties, this is no longer recommended. It's better to define them in the wrapper extension, and then simply make their names available to the kit code using `accessible to Inter as`. See [Inform values from I6].
+
+### Actions
+
+Values of the kind `action`, such as `taking action` or `looking`, are represented in the natural way as I6 action values.
+
+Kits can create their own actions, and also give them the equivalent of `Understand` grammar. For example, ```WorldModelKit``` provides a handful of debugging commands this way:
+
+``` code
+Verb meta 'showheap'
+	*                                           -> ShowHeap;
+```
+
+This creates an action out of world called ```##ShowHeap```. ```WorldModelKit``` then provides a function called ```ShowHeapSub``` to implement the action. None of this is visible at the Inform 7 level. While kits _can_ do this, they probably shouldn't. It's better to define actions in the wrapper extension.
+
+I6 also has a concept of "fake actions". Inform 7 does not, and kits should create no further fake actions.
+
+### Command grammar tokens
+
+^^{defined by Inter as...+assert+: grammar tokens} ^^{grammar tokens: defining in I6}
+
+`Understand` tokens of command grammar are represented as functions which are, in the traditional Inform 6 sense, "general parsing routines" or GPRs. (Consult the DM4 for details.)
+
+To create one with a kit, the wrapper extension should give it a name:
+
+	The Understand token squiggle is defined by Inter as "SQUIGGLE_TOKEN".
+
+The kit should then define the necessary function:
+
+``` code
+[ SQUIGGLE_TOKEN;
+	if (NextWordStopped() == '$$') return GPR_PREPOSITION;
+	return GPR_FAIL;
+];
+```
+
+## Assigning use options to kits
+
+Suppose we want to provide use options which affect the operation of ```AmphibianKit```. We have already seen ways to create such options:
+
+	Use drifting lilypads translates as the configuration flag DRIFTING_LILYPADS.
+	Use horny skin translates as the configuration value SKIN_TYPE = 1.
+	Use scaly skin translates as the configuration value SKIN_TYPE = 2.
+	Use frog count of at least 10 translates as the configuration value FROG_COUNT.
+	Use maximum jump height of 6 translates as the configuration value JUMP_HEIGHT.
+
+But these simply define the names ```DRIFTING_LILYPADS```, ```SKIN_TYPE``` and so on, without assigning them to any kit. So instead we tack ```in AmphibianKit``` onto the end of each declaration:
+
+	Use drifting lilypads translates as the configuration flag DRIFTING_LILYPADS in AmphibianKit.
+	Use horny skin translates as the configuration value SKIN_TYPE = 1 in AmphibianKit.
+	Use scaly skin translates as the configuration value SKIN_TYPE = 2 in AmphibianKit.
+	Use frog count of at least 10 translates as the configuration value FROG_COUNT in AmphibianKit.
+	Use maximum jump height of 6 translates as the configuration value JUMP_HEIGHT in AmphibianKit.
+
+When a configuration flag or value is tied to a kit, two things are different:
+
+* The constant name is moved into that kit's namespace, so, for example,
+we have ```AmphibianKit`DRIFTING_LILYPADS``` not ```DRIFTING_LILYPADS```.
+* As a result, if two different kits both have a configuration value called,
+say, ```MAX_CAPACITY```, both can be used without a conflict occurring, because
+one will be ```FirstKit`MAX_CAPACITY_CFGV``` and the other ```SecondKit`MAX_CAPACITY_CFGV```.
+* A problem message is thrown if the name is not one of those listed in the
+kit's metadata as being expected.
+
+As this last caveat implies, the ```kit_metadata.json``` file for ```AmphibianKit``` needs to be prepared to receive these options, like so:
+
+``` code
+{
+	"is": {
+		"type": "kit",
+		"title": "AmphibianKit"
+	},
+	"kit-details": {
+		"configuration-flags": [ "DRIFTING_LILYPADS" ],
+		"configuration-values": [ "SKIN_TYPE", "FROG_COUNT", "JUMP_HEIGHT" ]
+	}
+}
+```
+
+and then the above declarations would all work, but
+
+	Use mayflies translates as the configuration flag MAYFLIES_AVAILABLE in AmphibianKit.
+
+would be rejected because ```AmphibianKit``` does not support ```MAYFLIES_AVAILABLE```. Similarly, it's an error to use as a value what the kit declares as a flag (unless the value being stored is either 0 or 1).
+
+This raises the question of what happens if the JSON metadata asks for a configuration flag or value which no use option talks about. The answer is that Inform silently creates this, with the value 0, so that no link failure can occur. For example, if we had had
+
+``` code
+	"configuration-values": [ "SKIN_TYPE", "FROG_COUNT", "JUMP_HEIGHT", "SECRET_POND" ]
+```
+
+then whenever Inform compiled a project with ```AmphibianKit``` it would define the constant ```AmphibianKit`SECRET_POND_CFGV``` to 0. Should a knowledgeable user come along and write
+
+	Use secret pond of 10 translates to configuration value SECRET_POND in AmphibianKit.
+	Use secret pond of 7.
+
+...this would then take effect.
+
+Because it is not safe to use ```#ifdef```, ```#ifndef```, ```#iftrue``` or ```#iffalse``` on symbol names linked in from outside of a kit, Inform automatically throws an error on any attempt to use these directives with kit-linked configuration flags or values. Thus, for example, in a kit:
+
+``` code
+#ifdef AmphibianKit`DRIFTING_LILYPADS_CFGF;
+...
+#endif
+```
+
+would throw a problem message. Instead, the idea is to use the value, not the
+existence, of these symbols in the kit:
+
+``` code
+if (AmphibianKit`DRIFTING_LILYPADS_CFGF) {
+	....
+}
+```
+
+Note that there's no prohibition on one kit being able to see the configuration
+values of another: for example, ```WorldModelKit``` can test ```if (BasicInformKit`AMERICAN_DIALECT_CFGF)```.
+
+The following table, for what it is worth, shows how the main use options belonging to ```BasicInformKit```, ```WorldModelKit``` and ```CommandParserKit``` are set:
+
+Use option                        | Now sets
+--------------------------------- | --------------------------------
+no deprecated features            | ```BasicInformKit`NO_DEPRECATED_CFGF```
+dynamic memory allocation         | ```BasicInformKit`STACK_FRAME_CAPACITY_CFGV```
+maximum text length               | ```BasicInformKit`TEXT_BUFFER_SIZE_CFGV```
+maximum things understood at once | ```BasicInformKit`MULTI_OBJ_LIST_SIZE_CFGV```
+authorial modesty                 | ```BasicInformKit`AUTHORIAL_MODESTY_CFGF```
+numbered rules                    | ```BasicInformKit`NUMBERED_RULES_CFGF```
+predictable randomisation         | ```BasicInformKit`FIX_RNG_CFGF```
+command line echoing              | ```BasicInformKit`ECHO_COMMANDS_CFGF```
+memory economy                    | ```BasicInformKit`MEMORY_ECONOMY_CFGF```
+printed engineering notation      | ```BasicInformKit`PRINT_ENGINEER_EXPS_CFGF```
+American dialect                  | ```BasicInformKit`AMERICAN_DIALECT_CFGF```
+serial comma                      | ```WorldModelKit`SERIAL_COMMA_CFGF```
+no scoring                        | ```WorldModelKit`SCORING_CFGV``` = 0
+scoring                           | ```WorldModelKit`SCORING_CFGV``` = 1
+default route-finding             | ```WorldModelKit`ROUTE_FINDING_CFGV``` = 0
+fast route-finding                | ```WorldModelKit`ROUTE_FINDING_CFGV``` = 1
+slow route-finding                | ```WorldModelKit`ROUTE_FINDING_CFGV``` = 2
+full-length room descriptions     | ```WorldModelKit`ROOM_DESC_DETAIL_CFGV``` = 2
+abbreviated room descriptions     | ```WorldModelKit`ROOM_DESC_DETAIL_CFGV``` = 3
+VERBOSE room descriptions         | ```WorldModelKit`ROOM_DESC_DETAIL_CFGV``` = 2
+BRIEF room descriptions           | ```WorldModelKit`ROOM_DESC_DETAIL_CFGV``` = 1
+SUPERBRIEF room descriptions      | ```WorldModelKit`ROOM_DESC_DETAIL_CFGV``` = 3
+undo prevention                   | ```CommandParserKit`UNDO_PREVENTION_CFGF```
+manual pronouns                   | ```CommandParserKit`MANUAL_PRONOUNS_CFGF```
+unabbreviated object names        | ```CommandParserKit`UNABBREVIATED_NAMES_CFGF```
+
+## Controlling how kits are linked
+
+Towards the end of building an Inform project, any kits needed by its extensions are _linked_ into it. (They may need to be built first.)
+
+Because certain extensions are automatically present in projects, certain kits are always part of the linking. Specifically:
+
+Kit                      | Belongs to         | Included when
+------------------------ | ------------------ | -------------
+```BasicInformKit```     | `Basic Inform`     | Always
+```Architecture16Kit```  | `Basic Inform`     | If building for 16-bit architectures
+```Architecture32Kit```  | `Basic Inform`     | If building for 32-bit architectures
+```WorldModelKit```      | `Standard Rules`   | All non-basic projects
+```CommandParserKit```   | `Standard Rules`   | All non-basic projects
+```DialogueKit```        | `Standard Rules`   | Projects using dialogue features
+```EnglishLanguageKit``` | `English Language` | All projects communicating in English
+
+So it is safe to say that our kit will not be the only one in the project, and besides the kits, of course, there is also the "trunk" of Inter code coming from compilation of the source text.
+
+### Private and public names
+
+How do kits interact? For the most part, one kit can refer to functions, arrays and variables in another just by name. For example, ```RootsOfEquationsKit``` can call ```SquareRoot``` from ```BasicInformKit``` just as if it were one of its own functions. This is because ```SquareRoot``` is a _public_ function of ```BasicInformKit```. "Public" names are the ones which are visible to other kits.
+
+By default, all names are public. But this has a down side. We might want a tricky bit of memory manipulation to happen exactly right, and so would not want to let anybody else call a particularly delicate function from out of context. Or we might want just to hide names which aren't important, in order to avoid name-clashes. At present, if two kits both define a public function called ```SquareRoot```, and both are linked into a project, an error will halt linking.
+
+So perhaps kits ought to make only a limited and carefully chosen set of names public, and make the rest _private_. Here's how to make a private function:
+
+``` code
++private [ MyFunction;
+	"Only I can use this.";
+];
+```
+
+Note the _annotation_ ```+private```. This is an I6 syntax allowed only in kits, and is not strictly speaking part of the Inform 6 language. The practical result is that other code in ```RootsOfEquationsKit``` can call ```MyFunction()```, but other kits cannot. Indeed, another kit could have its own function also called ```MyFunction```, without any clash of names occurring.
+
+To prevent confusion, Inform throws a problem message if these markers are used redundantly - for example, if a function is marked ```+public``` in a context where it would have been public anyway.
+
+### Namespaces
+
+All code in a kit is considered as belonging to some _namespace_. Where none is declared, this will be ```main```, the global namespace.
+
+The annotation:
+
+``` code
++namespace(SomeName);
+```
+
+which must occur on its own (note the semicolon ```;``` rather than any directive following on from it) declares that the directives which follow all belong to the namespace ```SomeName``` This continues to the end of the kit, or to the next ```+namespace``` marker, whichever comes first.
+
+Within a namespace, all identifiers are implicitly prefixed with the namespace name and a backtick (except for `main`, where identifiers are as written). Thus:
+
+``` code
++namespace(Secret);
+[ Function x;
+	...
+];
+Constant z = 2;
++namespace(main);
+Constant z = 1;
+```
+
+creates the identifiers ```Secret`Function```, ```Secret`z```, and ```z```. The two definitions of what looks like ```z``` are therefore not contradictory, because they define two different things.
+
+Within a namespace other than ```main```, writing an unqualified identifier will implicitly mean "the definition in this namespace if there is one, and the definition in ```main``` if not". For example:
+
+``` code
++namespace(Secret);
+[ Example;
+	Hello(z);           ! Calls Hello in the namespace Secret with argument 2 
+	main`Example();     ! Calls Example in the namespace main
+];
+Constant z = 2;
+
+[ Hello x;
+	print "Hello to ", x, ".^";
+];
+
++namespace(main);
+Constant z = 7;
+[ Example;
+	Secret`Hello(z);    ! Calls Hello in the namespace Secret with argument 7
+	Hello(13);          ! An error: there is no Hello in the namespace main
+];
+```
+
+Namespaces cannot be nested and can be reopened at any point. If two different
+kits both use a namespace called ```SoundEffects```, then it's the same namespace.
+
+Optionally, ```+namespace``` can specify a default access. For example:
+
+``` code
++namespace(Secret, access private);
+```
+
+puts us in namespace ```Secret```, and says that until the next namespace marker, all definitions are by default private, as if they were all marked ```+private```. Similarly for ```access public```, though that is the default.
+
+Note that it's fine to write something like:
+
+``` code
++namespace(main, access public);
+
+[ MyAPIFunction;
+	MyImplementation(1745);
+];
+
++namespace(main, access private);
+
+[ MyImplementation undocumented_number;
+	...
+];
+```
+
+thus dividing a kit into a public half and a private half, but keeping all of the names in the default ```main``` namespace.
+
+The namespace ```replaced``` is reserved for the linker's own use, and attempting to create anything in it will throw an error.
+
+### Replacing public definitions from other kits
+
+When the linker joins blocks of Inter code together, it looks for clashes between names. A clash can only occur if both names are the same, are in the same namespace, and are both public.
+
+Even then, if exactly one of these definitions was annotated ```+replacing``` then there is no clash: the replacing definition wins. So, for example, if ```SomeNewKit``` includes:
+
+``` code
++replacing [ SquareRoot num;
+	"Nobody cares about square roots, son.";
+];
+```
+
+then both it and ```BasicInformKit``` define functions of the same name: but this definition wins, because it is marked ```+replacing```. And the practical effect is that ```SomeNewKit``` can therefore replace any public function it likes from ```BasicInformKit```, or ```WorldModelKit```.
+
+```+replacing``` means "let this definition triumph over any other". If the linker finds two definitions both marked as ```+replacing``` in this way, there's once again an error message, since they can't both win.
+
+Optionally, the annotation can be more specific:
+
+``` code
++replacing(from BasicInformKit) [ SquareRoot num;
+	...
+];
+```
+
+allows this definition to replace the one in ```BasicInformKit```, but continue
+to throw a linking error if an unexpected rival appears from elsewhere.
+
+Replacement is a more slippery idea than it first seems. Some things to bear
+in mind:
+
+* If no clash ever occurs, no error is produced. The ```+replacing``` definition
+may not in fact have replaced anything, but it's still the valid one. So
+it's possible to mark a definition as ```+replacing``` which would overlap a
+definition in some other kit which might or might not be being used.
+
+* It is not possible to use ```+replacing``` to override a ```+private``` definition in another kit. Private names really are private.
+
+* By default, the replaced definition is simply thrown away, but if ```+replacing(keeping)``` is used instead then the discarded definition is kept alongside the new one. It clearly cannot have the same name as before, so it is moved into the namespace ```replaced```.
+
+For example, this effectively says "double the value of ```REQUISITION_STACK_SIZE```, whatever that is":
+
+``` code
++replacing(keeping) Constant REQUISITION_STACK_SIZE = (2 * replaced`REQUISITION_STACK_SIZE);
+```
+
+Whereas this would produce an error:
+
+``` code
++replacing Constant REQUISITION_STACK_SIZE = (2 * replaced`REQUISITION_STACK_SIZE);
+```
+
+since then ```replaced`REQUISITION_STACK_SIZE``` would not exist: the old definition
+would have been destroyed, and so could not have been used.
+
+Or for another example, the following "corrects" the output of the existing definition of ```SquareRoot``` from ```BasicInformKit``` by rounding up to the nearest natural number, rather than down:
+
+``` code
++replacing(keeping) [ SquareRoot num x;
+	x = replaced`SquareRoot(num);
+	if (x*x < num) x++;
+	return x;
+];
+```
+
+so that `the square root of 17` will then evaluate to 5, not 4.
+
+Note that ```+replacing(keeping)``` can only be applied to global variables (```Global ...```), constants, arrays and functions: a problem message will be thrown for attempts to use it with any other constructs.
+
+## Neptune and enumerative kinds
+
+Inform already provides a range of ways to create new kinds of object, and new kinds of value in general, using source text alone. If a kit simply needs, say, a concept of "bottle", then its wrapper extension can include something like this:
+
+	A bottle is a kind of container. A bottle is usually openable.
+	A bottle is usually transparent.
+	
+	The bottle kind is accessible to Inter as "K_bottle".
+
+And then code in the kit can do this sort of thing:
+
+``` code
+	if (obj ofclass K_bottle) ...
+```
+
+But certain kinds cannot be made in source text. For example, no source text defines `time`, or the `list of K` kind (or properly speaking, kind constructor, since it is a way of making a new kind out of an old one). All kinds which are _not_ defined in source text are defined in _Neptune files_.
+
+Neptune is a simple mini-language whose sole task is to define kinds for Inform. It's named for the fountain in the Place Neptune in Carcassonne, not the gas giant. We'll first use this mini-language to define an enumerative kind of value with values which are not 1, 2, 3, ...
+
+A kit can only use Neptune files if its JSON metadata says so. So we'll amend ```kit_metadata.json``` to:
+
+``` code
+{
+	"is": {
+		"type": "kit",
+		"title": "InternationalTelephonyKit"
+	},
+	"kit-details": {
+		"provides-kinds": [ "CountryCodes.neptune" ]
+	}
+}
+```
+
+This simply says that it provides a Neptune file to declare one or more kinds. We will follow through on that by giving the kit a ```kinds``` directory, inside which we put ```CountryCodes.neptune```:
+
+``` code
+InternationalTelephonyKit
+	Contents.w
+	kinds
+		CountryCodes.neptune
+	kit_metadata.json
+	Sections
+		Dialling Codes.w
+```
+
+And this will be our Neptune file ```CountryCodes.neptune```:
+
+``` code
+new base COUNTRY_CODE_TY {
+	conforms-to: ENUMERATED_VALUE_TY
+	singular: country code
+	plural: country codes
+
+	instance: Saint Helena code  = ST_HELENA_CC     = 290
+	instance: New Caledonia code = NEW_CALEDONIA_CC = 687
+	instance: Montserrat code    = MONTSERRAT_CC    = 1664
+	instance: Svalbard code      = SVALBARD_CC      = 4779
+}
+```
+
+When this kit is linked into a project, any source text in that project can now use the kind `country code`. So for example, this rule:
+
+	When play begins:
+		showme the Saint Helena code;
+		showme the list of country codes;
+		showme a random country code;
+		showme the number of country codes.
+
+produces the text:
+
+``` transcript
+country code: Saint Helena code
+"list of country codes" = list of country codes: {Saint Helena code, New Caledonia code, Montserrat code, Svalbard code}
+"a random country code" = country code: New Caledonia code
+"number of country codes" = number: 4
+```
+
+On the face of it, that's not so interesting. We could just as easily have written:
+
+	Country code is a kind of value. The country codes are Saint Helena code, New Caledonia code, Montserrat code and Svalbard code.
+
+But if we had done _that_, then the values representing these codes at runtime would be 1, 2, 3 and 4; instead of which, they are 290, 687, 1664 and 4779. For example, suppose we define:
+
+	To dial (code - country code):
+		(- Dialup({code}); -).
+
+and then provide the necessary ```Dialup``` function in ```InternationalTelephonyKit```:
+
+``` code
+[ Dialup code;
+	print "You dial ", code, "^";
+	if (code == SVALBARD_CC) print "The phone does feel a little chilly.^";
+];
+```
+
+The result of the phrase `dial Svalbard code` is then to print:
+
+``` transcript
+You dial 4779
+The phone does feel a little chilly.
+```
+
+As this example function suggests, the constants
+```ST_HELENA_CC```, ```NEW_CALEDONIA_CC```, ```MONTSERRAT_CC```, and ```SVALBARD_CC``` are all now accessible to code in the kit.
+
+To get back to the Neptune file syntax, let's unpick what is going on. The basic shape of our file was like so:
+
+``` code
+new base COUNTRY_CODE_TY {
+	...
+}
+```
+
+It consisted of a single declaration, with all the details being inside the braces ```{``` and ```}```. The four main declarations are:
+
+* ```new base```. Makes a new base kind, on a par with `time` or `number`.
+
+* ```new constructor```. Makes a new constructor for kinds, on a par with `list of K` or `relation of K to L`.
+
+* ```builtin base```. Supplies details about a base kind which the compiler is expecting to be defined, like `time` or `number`.
+
+* ```builtin constructor```. Supplies details about a constructor for kinds which the compiler is expecting to be defined, like `time` or `number`.
+
+And for creating kinds which are not normally supplied with Inform, then, ```new base``` and ```new constructor``` are the ones which matter. `country code` is going to be a new base kind.
+
+Next after ```new base``` was the name ```COUNTRY_CODE_TY```. This is a defined constant accessible to I6, and its value is used inside kit-level code as the "kind ID" representing what kind this is. For example, the function call ```DefaultValueOfKOV(COUNTRY_CODE_TY)``` returns 290, the dialling code for the island of Saint Helena, and ```PrintKindValuePair(COUNTRY_CODE_TY, MONTSERRAT_CC)``` prints ``Montserrat``.
+
+By convention all kind IDs have names in ```ALL_CAPITALS_WITH_UNDERSCORES``` and ending in ```_TY```. This goes so far back into the early days of Inform that the letters "TY" here were short for "type", which we would now call "kind".
+
+Inside the braces, then, the Neptune file specifies some details about this new base kind `country code`, and begins like this:
+
+``` code
+	conforms-to: ENUMERATED_VALUE_TY
+	singular: country code
+	plural: country codes
+```
+
+The ```singular``` and ```plural``` lines are easily explained: they are the source-text names for the kind. We know from the header line of the declaration that it is called ```COUNTRY_CODE_TY``` at the I6 end; at the Inform source text end, it is called `country code`.
+
+```conforms-to``` tells Inform that this kind behaves in the way you would expect from the _protocol_ ```ENUMERATED_VALUE_TY```, which is the I6 way to write `enumerated value`. A kind can conform to many protocols — for example, all kinds automatically conform to `value`, a.k.a. ```VALUE_TY```. Saying that `country code` conforms to `enumerated value` means that, for example, it would be valid to supply a country code when using the phrase:
+
+	To speculate about (N - an enumerated value): ...
+
+Being an enumerated value means that Inform allows us to count the instances with `number of...`, or repeat through them, and so on. But Inform would not allow us to add together two country codes: it would throw a problem message if the source text asked to do that. If, however, we added:
+
+``` code
+	conforms-to: ENUMERATED_VALUE_TY
+	conforms-to: ARITHMETIC_VALUE_TY
+	singular: country code
+	plural: country codes
+```
+
+then Inform would now allow us to add together the Saint Helena code and the Montserrat code, making 290 + 1664 = 1954. That isn't one of our four possible values, so this would quickly lead to disaster. In any case, it really doesn't mean anything to add together two phone numbers, so it's easy to see why we want `country code` to conform to `enumerated value` but not `arithmetic value`.
+
+All base kinds should conform to one or more of the following:
+
+Source text name        | I6-level name            | What conforms to this
+----------------------- | ------------------------ | ---------------------
+`value`                 | VALUE_TY                 | All kinds by definition
+_none_                  | STORED_VALUE_TY          | All kinds whose values can be stored in a variable or property
+`sayable value`         | SAYABLE_VALUE_TY         | All kinds whose values can sensibly be printed
+`understandable value`  | UNDERSTANDABLE_VALUE_TY  | All kinds whose values can be recognised in typed commands
+`arithmetic value`      | ARITHMETIC_VALUE_TY      | All kinds whose values can sensibly and safely be added, multiplied and so on
+`real arithmetic value` | REAL_ARITHMETIC_VALUE_TY | Ditto, but using real not integer arithmetic
+`enumerated value`      | ENUMERATED_VALUE_TY      | All kinds with a limited range
+_none_                  | POINTER_VALUE_TY         | All kinds with values represented by I6 pointers
+
+In practice, it's not necessary to give much of a list, though, because:
+
+* Saying that a kind conforms to ```REAL_ARITHMETIC_VALUE_TY``` automatically makes it conform to ```ARITHMETIC_VALUE_TY``` too.
+
+* Saying that a kind conforms to either ```ARITHMETIC_VALUE_TY``` or  ```ENUMERATED_VALUE_TY``` automatically makes it conform to ```UNDERSTANDABLE_VALUE_TY``` too.
+
+* Saying that a kind conforms to ```UNDERSTANDABLE_VALUE_TY``` automatically makes it conform to ```SAYABLE_VALUE_TY``` too.
+
+* Saying that a kind conforms to ```SAYABLE_VALUE_TY``` automatically makes it conform to ```STORED_VALUE_TY``` too.
+
+* All kinds always conform to ```VALUE_TY```.
+
+So although we only declared `country code` as conforming to ```ENUMERATED_VALUE_TY```, we picked up conformance to ```UNDERSTANDABLE_VALUE_TY```, ```SAYABLE_VALUE_TY```, ```STORED_VALUE_TY``` and ```VALUE_TY``` automatically.
+
+That is quite enough about conformance. The rest of the declaration is simply a list of the _instances_ of this kind: i.e., of what those specific values are.
+
+``` code
+	instance: Saint Helena code  = ST_HELENA_CC     = 290
+	instance: New Caledonia code = NEW_CALEDONIA_CC = 687
+	instance: Montserrat code    = MONTSERRAT_CC    = 1664
+	instance: Svalbard code      = SVALBARD_CC      = 4779
+```
+
+In an enumerated kind like this, at least one instance must be provided, and they must be given in strictly increasing value order.
+
+Values are actually optional. For example:
+
+``` code
+	instance: Fellowship of the Ring = FOTR_LOTR
+	instance: Two Towers = TT_LOTR
+	instance: Return of the King = ROTK_LOTR
+```
+
+would create a three-element enumeration with values 1, 2, 3. This:
+
+``` code
+	instance: cyan = CYAN_COL = 10
+	instance: blue = BLUE_COL
+	instance: grey = GREY_COL = 20
+	instance: pink = PINK_COL
+```
+
+creates the values as 10, 11, 20, 21.
+
+Values can alternatively be given in Inform 6 hexadecimal or binary notation:
+
+``` code
+	instance: JSR instruction = JSR_6502 = $20
+	instance: RTS instruction = RTS_6502 = $60
+	instance: STA instruction = STA_6502 = $85
+```
+
+Once enumerations are numbered other than in the obvious way 1, 2, 3, ..., it becomes convenient to have ways to distinguish their sequence position from their numerical value. So:
+
+> phrase: {ph_numericalvalue} numerical value of (V - enumerated value) ... number
+>
+> The value stored at run-time to represent `V`. For a typical enumeration, the first-created value of its kind is internally stored as the number 1, the second 2, and so on. But for some non-standard enumerations, this is not always true.
+
+> phrase: {ph_sequencenumber} sequence number of (V - enumerated value) ... number
+>
+> 1 if `V` is the first-created value of its kind, 2 if it is the second, and so on. For a typical enumeration, this the same thing as `numerical value of V`. But for some non-standard enumerations, this is not always true.
+
+For example, `numerical value of Svalbard code` is 4779, whereas `sequence number of Svalbard code` is 4.
+
+## Neptune and arithmetic kinds
+
+For our next trick, we'll create a new kind of arithmetic value. This will be `memory address`, and will hold locations in the virtual machine memory map. We will need three ingredients:
+
+First, the kit has to include some supporting code for the kind. Here's a section file for the kit:
+
+``` code
+Memory Address Support
+
+This section provides functions to support the kind "memory address".
+
+@ This function is used to say a value of memory address, which we
+do in hexadecimal, padding to the theoretical maximum width of addresses
+on the architecture.
+
+=
+[ MEMORY_ADDRESS_TY_Say N;
+	print "$";
+	#iftrue (WORDSIZE == 2);
+	PrintInBase(N, 16, 4);
+	#ifnot;
+	PrintInBase(N, 16, 8);
+	#endif;
+];
+
+@ This dumps C bytes from address N onwards:
+
+=
+[ MEMORY_ADDRESS_TY_ShowBytes N C
+	i;
+	for (i=0: i<C: i++) {
+		if (i > 0) print " ";
+		PrintInBase(N->i, 16, 2);
+	}
+	print " ~";
+	for (i=0: i<C: i++) {
+		if ((N->i >= $20) && (N->i < $7f)) print (char) N->i; else print "?";
+	}
+	print "~";
+];
+
+@ And here we parse a word of the player's command to see if it could be an
+address in hexadecimal - up to 4 or 8 hex digits with a dollar sign in front.
+If it can't be that, we revert to trying the DECIMAL_TOKEN instead, which
+is what BasicInformKit uses to parse numbers in decimal.
+
+=
+[ MEMORY_ADDRESS_TY_Understand wa wl ch n digit;
+	wa = WordAddress(wn);
+	wl = WordLength(wn);
+	#Iftrue CHARSIZE == 1;
+	ch = wa->0;
+	if (wl > 5) return DECIMAL_TOKEN();
+	#Ifnot;
+	ch = wa-->0;
+	if (wl > 9) return DECIMAL_TOKEN();
+	#Endif; ! CHARSIZE
+	if (ch ~= '$') return DECIMAL_TOKEN();
+	wa = wa + CHARSIZE;
+	wl--;
+	n = 0;
+	while (wl > 0) {
+		#Iftrue CHARSIZE == 1;
+		ch = wa->0;
+		#Ifnot;
+		ch = wa-->0;
+		#Endif; ! CHARSIZE
+		if (ch >= 'a') digit = ch - 'a' + 10;
+		else if (ch >= 'A') digit = ch - 'A' + 10;
+		else digit = ch - '0';
+		if (digit >= 0 && digit < 16) n = 16*n + digit;
+		else return GPR_FAIL;
+		wl--;
+		wa = wa + CHARSIZE;
+	}
+	parsed_number = n; wn++;
+	return GPR_NUMBER;
+];
+```
+
+Second, the wrapper extension should provide some convenient phrases:
+
+	To decide which memory address is (N - number) in memory:
+		(- {N} -).
+
+	To decide which memory address is the address of the serial code:
+		(- (VM_SerialNumber()) -).
+
+	To say dump of (N - number) bytes at (address - memory address):
+		(-	MEMORY_ADDRESS_TY_Say({address});
+			print ": ";
+			MEMORY_ADDRESS_TY_ShowBytes({address}, {N});
+		-);
+
+Because we don't want to get into difficulties with dimensional restrictions on arithmetic, which would not let us add numbers to addresses, we will imitate the (not always great) convention also used by the `time` kind, which is that a small number can represent both a time of day and also a duration in minutes. Here, `16 bytes` and `16 in memory` are both the same value under the hood. So:
+
+	To decide which memory address is (N - number) byte/bytes:
+		(- {N} -).
+
+	Section on dumping (not for release)
+
+	Dumping memory at is an action out of world applying to one memory address.
+
+	Carry out dumping memory at:
+		say dump of 32 bytes at the memory address understood;
+		say line break.
+
+	Understand "dump [memory address]" as dumping memory at.
+
+That just leaves the Neptune file needed to declare this kind. It starts very much like the declaration of `country code` above, but this time conforms to ```ARITHMETIC_VALUE_TY``` not ```ENUMERATED_VALUE_TY```.
+
+``` code
+new base MEMORY_ADDRESS_TY {
+	conforms-to: ARITHMETIC_VALUE_TY
+	singular: memory address
+	plural: memory addresses
+
+	default-value: 0
+	can-exchange: yes
+
+	compare-function: UnsignedCompare
+	understand-function: MEMORY_ADDRESS_TY_Understand
+	say-function: MEMORY_ADDRESS_TY_Say
+
+	index-priority: 2
+	index-default-value: 0
+	specification-text: An address within the virtual machine the story runs in.
+}
+```
+
+As can be seen, though, it defines no instances — only enumerated kinds can do that — and instead sets many more details. Let's start with these settings, which affect how the kind is handled inside the Inform compiler:
+
+``` code
+	default-value: 0
+	can-exchange: yes
+```
+
+* ```default-value``` gives an I6 expression for the default value for the kind. Here, that will be the address 0.
+
+* ```can-exchange``` being ```yes``` means that values of this kind, if printed out by one story and then read in by another story entirely, would still have the same meaning. For example, that's true of `number` because all Inform stories use the same bits to represent the number 17, say. But it is not true of `action name`, because one story may have an action for `swimming`, say, and the other story not; and even if both of them have, they may number it differently. The default for ```can-exchange``` is very much ```no```, but we're saying ```yes``` here. An address means the same in all stories, even though the data stored at that address may be different in each of them.
+
+Next we have some settings for how values are handled at run-time:
+
+``` code
+	compare-function: UnsignedCompare
+	understand-function: MEMORY_ADDRESS_TY_Understand
+	say-function: MEMORY_ADDRESS_TY_Say
+```
+
+Taking these in turn:
+
+* ```compare-function``` is the name of a function ```f``` to compare two values of the kind, such that ```f(x, y)``` is 1 if ```x``` is greater than ```y```, 0 if they are equal, and -1 if ```x``` is less than ```y```. We want to compare memory addresses as unsigned numbers, so that addresses above the halfway point in the address space aren't misunderstood as negative numbers. The function ```UnsignedCompare``` is defined in ```BasicInformKit```, so we can just use that. (If we want regular signed comparison of numbers, the special value ```signed``` can also be used, which tells Inform not to make a function call but to use comparison operations on the virtual machine, which is a little faster.)
+
+* ```understand-function``` is the name of a function which can act as an `Understand` token for this kind: that is, it implements the grammar token `"[memory address]"`. This function has to comply with the calling conventions for general parsing routines (GPR) in the Inform 6 sense. ```MEMORY_ADDRESS_TY_Understand``` above is an example of that.
+
+* ```distinguish-function``` isn't specified for this kind, but it would be a function ```f``` such that ```f(x, y)``` is 1 if there is anything the player could type in a command which would distinguish the value ```x``` from ```y```. If ```understand-function``` is capable of understanding all possible values then the test performed by ```distinguish-function``` can just be to call the ```compare-function``` and return 1 if and only if it says that ```x``` and ```y``` are equal.
+
+* ```say-function``` is the name of a function to print a value of this kind.
+
+Finally, how the kind is presented in the Kinds part of the Index for a project which uses it:
+
+``` code
+	index-priority: 2
+	index-default-value: 0
+	specification-text: An address within the virtual machine the story runs in.
+```
+
+* ```index-priority``` controls how high up in the running order of the Index listing of kinds this comes. It really doesn't matter, but arithmetic kinds are usually given index priority 2.
+
+* ```index-default-value``` is just text: it's what the Index says the default value is.
+
+* ```specification-text``` is a brief verbal description.
+
+With all of this work in place, we can run, say:
+
+	When play begins:
+		let the header be 0 in memory;
+		showme the header;
+		showme the header plus 4 bytes;
+		showme the address of the serial code;
+		say "Looking inside, I see [dump of 64 bytes at the header].";
+		say "At the serial code, [dump of 6 bytes at the address of the serial code].";
+
+On the Z-machine, that might produce something like this:
+
+``` transcript
+"header" = memory address: $0000
+"header plus 4 bytes" = memory address: $0004
+"address of the serial code" = memory address: $0012
+Looking inside, I see $0000: 08 9D 00 01 9F 38 9F 39 92 67 01 0A 1B 1A 8B 02 00
+50 32 34 30 34 31 37 00 42 BC 04 A9 C4 03 5A 30 58 00 58 00 30 01 01 00 00 00 00
+09 02 8B 01 00 00 01 01 00 00 01 02 00 00 00 00 36 2E 34 33
+"?????8?9?g???????P240417?B?????Z0X?X?0??????????????????????6.43".
+At the serial code, $0012: 32 34 30 34 31 37 "240417".
+```
+
+And on Glulx, something broadly similar, but with different layout and longer addresses.
+
+## Neptune and other base kinds
+
+### Oddball kinds
+
+We have seen examples of new base kinds created which conform to ```ENUMERATED_VALUE_TY``` and ```ARITHMETIC_VALUE_TY```, but not everything does. If we have a kind which has a scatter of values, perhaps unlimited in extent, and where arithmetic makes no sense, then neither of these models would work. For example, `action name` is a kind which has a finite set of possible values, but those values are not predictable and can't exchange; and it makes no sense to add or subtract them.
+
+Such kinds should given one of the following conformances:
+
+- ```conforms-to: UNDERSTANDABLE_VALUE_TY``` if we can give them both a ```understand-function``` and a ```say-function```;
+
+- ```conforms-to: SAYABLE_VALUE_TY``` if we can give them a ```say-function``` but not a ```understand-function```;
+
+- ```conforms-to: STORED_VALUE_TY``` if not even that.
+
+For example, `action name`, which is defined by a Neptune file in ```WorldModelKit```, conforms to ```SAYABLE_VALUE_TY```. This is why action names can be said, but cannot be understood in players' commands.
+
+As it happens, `action name` is an example of a kind which, even though it doesn't conform to ```ENUMERATED_VALUE_TY```, _does_ have a finite range of values. We want Inform to be able to take advantage of this, because that means that `number of action names`, `list of action names` and so on can work. The Neptune file defining `action name` therefore contains this unlovely line:
+
+``` code
+loop-domain-schema: for (*2=0,*1=ActionNumberIndexed(*2): *2<AD_RECORDS: *2++,*1=ActionNumberIndexed(*2))
+```
+
+This is essentially a prototype of how to write a loop over all valid values of `action name`, written in what is nearly I6 notation, except that ```*1``` and ```*2``` represent two loop variables available to manage the iteration, with the actual value stored in ```*1```. What the above means is that Inform can access the valid values of `action name` as
+
+``` code
+ActionNumberIndexed(0)
+ActionNumberIndexed(1)
+ActionNumberIndexed(2)
+...
+ActionNumberIndexed(AD_RECORDS - 1)
+```
+
+where ```ActionNumberIndexed``` is a function (compiled as it happens by the Inform compiler directly), and ```AD_RECORDS``` is a constant. But the details are unimportant: the point is that any kind can be given its own mechanism for looping through values. For example,
+
+``` code
+loop-domain-schema: for (*2=1,*1=ArrayOfGadgetValues-->*2: *2<=ArrayOfGadgetValues-->0: *2++,*1=ArrayOfGadgetValues-->*2)
+```
+
+would go through the values stored in an I6 table array like this one:
+
+``` code
+Array ArrayOfGadgetValues --> 5 10 20 30 40 50;
+```
+
+But of course if the values were really so regular, then this would also do it:
+
+``` code
+loop-domain-schema: for (*1 = 10: *1 <= 50: *1 = *1 + 10)
+```
+
+### Kinds of object
+
+In general, Neptune cannot define kinds of object.
+
+But it does support one feature allowing those to be tweaked, though the feature is intentionally limited and should be used as little as possible. Suppose, for nefarious reasons of our own, we need to assign virtual machine attributes or properties — these do not quite correspond to Inform properties, but the concepts all overlap — to objects at run-time; but we don't want the Inform compiler to do this higher up, through assertions in the source text in the regular way. Inform used to have a crude feature which looked like this:
+
+	Include (-
+		has enterable supporter,
+		with max_capacity 10,
+	-) when defining a rideable animal.
+
+That is no longer allowed. All forms of `Include (- ... -)` are on the way out (kits are a better solution all round), but this one has already gone.
+
+But its functionality can be replicated by placing this declaration in a Neptune file in the kit in question:
+
+``` code
+properties of rideable animal {
+	attribute: enterable
+	attribute: supporter
+	property: max_capacity = 10
+}
+```
+
+Note that the kind named must be a valid kind of `object` (though it can be one with no instances), and can give the name either in the singular or the plural. Inside this declaration, only the following are allowed:
+
+``` code
+	attribute: ATTRIBUTENAME
+	attribute: ~ATTRIBUTENAME
+	property: PROPERTYNAME
+	property: PROPERTYNAME = NUMBER
+```
+
+The syntax ```~ATTRIBUTENAME``` means the attribute is set to ```false```, not ```true```; this is traditional Inform 6 notation. The short form ```property: PROPERTYNAME``` means ```property: PROPERTYNAME = 0```.
+
+## Pointer-value kinds
+
+A _word_ is the quantity of memory needed to store one ```-->``` array entry: two bytes on 16-bit architectures (because 2 bytes times 8 bits per byte is 16 bits), four bytes on 32-bit architectures. This is also the amount of data stored in a local or global variable, and in a property.
+
+So it would be both tidy and efficient if every kind could fit all its possible values into a single word. And for some kinds, this is exactly what does happen: `time`, for example, fits easily in a word, and `number` fits exactly in a word. But there is simply more potential data in a `text`, say, or a `list of texts`, than can possibly squeeze into 16 or 32 bits.
+
+Data like that is stored instead as a _pointer_, that is, as an address in memory. Whether a value is stored as a single word or as a pointer depends entirely on the kind. If the kind is declared as
+
+``` code
+	conforms-to: POINTER_VALUE_TY
+```
+
+...then all values of this kind are stored as pointers; and if not, all values of the kind are stored as words. Perhaps surprisingly, the values of all kinds of object are stored as single words, even though an object seems like a complicated mass of detail. Copying the value `brass samovar` (an instance of the kind `thing`, let's say) from one variable to another does not make a second samovar appear in the story. It simply means that both variables contain an ID number identifying which object is meant, and that both mean the one and only samovar. These ID numbers fit comfortably into a word. So ```OBJECT_TY``` does not conform to ```POINTER_VALUE_TY```.
+
+### The weak kind ID determines whether a kind uses pointer values
+
+Kinds also have IDs: in fact, two sorts of ID, a _weak kind ID_ and a _strong kind ID_. We'll only need to work with weak kind IDs here. Several have appeared already: the weak kind ID of `number` is ```NUMBER_TY```, and so on. All of the constants ending ```_TY``` mentioned in Neptune files are in fact weak IDs.
+
+What makes them weak is that they cannot always tell different kinds apart. For example, `room`, `thing` and `vehicle`, along with all other kinds of object, all have weak ID ```OBJECT_TY```. And `list of numbers`, `list of texts` and `list of lists of lists of times`, for example, all have weak ID ```LIST_OF_TY```. Strong kind IDs, by contrast, do distinguish these, which is what makes them strong.
+
+But weak kind IDs are nevertheless useful because the I6 code needed to handle values of a given kind generally depends only on its weak ID. All lists have weak ID ```LIST_OF_TY```, but then all lists are created, copied and destroyed by the same functions.
+
+In this section we will go through how pointer values are stored in memory, and lay out a set of functions from ```BasicInformKit``` which other kits can use when dealing with pointer values.
+
+> ---
+>
+> ```KindConformsTo_POINTER_VALUE_TY(weak_kind_ID)```
+> 
+> Returns ```true``` if ```weak_kind_ID``` refers to a kind with pointer values, and ```false``` otherwise. Thus ```KindConformsTo_POINTER_VALUE_TY(NUMBER_TY)```  is false, but ```KindConformsTo_POINTER_VALUE_TY(TEXT_TY)``` is true.
+>
+> ---
+>
+> ```WeakKindOfPV(pv)```
+> 
+> Can only be called on a valid (i.e., created and not yet destroyed) pointer value: returns its weak kind ID.
+>
+> ---
+
+### Pointer values can be passed by reference
+
+We have already seen that these two potential phrase definitions are subtly different:
+
+	To decide what number is the number of entries in (L - a list of values):
+		(- LIST_OF_TY_GetLength({L}) -).
+
+	To decide what number is the number of entries in (L - a list of values):
+		(- LIST_OF_TY_GetLength({-by-reference:L}) -).
+
+In the first, ```LIST_OF_TY_GetLength``` is given a duplicate of `L`; in the second, it is passed `L` itself. Copying takes memory and time, so it should only be done when necessary. Here there's no need to duplicate, because the length is the same either way. So although both definitions work, the second is faster.
+
+In this case, though, _only_ the second potential definition works:
+
+	To sort (L - a list of values)
+		(- LIST_OF_TY_Sort({L}, SORT_ASCENDING); -).
+
+	To sort (L - a list of values)
+		(- LIST_OF_TY_Sort({-lvalue-by-reference:L}, SORT_ASCENDING); -).
+
+The issue here is that the first phrase duplicates the list, sorts the duplicate, and then throws it away as no longer needed. The second phrase sorts the original list, which is what we wanted to happen.
+
+In Inform, only pointer values can be passed by reference. It's not possible to pass a reference to the number 20, say: you can only pass 20. There can be no
+pointers to local or global variables, because these do not exist in the
+memory map.
+
+Moreover, once a pointer value has passed down into I6 code, all further function calls are always by reference. If ```LIST_OF_TY_Sort``` receives a list value ```L``` and then passes it on to some other function, it is only passing a reference (i.e., pointer) to the data, not the data itself.
+
+### Pointer values usually store data in fields
+
+Suppose, then, that the source text does this:
+
+	let L be { 4, 2, 71 };
+	sort L;
+
+so that the function call ```LIST_OF_TY_Sort(L)``` is performed. Now we're down at the I6 level, inside some kit. What can we do with ```L```?
+
+```L``` is the address in memory of a small ```-->``` array called the _short block_. These are truthfully named, usually having only 1 or 2 entries. In most cases, one of those entries is a further address, of a larger ```-->``` array called the _long block_.
+
+The exact configuration differs from kind to kind. For a `stored action`, for example, the short block has size 1, and contains only a pointer to the long block, which holds exactly 6 entries, called _fields_. For a `list of numbers`, on the other hand, the long block may need to be much larger, and may shrink or grow. ```BasicInformKit``` handles all of that automatically. 
+
+In some kinds, fields are single bytes, and in others words. 
+
+> ---
+>
+> ```PVFieldCapacity(pv)```
+>
+> Returns the number of fields of data in the long block of the PV. This is always positive. It may be larger than expected, because the memory manager tends to allocate memory up to powers of 2 in size.
+>
+> If this PV has no long block, then the capacity is 0.
+>
+> ---
+>
+> ```SetPVFieldCapacity(pv, new_capacity)```
+>
+> Resizes the PV so that it can now hold at least ```new_capacity``` fields. This must be a positive number. This can contract as well as expand PVs. Note that this does not properly destroy any data which might have been trimmed off: it is the caller's responsibility to see that that is done before calling. After this call, ```PVFieldCapacity(pv)``` will be at least ```new_capacity```, but may be a little greater, for the same reason mentioned above.
+>
+> If this PV has no long block, then the capacity cannot be set and remains 0.
+>
+> ---
+>
+> ```PVField(pv, field)```
+> 
+> Returns the current contents of the entry numbered ```field``` in the long block. If the PV has field capacity C, then fields are numbered 0 to C-1, so that ```PVField(pv, 0)``` is the first field. Calling this function with a ```field``` value out of range triggers an error.
+>
+> ---
+>
+> ```WritePVField(pv, field, value)```
+> 
+> Writes ```value``` to the entry numbered ```field``` in the long block. If the PV has field capacity C, then fields are numbered 0 to C-1, so that ```PVField(pv, 0)``` is the first field. Calling this function with a ```field``` value out of range triggers an error.
+>
+> ---
+>
+> ```WritePVFieldsFromByteArray(pv, array, extent)```
+> 
+> Copies the entries ```array->0``` to ```array->(extent-1)``` as the first ```extent``` fields of the PV, whose capacity is enlarged if necessary to make room. Should only be used if the PV stores byte-sized fields.
+>
+> ---
+>
+> ```WritePVFieldsFromWordArray(pv, array, extent)```
+> 
+> Copies the entries ```array-->0``` to ```array-->(extent-1)``` as the first ```extent``` fields of the PV, whose capacity is enlarged if necessary to make room. Should only be used if the PV stores word-sized fields.
+>
+> ---
+
+### Creation and destruction
+
+If we want to obtain a completely new PV value, we have to use:
+
+> ---
+>
+> ```CreatePV(weak_kind_ID)```
+> 
+> Returns a completely new value of the given kind. This must be a pointer value, of course, so ```CreatePV(TEXT_TY)``` creates a new text, but ```CreatePV(NUMBER_TY)``` is an error. The value is initially equal to the default value for the kind in question: an empty text, an empty list, and so on. 
+>
+> ---
+
+Note that Inform is _not_ a system with garbage collection, where unwanted objects linger for a while in memory and are then disposed of automatically. If we create a new value, we need to be certain that it will some day be destroyed.
+
+> ---
+>
+> ```DestroyPV(pv)```
+> 
+> Destroys the PV. If that in turn contained further PV data, those are automatically destroyed first. So destroying a list of texts causes all the texts to be destroyed, and then finally the list: only one call is needed. Once destroyed, a PV is gone, gone, gone: do not ever use the ```pv``` address again.
+>
+> ---
+
+### Copying and comparison
+
+Copying cannot be done as simply as with regular data. The following is an attempt to take a list as an argument, and return a shortened version:
+
+``` code
+[ ShortenedList list shorter_list;
+	shorter_list = list;
+	LIST_OF_TY_SetLength(shorter_list, 4);
+	return shorter_list;
+];
+```
+
+Unfortunately the statement ```shorter_list = list;``` does not make a duplicate copy of the data in the list: it only makes a duplicate copy of the pointer to the list. It leaves both ```shorter_list``` and ```list``` pointing to the same actual data. So although ```LIST_OF_TY_SetLength``` does indeed truncate that data, the effect is that the original list is also truncated.
+
+What's actually needed is this:
+
+``` code
+[ ShortenedList list shorter_list;
+	shorter_list = CreatePV(LIST_OF_TY);
+	CopyPV(shorter_list, list);
+	LIST_OF_TY_SetLength(shorter_list, 4);
+	return shorter_list;
+];
+```
+
+> ---
+>
+> ```CopyPV(to_pv, from_pv)```
+> 
+> Makes a duplicate copy of ```from_pv``` in ```to_pv```, both of which must already be valid PVs and with the same weak kind ID.
+>
+> ---
+
+The very fact that duplication is possible means that comparison is also tricky. For example, the ```if``` condition here:
+
+``` code
+	shorter_list = CreatePV(LIST_OF_TY);
+	CopyPV(shorter_list, list);
+	if (list == shorter_list) {
+		...
+	}
+```
+
+...would be false. ```shorter_list``` is a duplicate of ```list``` in terms of the contents they each have, but they are stored at different locations in memory, and all that ```list == shorter_list``` tests is whether the locations are equal. The correct way to do this is:
+
+``` code
+	shorter_list = CreatePV(LIST_OF_TY);
+	CopyPV(shorter_list, list);
+	if (ComparePV(list, shorter_list) == 0) {
+		...
+	}
+```
+
+> ---
+>
+> ```ComparePV(pv1, pv2)```
+> 
+> Tests to see if ```pv1``` is less than, equal to, or greater than ```pv2```, both of which must already be valid PVs and with the same weak kind ID. Returns 0 if they are equal, a positive number if ```pv1``` is the greater one, and a negative number if ```pv2``` is greater.
+>
+> ---
+
+This test is used not only to see if one pointer value `is` another one, but also when sorting lists or tables of pointer values.
+
+### Casting
+
+_Casting_ is taking a value from one kind and converting to a value of another kind. Inform does relatively little casting, but for example it can convert a `number` to a `real number`, or a `snippet` to a `text`.
+
+Here we're only concerned with the case where the target kind, i.e., the kind which the data ends up in, is a pointer-valued kind: so the `snippet` to `text` example would be done as the call ```CastPV(to_txt, SNIPPET_TY, snip)```.
+
+> ---
+>
+> ```CastPV(to_pv, original_weak_kind_ID, original_value)```
+> 
+> Should only be called where the caller is certain that the cast is possible. Takes the value ```original_value```, of the kind given in ```original_weak_kind_ID```, and converts it as faithfully as possible to become the new contents of ```to_pv```, which must already be a valid PV.
+>
+> ---
+
+### Serialising
+
+_Serialising_ is converting data to or from a text file which can be exchanged with another program. Two functions are provided for this, ```PVFromFile``` and ```WritePVToFile```, but their use is beyond the scope of these notes. See the source code of ```BasicInformKit``` for more. Pointer values rarely allow serialisation, in practice.
+
+## Neptune and kinds stored in multiple words of data
+
+In this section, we'll make a base kind which takes 5 words of data to store. It'll be a CMYK colour value, used by photographers and printers to specify colours in terms of the proportions of cyan, magenta, yellow and black ink needed, with each value a percentage ranging from 0 to 100; and then a name, in text form. For example, royal blue in CMYK is roughly 71, 53, 0, 12, `"royal blue"`.
+
+For this kind, we will make this Neptune declaration:
+
+``` code
+new base CMYK_COLOUR_TY {
+	conforms-to: POINTER_VALUE_TY
+	conforms-to: SAYABLE_VALUE_TY
+	singular: CMYK colour
+	plural: CMYK colours
+	
+	long-block-size: 5
+
+	create-function: CMYK_COLOUR_TY_Create
+	say-function: CMYK_COLOUR_TY_Say
+	compare-function: CMYK_COLOUR_TY_Compare
+	hash-function: CMYK_COLOUR_TY_Hash
+	copy-function: CMYK_COLOUR_TY_Copy
+	destroy-function: CMYK_COLOUR_TY_Destroy
+	
+	index-priority: 2
+	index-default-value: 0
+	specification-text: A cyan-magenta-yellow-black description of an ink colour.
+}
+```
+
+Let's look first at the setting ```long-block-size: 5```. The memory used by a pointer value is normally split between a _short block_ and a _long block_. There are basically two and a half strategies for kinds to follow:
+
+- Put all the data in the short block, and have no long block. We'll see examples of this later. To get this, set ```short-block-size``` to the number of fields of data needed, and do not set ```long-block-size```.
+
+- Have a 1-word short block (they're not called short for nothing) which consists only of a pointer to a long block, where the data is. This is what `CMYK colour` will do. To get this, set ```long-block-size``` to the number of fields of data needed, and do not set ```short-block-size```. If the long block needs to be able to expand or contract during use, set ```flexible-long-block-size``` to an overestimate of what is usually needed, and do not set either of the other two settings.
+
+- Have a 2-word short block and sometimes but not always have a long block as well. The `text` kind is currently the only one to do this, and it's not recommended for anything else.
+
+Note that the ```long block size``` is measured in _fields_, and we will need 5 in all: name, cyan, magenta, yellow, black.
+
+Next we come to a whole set of functions needed for `CMYK colour` to operate:
+
+``` code
+	create-function: CMYK_COLOUR_TY_Create
+	say-function: CMYK_COLOUR_TY_Say
+	compare-function: CMYK_COLOUR_TY_Compare
+	hash-function: CMYK_COLOUR_TY_Hash
+	copy-function: CMYK_COLOUR_TY_Copy
+	destroy-function: CMYK_COLOUR_TY_Destroy
+```
+
+To start with the creation function: this will be called as ```CMYK_COLOUR_TY_Create(kind_id, sb_address)```. The long block must be created first, and then the short block, which incorporates a pointer to it, always in the last word of the short block.
+
+``` code
+Constant CMYK_LONG_BLOCK_SIZE = 5;
+
+Constant CMYK_NAME_F = 0;
+Constant CMYK_CYAN_F = 1;
+Constant CMYK_MAGENTA_F = 2;
+Constant CMYK_YELLOW_F = 3;
+Constant CMYK_BLACK_F = 4;
+
+Array CMYK_DEFAULT_NAME_TEXT --> PACKED_TEXT_STORAGE "black";
+
+[ CMYK_COLOUR_TY_Create kind_id sb_address
+	short_block long_block txt;
+
+	long_block = CreatePVLongBlock(CMYK_COLOUR_TY);
+
+	txt = CreatePV(TEXT_TY);
+	CopyPV(txt, CMYK_DEFAULT_NAME_TEXT); TEXT_TY_Mutable(txt);
+
+	InitialisePVLongBlockField(long_block, CMYK_NAME_F, txt);
+	InitialisePVLongBlockField(long_block, CMYK_CYAN_F, 0);
+	InitialisePVLongBlockField(long_block, CMYK_MAGENTA_F, 0);
+	InitialisePVLongBlockField(long_block, CMYK_YELLOW_F, 0);
+	InitialisePVLongBlockField(long_block, CMYK_BLACK_F, 100);
+	
+	short_block = CreatePVShortBlock(sb_address, kind_id);
+	short_block-->0 = long_block;
+
+	return short_block;
+];
+```
+
+It is very important that the ```sb_address``` value is passed through to ```CreatePVShortBlock```. The deal here is that if this is 0 then the short block is created somewhere in the heap, but if it is non-zero, then the short block is created at the given location (often on the stack). We don't need to care about any of that, but we do need to pass the address on.
+
+The words of actual data in the long block are called _fields_. They're indexed 0 to 4, since we're using just 5. We put initial contents into the five words with the special function ```InitialisePVLongBlockField```. Note the ```LB```, for long block, at the end of this function name, and do not confuse this function with the usual ```WritePVField```. ```InitialisePVLongBlockField``` should never be used except in create functions.
+
+The interesting field of the five is ```CMYK_NAME_F```, of course, since it's a text value which itself needs creation. When created by ```CreatePV(TEXT_TY)```, the result will be a copy of the default text, which is the empty text `""`. We actually want to start with `"black"`, so we must _copy_ that constant value into our new text, but any use of packed text is always tricksy, and we make it mutable so that its value will sort correctly as against text. We don't simply execute ```InitialisePVLongBlockField(long_block, CMYK_NAME_F, CMYK_DEFAULT_NAME_TEXT);``` because values like text must always be copied in a way which keeps reference counts accurate.
+
+So here's how to say a CMYK once we have one:
+
+``` code
+[ CMYK_COLOUR_TY_Say cmyk;
+	TEXT_TY_Say(PVField(cmyk, CMYK_NAME_F));
+	print " ink = ";
+	print "C:", PVField(cmyk, CMYK_CYAN_F), "% ";
+	print "M:", PVField(cmyk, CMYK_MAGENTA_F), "% ";
+	print "Y:", PVField(cmyk, CMYK_YELLOW_F), "% ";
+	print "K:", PVField(cmyk, CMYK_BLACK_F), "%";
+];
+```
+
+And here's a comparison function. These follow just the same calling conventions that they do for non-pointer-valued kinds. We're going to compare first alphabetically on the ink name, and then, within the same name, use the cyan level as a tiebreaker, failing that the magenta, and so on.
+
+``` code
+[ CMYK_COLOUR_TY_Compare cmyk1 cmyk2 i d;
+	d = TEXT_TY_Compare(
+		PVField(cmyk1, CMYK_NAME_F), PVField(cmyk2, CMYK_NAME_F));
+	if (d ~= 0) return d;
+	for (i=CMYK_CYAN_F: i<CMYK_LONG_BLOCK_SIZE: i++) {
+		d = PVField(cmyk1, i) - PVField(cmyk2, i);
+		if (d ~= 0) return d;
+	}
+	return 0;
+];
+```
+
+There is really no need to provide a hash function for this kind (and the data is so small that it would provide no real benefit), but we will anyway, for the sake of a demonstration. A _hash code_ for a value is a quick-to-compute number such that if two values are equal then they have the same hash code, but not necessarily vice versa. It's potentially slow to tell whether two texts are equal, but hash codes can often quickly spot that they are different. So:
+
+``` code
+[ CMYK_COLOUR_TY_Hash cmyk rv;
+	rv = HashKindValuePair(TEXT_TY, PVField(cmyk, CMYK_NAME_F));
+	rv = rv * 33 + PVField(cmyk, CMYK_CYAN_F);
+	rv = rv * 33 + PVField(cmyk, CMYK_MAGENTA_F);
+	rv = rv * 33 + PVField(cmyk, CMYK_YELLOW_F);
+	rv = rv * 33 + PVField(cmyk, CMYK_BLACK_F);
+	return rv;
+];
+```
+
+Now we come to the trickiest operation: copying. The copy function for a kind copies the contents of the second argument into the first. Both must already exist and be valid: that is, they must have been created but not yet destroyed. The ```kind``` parameter passed to this function is the kind which |cmykto| is to have: that may seem pointless, indeed, it is pointless, for a simple kind like `CMYK colour`, but this becomes important when copying lists or other more complex data structures.
+
+The ```recycling``` parameter should be ignored, _except_ that the function is required to call ```CopyPVRawData(cmykto, cmykfrom, kind, recycling);``` at some point. This makes a simple-minded copy of fields 0 to 4. That's fine when copying numbers, but it is not fine when copying `text`, which is a pointer-valued kind. We must use ```CreatePV``` to make a new text, then properly copy over the text value into it, and write the result into field 0. We do _not_ need to worry about destroying whatever was in field 0 before: that has already been done.
+
+``` code
+[ CMYK_COLOUR_TY_Copy cmykto cmykfrom kind recycling
+	inkfrom inkto;
+	CopyPVRawData(cmykto, cmykfrom, kind, recycling);
+	inkfrom = PVField(cmykfrom, CMYK_NAME_F);
+	inkto = CreatePV(TEXT_TY);
+	CopyPV(inkto, inkfrom);
+	WritePVField(cmykto, CMYK_NAME_F, inkto);
+];
+```
+
+And finally, of course, a `CMYK colour` will probably need to be thrown away. Losing the four percentages is harmless enough, they were just numbers, but losing the ink name means we need to destroy the text value properly. If we don't, useless data will be left forever on the heap, causing a so-called memory leak. Any pointer-value can be humanely destroyed, so:
+
+``` code
+[ CMYK_COLOUR_TY_Destroy cmyk;
+	DestroyPV(PVField(cmyk, CMYK_NAME_F));
+];
+```
+
+If the long block had contained only numbers, we would not even have needed to define a destroy function.
+
+Purely for convenience, we're also going to provide a creation function which populates a CMYK colour with some actual values other than solid black:
+
+``` code
+[ CMYK_COLOUR_TY_New cmyk ink c m y k;
+	CopyPV(PVField(cmyk, CMYK_NAME_F), ink);
+	WritePVField(cmyk, CMYK_CYAN_F, c);
+	WritePVField(cmyk, CMYK_MAGENTA_F, m);
+	WritePVField(cmyk, CMYK_YELLOW_F, y);
+	WritePVField(cmyk, CMYK_BLACK_F, k);
+	return cmyk;
+];
+```
+
+We can then define this phrase in the wrapper extension. Note that the value is actually created by `{-new:CMYK colour}` in the inline phrase definition: this is important, because it means that value will automatically be destroyed when it goes out of scope. (That would not be true if instead the ```CMYK_COLOUR_TY_New``` function had called ```CreatePV``` to make its own `CMYK colour`: that would cause a memory leak.)
+
+	To decide which CMYK colour is (T - text) ink C (C - number) M (M - number) Y (Y - number) K (K - number):
+		(- (CMYK_COLOUR_TY_New({-new:CMYK colour}, {T}, {C}, {M}, {Y}, {K})) -).
+
+And finally, then, a project which includes the wrapper extension could have:
+
+	When play begins:
+		let background be a CMYK colour;
+		showme background;
+		showme "lavender" ink C 8 M 8 Y 0 K 2;
+		let royal blue be "royal blue" ink C 71 M 53 Y 0 K 12;
+		showme royal blue;
+		showme whether or not royal blue is greater than background;
+		let L be a list of CMYK colours;
+		add royal blue to L;
+		add background to L;
+		add "taupe" ink C 0 M 19 Y 30 K 72 to L;
+		add "taupe" ink C 0 M 17 Y 31 K 72 to L;
+		say "Before sorting, L is [L].";
+		sort L;
+		say "After sorting, L is [L].";
+
+Which outputs:
+
+``` transcript
+"background" = cmyk colour: black ink = C:0% M:0% Y:0% K:100%
+""lavender" ink C 8 M 8 Y 0 K 2" = cmyk colour: lavender ink = C:8% M:8% Y:0% K:2%
+"royal blue" = cmyk colour: royal blue ink = C:71% M:53% Y:0% K:12%
+"whether or not royal blue is greater than background" = truth state: true
+Before sorting, L is royal blue ink = C:71% M:53% Y:0% K:12%, black ink = C:0%
+M:0% Y:0% K:100%, taupe ink = C:0% M:19% Y:30% K:72% and taupe ink = C:0% M:17%
+Y:31% K:72%.
+After sorting, L is black ink = C:0% M:0% Y:0% K:100%, royal blue ink = C:71%
+M:53% Y:0% K:12%, taupe ink = C:0% M:17% Y:31% K:72% and taupe ink = C:0% M:19%
+Y:30% K:72%.
+```
+
+A number of other functions can optionally be provided in Neptune declarations, too. `CMYK colour` did not need them, but more outré kinds might.
+
+- ```flexible-long-block-size```. Values of most kinds need only a fixed amount of space, but others can balloon out to huge amounts of storage. This may be stored internally as a chain of multiple long blocks, but all of that is hidden from us. Setting ```flexible-long-block-size: 200```, say, is an _alternative_ to setting ```long-block-size: 10```. _Do not set both._ Instead of saying that the LB will hold exactly 10 fields, we are saying that it can hold a potentially unlimited number, but that a reasonable overestimate in typical usage is about 200. (Inform uses such estimates in working out what size of memory heap a story needs.)
+
+  Flexible-long-block values need to be created slightly differently, by calling ```CreatePVLongBlockFlexible(kind_id, N)``` instead of ```CreatePVLongBlock(kind_id)```, but otherwise the process is exactly the same. Here ```N``` has to be the _initial_ field storage needed. The long block can later be resized as needed using ```SetPVFieldCapacity(value, N2)```.
+
+- ```long-block-size-function```. This can only be provided for flexible-LB kinds, and returns the current actual usage of fields in the long block. If it returns 0, or isn't given, then the current _capacity_ is taken as being the current usage, i.e., the long block is assumed to be fully used up. This is often not the case — for example, a list holding 20 values might be using a block with 200 spare fields — so a flexible LB kind will run faster if it provides this function.
+
+- ```make-mutable-function```. This has to do with constant values and reference-counting, and is tricky to explain. Only kinds which pull off the trick of sometimes having a long block, and sometimes not, will need this device, and at present only ```TEXT_TY``` does that. See the ```BasicInformKit``` source code (or, preferably, don't).
+
+- ```copy-short-block-function```. Similarly obscure, and also used only by ```TEXT_TY``` at present. If provided, this function makes a non-standard copy of one short block to another. But there is a lot to be said for the standard way.
+
+- ```quick-copy-function```. A _quick copy_ is a more efficient form of copying which is permitted when safe. This task is called when a copy is about to happen: we can return ```false``` to refuse permission to make a quick copy, or ```true``` to permit it, perhaps after making some preparations first.
+
+- ```cast-function```. _Casting_ is taking data of one kind and converting it to data of another. We certainly don't need that here, though we could imagine casting an `RGB colour` to a `CMYK colour`, perhaps. See ```TEXT_TY_Cast``` in ```BasicInformKit``` for an example of how this is done.
+
+- ```unserialise-function```. Reading a serialised-to-text form of the data from a file. See ```TEXT_TY_Unserialise``` in ```BasicInformKit``` for an example of this.
+
+- ```serialise-function```. Writing a serialised-to-text form of the data to a file. See ```TEXT_TY_Serialise``` in ```BasicInformKit``` for an example of this.
+
+## Neptune and short-block-only values
+
+In this section we look at still another way to set up a base kind. Instead of having a short block which points to a long block, and putting all the data in the long block, we'll try for something a touch faster with less memory overhead: putting the data itself in the short block.
+
+This can only work where a small amount of data is all that's needed. (In fact, `CMYK colour` would have been a good candidate for this, but never mind.) Here we'll make something very minimal: a vector of three numbers, which we can think of as x-, y- and z-coordinates.
+
+``` code
+new base VECTOR_TY {
+	conforms-to: POINTER_VALUE_TY
+	conforms-to: SAYABLE_VALUE_TY
+	singular: vector
+	plural: vectors
+	
+	short-block-size: 5
+	long-block-size: 0
+	
+	say-function: VECTOR_TY_Say
+	compare-function: VECTOR_TY_Compare
+	create-function: VECTOR_TY_Create
+	copy-function: VECTOR_TY_Copy
+
+	index-priority: 2
+	index-default-value: 0
+	specification-text: A three-vector which holds number values in its x, y, z coordinates.
+}
+```
+
+The create function is a little different now:
+
+``` code
+Constant VECTOR_X_SF = 2;
+Constant VECTOR_Y_SF = 3;
+Constant VECTOR_Z_SF = 4;
+
+[ VECTOR_TY_Create kind_id sb_address
+	short_block;
+
+	short_block = CreatePVShortBlock(sb_address, kind_id);
+	short_block-->VECTOR_X_SF = 0;
+	short_block-->VECTOR_Y_SF = 0;
+	short_block-->VECTOR_Z_SF = 0;
+
+	return short_block;
+];
+```
+
+Note that the fields are read and written _directly_ from the short block, and not via the access functions ```PVField``` and ```WritePVField```. Those write data to a long block, and this kind has no long block. This is good: it's fast, for one thing.
+
+But the responsibility for writing only in range is now entirely on us, and we can use only words 2, 3 and 4: words 0 and 1 belong to the memory manager. That's why we defined
+
+``` code
+Constant VECTOR_X_SF = 2;
+Constant VECTOR_Y_SF = 3;
+Constant VECTOR_Z_SF = 4;
+```
+
+and not equating these to 0, 1, 2. In fact, we get slightly more storage than this: the memory manager leaves us 4 bits free in its own two words of the short block. See [Neptune and optionals] for how these can be used: we won't need them for `vector`.
+
+The say and compare functions are quite concise:
+
+``` code
+[ VECTOR_TY_Say vec;
+	print "(", vec-->VECTOR_X_SF, ",";
+	print vec-->VECTOR_Y_SF, ",";
+	print vec-->VECTOR_Z_SF, ")";
+];
+
+[ VECTOR_TY_Compare vec1 vec2 n1 n2 i j d;
+	d = vec1-->VECTOR_X_SF - vec2-->VECTOR_X_SF; if (d ~= 0) return d;
+	d = vec1-->VECTOR_Y_SF - vec2-->VECTOR_Y_SF; if (d ~= 0) return d;
+	d = vec1-->VECTOR_Z_SF - vec2-->VECTOR_Z_SF; if (d ~= 0) return d;
+	return 0;
+];
+```
+
+There's no need for a destroy function at all, since the data in a vector is only ordinary `number` values which need no destruction.
+
+The copy function is now simple:
+
+``` code
+[ VECTOR_TY_Copy vecto vecfrom;
+	vecto-->VECTOR_X_SF = vecfrom-->VECTOR_X_SF;
+	vecto-->VECTOR_Y_SF = vecfrom-->VECTOR_Y_SF;
+	vecto-->VECTOR_Z_SF = vecfrom-->VECTOR_Z_SF;
+	return false;
+];
+```
+
+And that's it. Still, we want a convenience initialiser too, as with `CMYK colour`, so:
+
+``` code
+[ VECTOR_TY_New vec x y z;
+	vec-->VECTOR_X_SF = x;
+	vec-->VECTOR_Y_SF = y;
+	vec-->VECTOR_Z_SF = z;
+	return vec;
+];
+```
+
+And we can then define this:
+
+	To decide which vector is vector x (X - number) y (Y - number) z (Z - number):
+		(- (VECTOR_TY_New({-new: vector}, {X}, {Y}, {Z})) -).
+
+After which `vector x 10 y 12 z 20`, for example, will be said back as ``(10,12,20)``. Of course, there are lots of functions we could define for useful things to do with vectors, but the kind itself now exists.
+
+## Neptune and kind constructors
+
+_Kind constructors_ are ways to construct new kinds from existing ones: sometimes one existing kind, as in `list of K`, and sometimes two, as in `relation of K to L`.
+
+These of course can make an unlimited number of different kinds — consider `list of numbers`, `list of lists of numbers`, `list of lists of lists of numbers`, ..., for example. But the different possible kinds made out of the same constructor share a Neptune declaration.
+
+Suppose, for the sake of a concrete example, that we want to make a more general version of the `vector` kind created in the previous section. It will behave exactly as `vector` did, but will be able to hold triples of any kind, and not only of `number`. The declaration is surprisingly similar:
+
+``` code
+new constructor VECTOR_OF_TY {
+	conforms-to: POINTER_VALUE_TY
+	conforms-to: SAYABLE_VALUE_TY
+	singular: vector of k
+	plural: vectors of k
+	terms: covariant
+	
+	short-block-size: 5
+	long-block-size: 0
+	
+	say-function: VECTOR_OF_TY_Say
+	compare-function: VECTOR_OF_TY_Compare
+	create-function: VECTOR_OF_TY_Create
+	copy-function: VECTOR_OF_TY_Copy
+	destroy-function: VECTOR_OF_TY_Destroy
+
+	index-priority: 2
+	index-default-value: 0
+	specification-text: A three-vector which can hold any kind of value in its x, y, z coordinates.
+}
+```
+
+These are settings held in common by all kinds of the `vector of K` shape. They all conform to ```POINTER_VALUE_TY```, and so on. Notice the use of ```k``` in the singular and plural names.
+
+```terms: covariant``` is also new. This has to do with whether narrowing the kind parameter `K` also narrows `vector of K`, which is covariance, or widens it, which would be contravariance. In practice, a good way to think about to consider that a door is a kind of thing, and see what happens if `K` is changed from `thing` to `door`. For example:
+
+- Is a vector of doors also a vector of things? Yes — because the door terms are also things. Is a vector of things also a vector of doors? No — because not all things are doors. Conceptually, `K1` < `K2` means `vector of K1` < `vector of K2`. So the `K` term in `vector of K` must be _covariant_. 
+
+- Is an activity on doors also an activity on things? No — because the activity can't operate on things other than doors. Is an activity on things also an activity on doors? Yes — if it can act on all things, it can certainly act on doors. Conceptually, `K1` < `K2` means `activity on K1` > `activity on K2`. So the `K` term in `activity in K` must be _contravariant_.
+
+When a constructor takes two parameters, they can go in opposite directions. `K based rule producing L` is contravariant in `K`, but covariant in `L`. For that, we would write ```terms: contravariant, covariant```.
+
+Terms can also be optional, and we can give multiple names. The declaration of `RULE_TY` in Neptune actually goes like so:
+
+``` code
+builtin constructor RULE_TY {
+	...
+	singular: rule | k based rule | rule producing l | k based rule producing l
+	plural: rules | k based rules | rules producing l | k based rules producing l
+	terms: contravariant optional, covariant optional
+	...
+}
+```
+
+Note the pipe characters ```|``` dividing the possible names.
+
+However, all of that is a digression: `vector of K` has only one possible name, and the `K` term is covariant.
+
+In fact, `vector of K` is set up surprisingly similarly to plain `vector`. The layout in memory is the same: a five-word short block with no long block, and where the memory manager owns words 0 and 1, so that we can use words 2, 3 and 4 for the x, y and z coordinates. There are really just two complications. The first of these appears when we want to say a vector:
+
+``` code
+[ VECTOR_OF_TY_Say vec scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(vec), 0);
+	print "(";
+	SayKindValuePair(scalar_kind_id, vec-->VECTOR_X_SF);
+	print ",";
+	SayKindValuePair(scalar_kind_id, vec-->VECTOR_Y_SF);
+	print ",";
+	SayKindValuePair(scalar_kind_id, vec-->VECTOR_Z_SF);
+	print ")";
+];
+```
+
+Here an issue is that we can't say the coordinate values unless we know what kind they are: a `vector of numbers` must look different from a `vector of texts`. So we need to find out what the contents of ```vec``` are. For example, ```KindOfShortBlockOnlyPV``` returns something like `vector of real numbers`, and then ```KindConstructorTerm``` applied to that returns `real number`, so this is what goes into ```scalar_kind_id```. The function ```SayKindValuePair``` then takes care of saying the value according to that kind's conventions.
+
+Similarly for comparisons:
+
+``` code
+[ VECTOR_OF_TY_Compare vec1 vec2 n1 n2 i d scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(vec1), 0);
+	for (i=VECTOR_X_SF: i<=VECTOR_Z_SF: i++) {
+		d = CompareKindValuePairs(scalar_kind_id, vec1-->i, scalar_kind_id, vec2-->i);
+		if (d ~= 0) return d;
+	}
+	return 0;
+];
+```
+
+The other complication is that the scalar kind might be pointer-valued, which means it can't be thrown casually around, and has to be properly created, copied and in due course destroyed. So the create function for a vector has to split into two different procedures:
+
+``` code
+[ VECTOR_OF_TY_Create kind_id sb_address
+	short_block scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(kind_id, 0);
+
+	short_block = CreatePVShortBlock(sb_address, kind_id);
+	
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+		short_block-->VECTOR_X_SF = CreatePV(scalar_kind_id);
+		short_block-->VECTOR_Y_SF = CreatePV(scalar_kind_id);
+		short_block-->VECTOR_Z_SF = CreatePV(scalar_kind_id);
+	} else {
+		short_block-->VECTOR_X_SF = KindDefaultValue(scalar_kind_id);
+		short_block-->VECTOR_Y_SF = short_block-->VECTOR_X_SF;
+		short_block-->VECTOR_Z_SF = short_block-->VECTOR_X_SF;
+	}
+	
+	return short_block;
+];
+```
+
+We also now need a destroy function, which plain `vector` didn't need, in case we have created something which needs proper disposal:
+
+``` code
+[ VECTOR_OF_TY_Destroy vec scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(vec), 0);
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+		DestroyPV(vec-->VECTOR_X_SF);
+		DestroyPV(vec-->VECTOR_Y_SF);
+		DestroyPV(vec-->VECTOR_Z_SF);
+	}
+];
+```
+
+The copy function is also similar to the one for `vector`, but also has to handle the coordinates more carefully:
+
+``` code
+[ VECTOR_OF_TY_Copy vecto vecfrom scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(vecto), 0);
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+		CopyPV(vecto-->VECTOR_X_SF, vecfrom-->VECTOR_X_SF);
+		CopyPV(vecto-->VECTOR_Y_SF, vecfrom-->VECTOR_Y_SF);
+		CopyPV(vecto-->VECTOR_Z_SF, vecfrom-->VECTOR_Z_SF);
+	} else {
+		vecto-->VECTOR_X_SF = vecfrom-->VECTOR_X_SF;
+		vecto-->VECTOR_Y_SF = vecfrom-->VECTOR_Y_SF;
+		vecto-->VECTOR_Z_SF = vecfrom-->VECTOR_Z_SF;
+	}
+	return false;
+];
+```
+
+And that's all the kit coding done: we just need an Inform phrase to create such vectors, which we'll do using a kind variable `K`:
+
+	To decide which vector of K is vector x (X - value of kind K) y (Y - K) z (Z - K):
+		(- (VECTOR_OF_TY_New({-new: vector of K}, {X}, {Y}, {Z})) -).
+
+And with this done, for example,
+
+	showme vector x "aleph" y "beth" z "gimel";
+	showme vector x -4.5 y 0.002 z 16.34;
+	showme vector x (vector x 1 y 2 z 3) y (vector x 4 y 5 z 6) z (vector x 7 y 8 z 9);
+
+produces:
+
+``` transcript
+	"vector x "aleph" y "beth" z "gimel"" = vector of texts: (aleph,beth,gimel)
+	"vector x -4.5 y 0.002 z 16.34" = vector of real numbers: (-4.5,0.002,16.34)
+	"vector x (vector x 1 y 2 z 3) y (vector x 4 y 5 z 6) z (vector x 7 y 8 z 9)" = vector of vectors of numbers: ((1,2,3),(4,5,6),(7,8,9))
+
+```
+
+So we have a fully-operational kind construction, `vector of K`, where `K` can be any kind. 
+
+Kind constructions can become quite elaborate, and all of the functions for copying and destroying their values have to operate recursively as a result. For example, when ```DestroyPV``` is applied to the list `{ { "red", "blue" }, { "green" }, { "purple", "orange" } }`, which is a `list of lists of texts`, say, then the process will recurse so that the values are destroyed in this sequence:
+
+	"red"
+	"blue"
+	{ "red", "blue" }
+	"green"
+	{ "green" }
+	"purple"
+	"orange"
+	{ "purple", "orange" }
+	{ { "red", "blue" }, { "green" }, { "purple", "orange" } }
+
+Thus our single call to ```DestroyPV``` resulted in 8 other calls to it before the original call finished. But this process is automatic, or rather, is managed by ```BasicInformKit``` for us. The same will happen if we destroy, say, a `vector of vectors of vectors of lists of text`.
+
+## Neptune and optionals
+
+As a second worked example, the following implements `optional K`, a kind which can hold _either_ a value of the kind `K`, _or_ a special "no value" value. Using this, it's possible to design phrases which produce valid answers even when the task they perform is sometimes impossible.
+
+As usual, we start with the Neptune definition:
+
+``` code
+new constructor OPTIONAL_TY {
+	conforms-to: POINTER_VALUE_TY
+	conforms-to: SAYABLE_VALUE_TY
+	singular: optional k
+	plural: optional k
+	terms: covariant
+	
+	short-block-size: 3
+	long-block-size: 0
+
+	say-function: OPTIONAL_TY_Say
+	compare-function: OPTIONAL_TY_Compare
+	create-function: OPTIONAL_TY_Create
+	copy-function: OPTIONAL_TY_Copy
+	destroy-function: OPTIONAL_TY_Destroy
+
+	index-priority: 2
+	index-default-value: 0
+	specification-text: A way to hold either a value, or a "no value" alternative.
+}
+```
+
+These are very small: no long block, and the short block holds just one word of data. In fact, though, it also makes use of the memory manager's four bits of spare data in the short block header: or at least, it makes use of one of them.
+
+``` code
+Constant OPTIONAL_CONTENT_SF = 2;
+Constant OPTIONAL_TY_NO_VALUE_SBF = 1;
+
+[ OPTIONAL_TY_Say opt scalar_kind_id;
+	if (ShortBlockOnlyPVFlags(opt, 0) & OPTIONAL_TY_NO_VALUE_SBF) {
+		print "no value";
+	} else {
+		scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(opt), 0);
+		SayKindValuePair(scalar_kind_id, opt-->OPTIONAL_CONTENT_SF);
+	}
+];
+```
+
+As this may suggest, four bits are stored with every short block of a short-block-only kind, and they are free for us to use as we would like, with the following pair of functions:
+
+> ---
+>
+> ```ShortBlockOnlyPVFlags(pv)```
+> 
+> Returns the current state of the 4-bit bitmap for the short-block-only pointer value ```pv```. By definition, can only return a number from 0 to 15, i.e., binary 0000 to 1111, and for a newly created value it will be 0000. This call is potentially disastrous if ```pv``` is a pointer value which does have a long block, so use with care.
+>
+> ---
+>
+> ```WriteShortBlockOnlyPVFlags(pv, flags)```
+> 
+> Writes ```flags``` to become the current state of the 4-bit bitmap for the short-block-only pointer value ```pv```. ```flags``` must be between 0 and 15, i.e., binary 0000 to 1111. This call is potentially disastrous if ```pv``` is a pointer value which does have a long block, so use with care.
+>
+> ---
+
+We are going to use only the least significant bit of the four. When this is set, the optional will be "no value", and the content field will hold 0. When it is clear, the optional will have a value, stored in the content field.
+
+The following performs comparisons. "No value" is considered to be less than all existing values.
+
+``` code
+[ OPTIONAL_TY_Compare opt1 opt2 scalar_kind_id;
+	if (ShortBlockOnlyPVFlags(opt1, 0) & OPTIONAL_TY_NO_VALUE_SBF) {
+		if (ShortBlockOnlyPVFlags(opt2, 0) & OPTIONAL_TY_NO_VALUE_SBF) return 0;
+		return -1;
+	}
+	if (ShortBlockOnlyPVFlags(opt2, 0) & OPTIONAL_TY_NO_VALUE_SBF) return 1;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(opt1), 0);
+	return CompareKindValuePairs(
+		scalar_kind_id, opt1-->OPTIONAL_CONTENT_SF,
+		scalar_kind_id, opt2-->OPTIONAL_CONTENT_SF);
+];
+```
+
+We create an optional as having no value:
+
+``` code
+[ OPTIONAL_TY_Create kind_id sb_address
+	short_block scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(kind_id, 0);
+
+	short_block = CreatePVShortBlock(sb_address, kind_id);
+	WriteShortBlockOnlyPVFlags(short_block, OPTIONAL_TY_NO_VALUE_SBF);
+	short_block-->OPTIONAL_CONTENT_SF = 0;
+	
+	return short_block;
+];
+```
+
+Destruction is instant except in the one case where the optional does hold a
+value, and it's of a kind which needs to be destroyed:
+
+``` code
+[ OPTIONAL_TY_Destroy opt scalar_kind_id;
+	if (ShortBlockOnlyPVFlags(opt, 0) & OPTIONAL_TY_NO_VALUE_SBF) return;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(opt), 0);
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id))
+		DestroyPV(opt-->OPTIONAL_CONTENT_SF);
+];
+```
+
+The copy mechanism is the most laborious, because it may mean destruction if
+no value is copied into an optional with a value, or creation if the other
+way around:
+
+``` code
+[ OPTIONAL_TY_Copy optto optfrom scalar_kind_id;
+	if (ShortBlockOnlyPVFlags(optfrom, 0) & OPTIONAL_TY_NO_VALUE_SBF) {
+		if (ShortBlockOnlyPVFlags(optto, 0) & OPTIONAL_TY_NO_VALUE_SBF == 0) {
+			scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(optto), 0);
+			if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id))
+				DestroyPV(optto-->OPTIONAL_CONTENT_SF);
+			optto-->OPTIONAL_CONTENT_SF = 0;
+			WriteShortBlockOnlyPVFlags(optto, OPTIONAL_TY_NO_VALUE_SBF);
+		}
+	} else {
+		scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(optto), 0);
+		if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+			if (ShortBlockOnlyPVFlags(optto, 0) & OPTIONAL_TY_NO_VALUE_SBF)
+				optto-->OPTIONAL_CONTENT_SF = CreatePV(scalar_kind_id);
+			CopyPV(optto-->OPTIONAL_CONTENT_SF, optfrom-->OPTIONAL_CONTENT_SF);
+		} else {
+			optto-->OPTIONAL_CONTENT_SF = optfrom-->OPTIONAL_CONTENT_SF;
+		}
+		WriteShortBlockOnlyPVFlags(optto, 0);
+	}
+	return false;
+];
+```
+
+That sets up the kind. We want to perform three basic operations on it: wrapping a value as an optional, unwrapping an optional into a value, and detecting whether an optional does or doesn't have a value.
+
+``` code
+[ OPTIONAL_TY_Wrap opt x scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(opt), 0);
+	WriteShortBlockOnlyPVFlags(opt, 0);
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+		if (opt-->OPTIONAL_CONTENT_SF == 0)
+			opt-->OPTIONAL_CONTENT_SF = CreatePV(scalar_kind_id);
+		CopyPV(opt-->OPTIONAL_CONTENT_SF, x);
+	} else {
+		opt-->OPTIONAL_CONTENT_SF = x;
+	}
+	return opt;
+];
+
+[ OPTIONAL_TY_Unwrap val opt scalar_kind_id;
+	scalar_kind_id = KindConstructorTerm(KindOfShortBlockOnlyPV(opt), 0);
+	if (ShortBlockOnlyPVFlags(opt, 0) & OPTIONAL_TY_NO_VALUE_SBF) {
+		BlkValueError("unwrapped an optional value with no value");
+		val = KindDefaultValue(scalar_kind_id);
+	}
+	if (KindConformsTo_POINTER_VALUE_TY(scalar_kind_id)) {
+		CopyPV(val, opt-->OPTIONAL_CONTENT_SF);
+	} else {
+		val = opt-->OPTIONAL_CONTENT_SF;
+	}
+	return val;
+];
+
+[ OPTIONAL_TY_Exists opt;
+	if (ShortBlockOnlyPVFlags(opt, 0) & OPTIONAL_TY_NO_VALUE_SBF)
+		rfalse;
+	rtrue;
+];
+```
+
+And finally we need some phrases:
+
+	To decide which optional K is (X - value of kind K) as optional:
+		(- (OPTIONAL_TY_Wrap({-new: optional K}, {X})) -).
+
+	To decide if (X - optional value) exists:
+		(- (OPTIONAL_TY_Exists({-by-reference:X})) -).
+
+	To decide which K is (X - optional value of kind K) as value:
+		(- (OPTIONAL_TY_Unwrap({-new: K}, {-by-reference:X})) -).
+
+With all of that done:
+
+	showme "Pie!" as optional;
+	let Q be an optional real number;
+	showme Q;
+	showme whether or not Q exists;
+	let Q be pi as optional;
+	showme Q;
+	showme whether or not Q exists;
+	showme Q as value;
+	showme e as optional as value;
+
+produces:
+
+``` transcript
+""Pie!" as optional" = optional texts: Pie!
+"Q" = optional real numbers: no value
+"whether or not Q exists" = truth state: false
+"Q" = optional real numbers: 3.14159
+"whether or not Q exists" = truth state: true
+"Q as value" = real number: 3.14159
+"e as optional as value" = real number: 2.71828
+```
+
+So here is how `optional K` might be used to make a phrase "type-safe" even though it sometimes has no good answer:
+
+	To decide which optional K is the first entry of (L - list of values of kind K):
+		repeat with entry running through L:
+			decide on the entry as optional;
+		let the non-entry be an optional K;
+		decide on the non-entry;
+
+and then:
+
+	showme the first entry of { "alpha", "beta", "gamma" };
+	let L be a list of numbers;
+	showme the first entry of L;
+
+produces:
+
+``` transcript
+"first entry of { "alpha", "beta", "gamma" }" = optional texts: alpha
+"first entry of L" = optional numbers: no value
+```
+
+## Neptune and arithmetic
+
+Let's revisit `vector`, the example kind which held three numbers, and add the following to its Neptune declaration:
+
+``` code
+	conforms-to: ARITHMETIC_VALUE_TY
+
+	plus-schema: VECTOR_TY_Plus(*1, *2)
+	minus-schema: VECTOR_TY_Minus(*1, *2)
+	times-schema: VECTOR_TY, NUMBER_TY: VECTOR_TY_Scale(*1, *2)
+	times-schema: NUMBER_TY, VECTOR_TY: VECTOR_TY_Scale(*2, *1)
+	times-schema: VECTOR_TY, VECTOR_TY: VECTOR_TY_CrossProduct(*1, *2)
+	divide-schema: none
+	remainder-schema: none
+	approximate-schema: none
+	negate-schema: VECTOR_TY_Negate(*1)
+	root-schema: none
+	cuberoot-schema: none
+	power-schema: none
+```
+
+Once a kind conforms to ```ARITHMETIC_VALUE_TY```, it matches phrase definitions involving `arithmetic values`, and sooner or later Inform will need to know how to perform that arithmetic. If no schemas are provided for this, Inform will fall back on its usual way to perform `number` arithmetic. That would be disastrous for `vector`, since it would add together two addresses in memory of short blocks. Instead, we'll give custom definitions.
+
+```plus-schema: VECTOR_TY_Plus(*1, *2)``` is a schema telling Inform what code to generate in order to add two `vector` values.
+
+- The values to add are written as ```*1``` and ```*2```, each of which should appear only once.
+
+- If we need an actual asterisk, it can be written ```**```.
+
+- If `vector` weren't a pointer value, the schema could be something more general — any I6 expression evaluating to the answer. For example, the ```plus-schema``` for `number` is just ```*1 + *2```.
+
+- But because `vector` is a pointer value, it should be a function call like this one, which should (i) _change_ its first argument to become the result of the operation, and also (ii) return that first argument.
+
+For example, this function changes ```vec1``` to the vector sum of ```vec1``` and ```vec2```, and returns ```vec1```:
+
+``` code
+[ VECTOR_TY_Plus vec1 vec2;
+	vec1-->VECTOR_X_SF = vec1-->VECTOR_X_SF + vec2-->VECTOR_X_SF;
+	vec1-->VECTOR_Y_SF = vec1-->VECTOR_Y_SF + vec2-->VECTOR_Y_SF;
+	vec1-->VECTOR_Z_SF = vec1-->VECTOR_Z_SF + vec2-->VECTOR_Z_SF;
+	return vec1;
+];
+```
+
+Note that this function does not create or destroy anything: the Inform compiler looks after all of that for us.
+
+In this example the ```times-schema```, which looks after multiplication, splits into three. With all of the binary operations, i.e., forms of arithmetic acting on two values — plus, minus, times, divide, remainder — we can optionally specify a pair of kinds, at least one of which has to be the kind being declared. This lets us distinguish three different sorts of multiplication on vectors:
+
+``` code
+	times-schema: VECTOR_TY, NUMBER_TY: VECTOR_TY_Scale(*1, *2)
+	times-schema: NUMBER_TY, VECTOR_TY: VECTOR_TY_Scale(*2, *1)
+	times-schema: VECTOR_TY, VECTOR_TY: VECTOR_TY_CrossProduct(*1, *2)
+```
+
+The algebra we need is like so:
+
+``` code
+[ VECTOR_TY_Scale vec scalar;
+	vec-->VECTOR_X_SF = scalar*vec-->VECTOR_X_SF;
+	vec-->VECTOR_Y_SF = scalar*vec-->VECTOR_Y_SF;
+	vec-->VECTOR_Z_SF = scalar*vec-->VECTOR_Z_SF;
+	return vec;
+];
+
+[ VECTOR_TY_CrossProduct vec1 vec2 x y z;
+	x = (vec1-->VECTOR_Y_SF) * (vec2-->VECTOR_Z_SF) -
+		(vec1-->VECTOR_Z_SF) * (vec2-->VECTOR_Y_SF);
+	y = (vec1-->VECTOR_Z_SF) * (vec2-->VECTOR_X_SF) -
+		(vec1-->VECTOR_X_SF) * (vec2-->VECTOR_Z_SF);
+	z = (vec1-->VECTOR_X_SF) * (vec2-->VECTOR_Y_SF) -
+		(vec1-->VECTOR_Y_SF) * (vec2-->VECTOR_X_SF);
+	vec1-->VECTOR_X_SF = x;
+	vec1-->VECTOR_Y_SF = y;
+	vec1-->VECTOR_Z_SF = z;
+	return vec1;
+];
+```
+
+We also set several of these schemas to ```none```. There's an important difference here:
+
+- Not giving a schema tells Inform to use the schema for `number` instead (or, if the kind conforms to ```REAL_ARITHMETIC_VALUE```, for `real number`).
+- Giving the schema ```none``` tells Inform to throw a problem message if the operation is ever attempted. For example:
+
+  > **Problem**. In 'showme P / Q', I can't divide a vector by a vector.
+
+### Arithmetic modulus
+
+The ```WorldModelKit``` declaration for ```TIME_TY```, that is, for the kind `time`, doesn't give any schemas. Instead it has:
+
+``` code
+	arithmetic-modulus: 1440
+```
+
+This tells Inform that although ordinary `number` arithmetic is used on values of `time`, the result is always reduced modulo 1440, that is, we take the remainder after dividing by 1440, in such a way that the result always falls in the range 0 to 1439. (1440 is the number of minutes in a day.) `time period`, on the other hand, has no modulus set, so it can be signed and can range up to about five thousand years forward or back.
+
+### Dimensionlessness
+
+When declared via Neptune, arithmetic kinds are by default dimensionless. That is, they don't represent physical measurements, and shouldn't be subject to Inform's automatic rules for how kinds are to be combined.
+
+This can be overridden, and indeed ```TIME_TY``` does this, too:
+
+``` code
+	dimensionless: no
+```
+
+But the default is ```yes```. This is why `vector` is dimensionless.
+
+In the absence of any instructions to the contrary, values of a dimensionless kind `K` add and multiply quite simply:
+
+* Two `K` values add to a `K` value.
+* Two `K` values multiply to a `K` value.
+* A `K` value times a `number` is a `K`.
+* A `number` value times a `K` is a `K`.
+
+And this is why Inform thinks that a vector times a vector ought to be another vector. For our cross product operation, that happened to be right. So for example we find:
+
+``` transcript
+"P" = vector: (1,0,0)
+"Q" = vector: (0,1,0)
+"P + Q" = vector: (1,1,0)
+"P - Q" = vector: (1,-1,0)
+"P * Q" = vector: (0,0,1)
+```
+
+But suppose we wanted dot product, not cross product? Then we would have to add a sentence to the wrapper extension:
+
+	A vector times a vector specifies a number.
+
+The Neptune file needs to change too:
+
+``` code
+	times-schema: VECTOR_TY, VECTOR_TY: VECTOR_TY_DotProduct(*1, *2)
+```
+
+And the kit has to provide the function:
+
+``` code
+[ VECTOR_TY_DotProduct vec1 vec2;
+	return
+		(vec1-->VECTOR_X_SF) * (vec2-->VECTOR_X_SF) +
+		(vec1-->VECTOR_Y_SF) * (vec2-->VECTOR_Y_SF) +
+		(vec1-->VECTOR_Z_SF) * (vec2-->VECTOR_Z_SF);
+];
+```
+
+Note that because the result is a regular value, not a pointer value, we do not alter the vector ```vec1```: we simply return the answer. And now:
+
+``` transcript
+"P" = vector: (1,0,0)
+"Q" = vector: (0,1,0)
+"P + Q" = vector: (1,1,0)
+"P - Q" = vector: (1,-1,0)
+"P * Q" = number: 0
+```

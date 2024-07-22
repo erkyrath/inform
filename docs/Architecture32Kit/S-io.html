@@ -108,7 +108,7 @@ only if scripting is on: this always succeeds.
 <span class="plain-syntax">            </span><span class="reserved-syntax">if</span><span class="plain-syntax"> (</span><span class="identifier-syntax">gg_scriptfref</span><span class="plain-syntax"> == </span><span class="constant-syntax">0</span><span class="plain-syntax">) </span><span class="reserved-syntax">rfalse</span><span class="plain-syntax">;</span>
 <span class="plain-syntax">        }</span>
 <span class="plain-syntax">        </span><span class="comment-syntax">stream_open_file</span>
-<span class="plain-syntax">        </span><span class="identifier-syntax">gg_scriptstr</span><span class="plain-syntax"> = </span><span class="identifier-syntax">glk_stream_open_file</span><span class="plain-syntax">(</span><span class="identifier-syntax">gg_scriptfref</span><span class="plain-syntax">, </span><span class="constant-syntax">$05</span><span class="plain-syntax">, </span><span class="identifier-syntax">GG_SCRIPTSTR_ROCK</span><span class="plain-syntax">);</span>
+<span class="plain-syntax">        </span><span class="identifier-syntax">gg_scriptstr</span><span class="plain-syntax"> = </span><span class="identifier-syntax">glk_stream_open_file_uni</span><span class="plain-syntax">(</span><span class="identifier-syntax">gg_scriptfref</span><span class="plain-syntax">, </span><span class="constant-syntax">$05</span><span class="plain-syntax">, </span><span class="identifier-syntax">GG_SCRIPTSTR_ROCK</span><span class="plain-syntax">);</span>
 <span class="plain-syntax">        </span><span class="reserved-syntax">if</span><span class="plain-syntax"> (</span><span class="identifier-syntax">gg_scriptstr</span><span class="plain-syntax"> == </span><span class="constant-syntax">0</span><span class="plain-syntax">) {</span>
 <span class="plain-syntax">            </span><span class="comment-syntax">Could not open selected file; select again</span>
 <span class="plain-syntax">            </span><span class="identifier-syntax">glk_fileref_destroy</span><span class="plain-syntax">(</span><span class="identifier-syntax">gg_scriptfref</span><span class="plain-syntax">);</span>
@@ -346,7 +346,10 @@ to document all of that.
 <span class="character-syntax">    return key;</span>
 <span class="character-syntax">];</span>
 
-<span class="character-syntax">[ VM_ReadKeyboard  a_buffer a_table done ix;</span>
+<span class="character-syntax">Array UnicodeWhitespace --&gt; 133 160 5760 8232 8233 8239 8287 12288;</span>
+<span class="character-syntax">Constant UnicodeWhitespaceLen = 8;</span>
+
+<span class="character-syntax">[ VM_ReadKeyboard  a_buffer a_table done ix chr;</span>
 <span class="character-syntax">    if (gg_commandstr ~= 0 &amp;&amp; gg_command_reading ~= false) {</span>
 <span class="character-syntax">        done = glk_get_line_stream_uni(gg_commandstr, a_buffer+WORDSIZE,</span>
 <span class="character-syntax">            (INPUT_BUFFER_LEN-1)-1);</span>
@@ -387,6 +390,16 @@ to document all of that.
 <span class="character-syntax">        glk_put_char_stream(gg_commandstr, 10); </span><span class="comment-syntax">newline</span>
 <span class="character-syntax">    }</span>
 <span class="character-syntax">  .KPContinue;</span>
+
+<span class="character-syntax">    for ( ix = 1 : ix &lt;= (a_buffer--&gt;0) : ix++ ) {</span>
+<span class="character-syntax">      chr = a_buffer--&gt;ix;</span>
+<span class="character-syntax">      if ((chr &lt;= 32) || (((chr &gt;= 8192) &amp;&amp; (chr &lt;= 8202))))</span>
+<span class="character-syntax">        a_buffer--&gt;ix = 32;</span>
+<span class="character-syntax">      else {</span>
+<span class="character-syntax">        @binarysearch chr WORDSIZE UnicodeWhitespace WORDSIZE UnicodeWhitespaceLen 0 0 chr;</span>
+<span class="character-syntax">    if (chr) a_buffer--&gt;ix = 32;</span>
+<span class="character-syntax">      }</span>
+<span class="character-syntax">    }</span>
 <span class="character-syntax">    VM_Tokenise(a_buffer,a_table);</span>
 <span class="character-syntax">    </span><span class="comment-syntax">It's time to close any quote window we've got going.</span>
 <span class="character-syntax">    if (gg_quotewin) {</span>

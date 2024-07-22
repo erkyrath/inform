@@ -56,6 +56,7 @@ typedef struct code_generation {
 	struct linked_list *kinds;
 	struct linked_list *kinds_in_declaration_order;
 	struct linked_list *instances_in_declaration_order;
+	int defines_random;
 
 	int true_action_count;
 	int fake_action_count;
@@ -67,6 +68,8 @@ typedef struct code_generation {
 	int verb_count;
 	struct linked_list *verbs; /* of |vanilla_dword| */
 	struct linked_list *verb_grammar; /* of |text_stream| */
+	struct dictionary *long_words; /* which might push past dictionary resolution */
+	struct dictionary *warned_about_words; /* which might push past dictionary resolution */
 
 	CLASS_DEFINITION
 } code_generation;
@@ -96,6 +99,7 @@ code_generation *CodeGen::new_generation(pipeline_step *step, filename *F,
 	gen->kinds = NEW_LINKED_LIST(inter_symbol);
 	gen->kinds_in_declaration_order = NEW_LINKED_LIST(inter_symbol);
 	gen->instances_in_declaration_order = NEW_LINKED_LIST(inter_symbol);
+	gen->defines_random = FALSE;
 	gen->true_action_count = 0;
 	gen->fake_action_count = 0;
 	gen->actions = NEW_LINKED_LIST(text_stream);
@@ -106,6 +110,8 @@ code_generation *CodeGen::new_generation(pipeline_step *step, filename *F,
 	gen->verb_count = 0;
 	gen->verbs = NEW_LINKED_LIST(vanilla_dword);
 	gen->verb_grammar = NEW_LINKED_LIST(text_stream);
+	gen->long_words = Dictionaries::new(128, TRUE);
+	gen->warned_about_words = Dictionaries::new(128, TRUE);
 	if (temp == FALSE) @<Traverse for global bric-a-brac@>;
 	return gen;
 }
@@ -123,8 +129,9 @@ void CodeGen::gather_up(inter_tree *I, inter_tree_node *P, void *state) {
 	switch (Inode::get_construct_ID(P)) {
 		case CONSTANT_IST: {
 			inter_symbol *const_name = ConstantInstruction::symbol(P);
-			if (Str::eq(InterSymbol::identifier(const_name), I"DICT_WORD_SIZE"))
+			if (Str::eq(InterSymbol::identifier(const_name), I"DICT_WORD_SIZE")) {
 				gen->dictionary_resolution = ConstantInstruction::evaluate_to_int(const_name);
+			}
 			break;
 		}
 		case VARIABLE_IST: {
